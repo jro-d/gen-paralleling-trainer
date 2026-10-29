@@ -26,10 +26,11 @@ It simulates a full commercial vessel **Main Switchboard (MSB)** featuring:
 
 ---
 
-## 🚀 Live Demo / Quick Start
+## 🚀 Live Demo & Offline Usage
 
-Open [`index.html`](index.html) or [`gen-paralleling-trainer.html`](gen-paralleling-trainer.html) directly in any modern web browser (Edge, Chrome, Safari, Firefox).
-No web server, build steps, Node.js, or plugins required.
+* **Live Web App**: [https://jro-d.github.io/gen-paralleling-trainer/](https://jro-d.github.io/gen-paralleling-trainer/)
+* **100% Offline Standalone File**: Download [`Generator-Paralleling-Trainer-Standalone.html`](Generator-Paralleling-Trainer-Standalone.html) and double-click to launch in any browser. It contains zero external network dependencies, fonts, CDNs, or scripts, making it fully operational in air-gapped vessel computer rooms or offline maritime classrooms.
+* **Local Source**: You can also open [`index.html`](index.html) or [`gen-paralleling-trainer.html`](gen-paralleling-trainer.html) directly. No build steps, web server, or Node.js required.
 
 ---
 
