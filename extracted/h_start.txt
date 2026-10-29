@@ -1,0 +1,48 @@
+﻿  fn onStopClick (method 350):
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: pushbyte 0
+    12: setproperty state
+    16: getlocal_1
+    17: callpropvoid resetGenerator 1
+    21: returnvoid
+  fn onStartClick (method 351):
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty state
+    13: pushbyte 0
+    15: ifne ->105
+    20: getproperty gen
+    23: getlocal_1
+    24: getproperty <rt>
+    27: pushbyte 1
+    29: setproperty state
+    33: getproperty gen
+    36: getlocal_1
+    37: getproperty <rt>
+    41: getproperty minField
+    44: setproperty field
+    48: getproperty gen
+    51: getlocal_1
+    52: getproperty <rt>
+    56: getproperty minFuel
+    59: setproperty fuel
+    63: getlocal_1
+    64: callpropvoid jogFuelset 1
+    69: getlocal_1
+    70: callpropvoid jogFieldset 1
+    75: getproperty revpowerLamp
+    78: getlocal_1
+    79: getproperty <rt>
+    82: pushfalse
+    83: setproperty visible
+    87: getproperty rev_PowerText
+    90: getlocal_1
+    91: getproperty <rt>
+    94: pushstring ""
+    96: setproperty text
+    100: getlocal_1
+    101: callpropvoid resetGenerator 1
+    105: returnvoid

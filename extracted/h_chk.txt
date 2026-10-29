@@ -1,0 +1,107 @@
+﻿  fn checkGenOutput (method 346):
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: pushtrue
+    11: setproperty closeCBOK
+    15: getproperty gen
+    18: getlocal_1
+    19: getproperty <rt>
+    22: getproperty rotorspeed
+    25: pushbyte 100
+    28: getproperty genDeltaF
+    31: subtract
+    32: lessthan
+    33: dup
+    34: iftrue ->58
+    38: pop
+    40: getproperty gen
+    43: getlocal_1
+    44: getproperty <rt>
+    47: getproperty rotorspeed
+    50: pushbyte 100
+    53: getproperty genDeltaF
+    56: add
+    57: greaterthan
+    58: iffalse ->74
+    63: getproperty gen
+    66: getlocal_1
+    67: getproperty <rt>
+    70: pushfalse
+    71: setproperty closeCBOK
+    75: getproperty gen
+    78: getlocal_1
+    79: getproperty <rt>
+    82: getproperty volts
+    85: pushshort 415
+    89: getproperty genDeltaV
+    92: subtract
+    93: lessthan
+    94: dup
+    95: iftrue ->120
+    99: pop
+    101: getproperty gen
+    104: getlocal_1
+    105: getproperty <rt>
+    108: getproperty volts
+    111: pushshort 415
+    115: getproperty genDeltaV
+    118: add
+    119: greaterthan
+    120: iffalse ->136
+    125: getproperty gen
+    128: getlocal_1
+    129: getproperty <rt>
+    132: pushfalse
+    133: setproperty closeCBOK
+    136: returnvoid
+  fn tripReversePower (method 347):
+    3: getproperty timers
+    6: getlocal_1
+    7: getproperty <rt>
+    10: callpropvoid stop 0
+    15: getproperty revpowerLamp
+    18: getlocal_1
+    19: getproperty <rt>
+    22: pushtrue
+    23: setproperty visible
+    27: getproperty revpowerAlarm
+    30: getlocal_1
+    31: getproperty <rt>
+    34: pushfalse
+    35: setproperty visible
+    39: getproperty gen
+    42: getlocal_1
+    43: getproperty <rt>
+    46: pushbyte 0
+    48: setproperty state
+    52: getlocal_1
+    53: callpropvoid resetGenerator 1
+    57: returnvoid
+  fn resetGenerator (method 348):
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: pushfalse
+    11: setproperty loaded
+    15: getproperty Breaker
+    18: getlocal_1
+    19: getproperty <rt>
+    22: pushtrue
+    23: setproperty visible
+    27: getproperty btn_Auto
+    30: getlocal_1
+    31: getproperty <rt>
+    34: pushstring "invert"
+    37: setproperty blendMode
+    41: getproperty auto_Text
+    44: getlocal_1
+    45: getproperty <rt>
+    48: pushstring "Man"
+    51: setproperty text
+    55: getproperty auto_Text
+    58: getlocal_1
+    59: getproperty <rt>
+    62: pushint 16711680
+    64: setproperty textColor
+    67: returnvoid

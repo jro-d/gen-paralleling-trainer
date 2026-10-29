@@ -1,0 +1,137 @@
+﻿  fn onCloseCBClick (method 359):
+    3: getproperty gen
+    6: pushbyte 1
+    8: getproperty <rt>
+    11: getproperty state
+    14: pushbyte 10
+    17: getproperty gen
+    20: pushbyte 2
+    22: getproperty <rt>
+    25: getproperty state
+    28: multiply
+    29: add
+    31: setlocal_2
+    33: pushbyte 1
+    35: callpropvoid checkGenOutput 1
+    40: getproperty gen
+    43: pushbyte 1
+    45: getproperty <rt>
+    48: getproperty closeCBOK
+    51: iffalse ->243
+    55: jump ->155
+    61: getproperty gen
+    64: pushbyte 1
+    66: getproperty <rt>
+    69: pushbyte 3
+    71: setproperty state
+    75: getproperty Breaker
+    78: pushbyte 1
+    80: getproperty <rt>
+    83: pushfalse
+    84: setproperty visible
+    88: getproperty gen
+    91: pushbyte 1
+    93: getproperty <rt>
+    96: pushtrue
+    97: setproperty loaded
+    100: jump ->243
+    106: getproperty gen
+    109: pushbyte 1
+    111: getproperty <rt>
+    114: pushbyte 2
+    116: setproperty state
+    120: getproperty syncText
+    123: pushtrue
+    124: setproperty visible
+    128: pushtrue
+    129: initproperty reqSynchronisation
+    132: jump ->243
+    137: findpropstrict trace
+    140: pushstring " wrong gen[1].state in onCloseCBClick"
+    143: callpropvoid trace 1
+    147: jump ->243
+    151: jump ->243
+    155: getlocal_2
+    156: setlocal_3
+    157: pushbyte 1
+    159: getlocal_3
+    160: ifstrictne ->170
+    164: pushbyte 0
+    166: jump ->221
+    170: pushbyte 11
+    172: getlocal_3
+    173: ifstrictne ->183
+    177: pushbyte 1
+    179: jump ->221
+    183: pushbyte 31
+    185: getlocal_3
+    186: ifstrictne ->196
+    190: pushbyte 2
+    192: jump ->221
+    196: pushbyte 41
+    198: getlocal_3
+    199: ifstrictne ->209
+    203: pushbyte 3
+    205: jump ->221
+    209: jump ->219
+    213: pushbyte 4
+    215: jump ->221
+    219: pushbyte 4
+    221: kill 3
+    223: lookupswitch ...
+    243: returnvoid
+  fn onOpenCBClick (method 360):
+    2: jump ->84
+    8: getproperty syncText
+    11: pushfalse
+    12: setproperty visible
+    16: pushfalse
+    17: initproperty reqSynchronisation
+    22: getproperty gen
+    25: pushbyte 1
+    27: getproperty <rt>
+    30: pushbyte 1
+    32: setproperty state
+    36: getproperty Breaker
+    39: pushbyte 1
+    41: getproperty <rt>
+    44: pushtrue
+    45: setproperty visible
+    48: jump ->167
+    53: findpropstrict trace
+    56: pushstring " wrong gen[1].state in onOpenCBClick "
+    60: getproperty gen
+    63: pushbyte 1
+    65: getproperty <rt>
+    68: getproperty state
+    71: add
+    72: callpropvoid trace 1
+    76: jump ->167
+    80: jump ->167
+    85: getproperty gen
+    88: pushbyte 1
+    90: getproperty <rt>
+    93: getproperty state
+    96: setlocal_2
+    97: pushbyte 2
+    99: getlocal_2
+    100: ifstrictne ->110
+    104: pushbyte 0
+    106: jump ->148
+    110: pushbyte 3
+    112: getlocal_2
+    113: ifstrictne ->123
+    117: pushbyte 1
+    119: jump ->148
+    123: pushbyte 4
+    125: getlocal_2
+    126: ifstrictne ->136
+    130: pushbyte 2
+    132: jump ->148
+    136: jump ->146
+    140: pushbyte 3
+    142: jump ->148
+    146: pushbyte 3
+    148: kill 2
+    150: lookupswitch ...
+    167: returnvoid

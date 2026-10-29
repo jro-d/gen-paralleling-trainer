@@ -1,0 +1,5435 @@
+
+=== class Generator_Synchronisation_v7_1 extends flash.display.MovieClip
+  ctor (method 343):
+    0: getlocal_0
+    1: pushscope
+    2: newactivation
+    3: dup
+    4: setlocal_1
+    5: pushscope
+    6: getlocal_0
+    7: findpropstrict flash.utils.Timer
+    10: pushshort 10000
+    13: constructprop flash.utils.Timer 1
+    17: initproperty timer1
+    20: getlocal_0
+    21: findpropstrict flash.utils.Timer
+    24: pushshort 10000
+    27: constructprop flash.utils.Timer 1
+    31: initproperty timer2
+    34: getlocal_0
+    35: findpropstrict flash.geom.ColorTransform
+    38: constructprop flash.geom.ColorTransform 0
+    42: initproperty colorTransform
+    45: getlocal_0
+    46: findpropstrict Array
+    48: constructprop Array 0
+    51: initproperty jogFieldArray
+    54: getlocal_0
+    55: findpropstrict Array
+    57: constructprop Array 0
+    60: initproperty jogFuelArray
+    63: getlocal_0
+    64: findpropstrict Array
+    66: constructprop Array 0
+    69: initproperty gen
+    72: getlocal_0
+    73: findpropstrict Array
+    75: constructprop Array 0
+    78: initproperty timers
+    81: getlocal_0
+    82: findpropstrict Array
+    84: constructprop Array 0
+    87: initproperty revpowerLamp
+    90: getlocal_0
+    91: findpropstrict Array
+    93: constructprop Array 0
+    96: initproperty revpowerAlarm
+    99: getlocal_0
+    100: findpropstrict Array
+    102: constructprop Array 0
+    105: initproperty Breaker
+    108: getlocal_0
+    109: findpropstrict Array
+    111: constructprop Array 0
+    114: initproperty btn_Auto
+    117: getlocal_0
+    118: findpropstrict Array
+    120: constructprop Array 0
+    123: initproperty btn_Start
+    126: getlocal_0
+    127: findpropstrict Array
+    129: constructprop Array 0
+    132: initproperty btn_Stop
+    135: getlocal_0
+    136: findpropstrict Array
+    138: constructprop Array 0
+    141: initproperty btn_CloseCB
+    144: getlocal_0
+    145: findpropstrict Array
+    147: constructprop Array 0
+    150: initproperty btn_OpenCB
+    153: getlocal_0
+    154: findpropstrict Array
+    156: constructprop Array 0
+    159: initproperty auto_Text
+    162: getlocal_0
+    163: findpropstrict Array
+    165: constructprop Array 0
+    168: initproperty fuel_Text
+    171: getlocal_0
+    172: findpropstrict Array
+    174: constructprop Array 0
+    177: initproperty field_Text
+    180: getlocal_0
+    181: findpropstrict Array
+    183: constructprop Array 0
+    186: initproperty rev_PowerText
+    189: getlocal_0
+    190: findpropstrict Array
+    192: constructprop Array 0
+    195: initproperty arrowKW
+    198: getlocal_0
+    199: findpropstrict Array
+    201: constructprop Array 0
+    204: initproperty arrowKVAr
+    207: getlocal_0
+    208: findpropstrict Array
+    210: constructprop Array 0
+    213: initproperty genRotors
+    216: getlocal_0
+    217: findpropstrict Array
+    219: constructprop Array 0
+    222: initproperty V_Meters
+    225: getlocal_0
+    226: findpropstrict Array
+    228: constructprop Array 0
+    231: initproperty Hz_Meters
+    234: getlocal_0
+    235: findpropstrict Array
+    237: constructprop Array 0
+    240: initproperty kW_Meters
+    243: getlocal_0
+    244: findpropstrict Array
+    246: constructprop Array 0
+    249: initproperty kVAr_Meters
+    252: getlocal_0
+    253: findpropstrict Array
+    255: constructprop Array 0
+    258: initproperty pf_Meters
+    261: getlocal_0
+    262: pushbyte 0
+    264: pushbyte 100
+    266: pushshort 200
+    269: pushshort 300
+    272: pushshort 400
+    275: pushshort 500
+    278: newarray 6
+    280: initproperty kWnums
+    283: getlocal_0
+    284: pushbyte 48
+    286: pushbyte 49
+    288: pushbyte 50
+    290: pushbyte 51
+    292: pushbyte 52
+    294: newarray 5
+    296: initproperty Hznums
+    299: getlocal_0
+    300: pushbyte 0
+    302: pushbyte 100
+    304: pushshort 200
+    307: pushshort 300
+    310: pushshort 400
+    313: pushshort 500
+    316: newarray 6
+    318: initproperty Vnums
+    321: getlocal_0
+    322: pushbyte 0
+    324: pushbyte 50
+    326: pushbyte 100
+    328: pushshort 150
+    331: pushshort 200
+    334: pushshort 250
+    337: newarray 6
+    339: initproperty KVArnums
+    342: getlocal_0
+    343: pushbyte 0
+    345: pushdouble 0.5
+    347: pushbyte 1
+    349: pushdouble 0.5
+    351: pushbyte 0
+    353: newarray 5
+    355: initproperty pfnums
+    358: getlocal_0
+    359: findpropstrict flash.display.Sprite
+    362: constructprop flash.display.Sprite 0
+    366: initproperty helpPage_mc
+    369: getlocal_0
+    370: pushstring "state"
+    373: pushbyte 0
+    375: pushstring "rotorspeed"
+    378: pushbyte 0
+    380: pushstring "field"
+    383: pushbyte 0
+    385: pushstring "fuel"
+    388: pushbyte 0
+    390: pushstring "loaded"
+    393: pushfalse
+    394: pushstring "demandKW"
+    397: pushbyte 0
+    399: pushstring "demandKVAr"
+    402: pushbyte 0
+    404: pushstring "fuelKW"
+    407: pushbyte 0
+    409: pushstring "fieldKVAr"
+    412: pushbyte 0
+    414: pushstring "rotorangle"
+    417: pushbyte 0
+    419: pushstring "outputKW"
+    422: pushbyte 0
+    424: pushstring "outputKVAr"
+    427: pushbyte 0
+    429: pushstring "closeCBOK"
+    432: pushfalse
+    433: pushstring "volts"
+    436: pushbyte 0
+    438: pushstring "Hz"
+    441: pushbyte 0
+    443: pushstring "kW"
+    446: pushbyte 0
+    448: pushstring "kVAr"
+    451: pushbyte 0
+    453: pushstring "pf"
+    456: pushbyte 1
+    458: newobject 18
+    460: initproperty gen1
+    463: getlocal_0
+    464: pushstring "state"
+    467: pushbyte 0
+    469: pushstring "rotorspeed"
+    472: pushbyte 0
+    474: pushstring "field"
+    477: pushbyte 0
+    479: pushstring "fuel"
+    482: pushbyte 0
+    484: pushstring "loaded"
+    487: pushfalse
+    488: pushstring "demandKW"
+    491: pushbyte 0
+    493: pushstring "demandKVAr"
+    496: pushbyte 0
+    498: pushstring "fuelKW"
+    501: pushbyte 0
+    503: pushstring "fieldKVAr"
+    506: pushbyte 0
+    508: pushstring "rotorangle"
+    511: pushbyte 0
+    513: pushstring "outputKW"
+    516: pushbyte 0
+    518: pushstring "outputKVAr"
+    521: pushbyte 0
+    523: pushstring "closeCBOK"
+    526: pushfalse
+    527: pushstring "volts"
+    530: pushbyte 0
+    532: pushstring "Hz"
+    535: pushbyte 0
+    537: pushstring "kW"
+    540: pushbyte 0
+    542: pushstring "kVAr"
+    545: pushbyte 0
+    547: pushstring "pf"
+    550: pushbyte 1
+    552: newobject 18
+    554: initproperty gen2
+    557: getlocal_0
+    558: constructsuper 0
+    560: getlocal_0
+    561: pushnull
+    562: getlocal_0
+    563: getproperty gen1
+    566: getlocal_0
+    567: getproperty gen2
+    570: newarray 3
+    572: initproperty gen
+    575: getlocal_0
+    576: pushnull
+    577: getlocal_0
+    578: getproperty genRotor
+    581: getlocal_0
+    582: getproperty genRotor2
+    585: newarray 3
+    587: initproperty genRotors
+    590: getlocal_0
+    591: pushnull
+    592: getlocal_0
+    593: getproperty jogFuel
+    596: getlocal_0
+    597: getproperty jogFuel2
+    600: newarray 3
+    602: initproperty jogFuelArray
+    605: getlocal_0
+    606: pushnull
+    607: getlocal_0
+    608: getproperty jogField
+    611: getlocal_0
+    612: getproperty jogField2
+    615: newarray 3
+    617: initproperty jogFieldArray
+    620: getlocal_0
+    621: pushnull
+    622: getlocal_0
+    623: getproperty timer1
+    626: getlocal_0
+    627: getproperty timer2
+    630: newarray 3
+    632: initproperty timers
+    635: getlocal_0
+    636: pushnull
+    637: getlocal_0
+    638: getproperty revPowerLampRed
+    641: getlocal_0
+    642: getproperty revPowerLampRed2
+    645: newarray 3
+    647: initproperty revpowerLamp
+    650: getlocal_0
+    651: pushnull
+    652: getlocal_0
+    653: getproperty revPowerLampAlarm
+    656: getlocal_0
+    657: getproperty revPowerLampAlarm2
+    660: newarray 3
+    662: initproperty revpowerAlarm
+    665: getlocal_0
+    666: pushnull
+    667: getlocal_0
+    668: getproperty genCB_ON
+    671: getlocal_0
+    672: getproperty genCB_ON2
+    675: newarray 3
+    677: initproperty Breaker
+    680: getlocal_0
+    681: pushnull
+    682: getlocal_0
+    683: getproperty btnAuto
+    686: getlocal_0
+    687: getproperty btnAuto2
+    690: newarray 3
+    692: initproperty btn_Auto
+    695: getlocal_0
+    696: pushnull
+    697: getlocal_0
+    698: getproperty btnStart
+    701: getlocal_0
+    702: getproperty btnStart2
+    705: newarray 3
+    707: initproperty btn_Start
+    710: getlocal_0
+    711: pushnull
+    712: getlocal_0
+    713: getproperty btnStop
+    716: getlocal_0
+    717: getproperty btnStop2
+    720: newarray 3
+    722: initproperty btn_Stop
+    725: getlocal_0
+    726: pushnull
+    727: getlocal_0
+    728: getproperty btnCloseCB
+    731: getlocal_0
+    732: getproperty btnCloseCB
+    735: newarray 3
+    737: initproperty btn_CloseCB
+    740: getlocal_0
+    741: pushnull
+    742: getlocal_0
+    743: getproperty btnOpenCB
+    746: getlocal_0
+    747: getproperty btnOpenCB2
+    750: newarray 3
+    752: initproperty btn_OpenCB
+    755: getlocal_0
+    756: pushnull
+    757: getlocal_0
+    758: getproperty autoText
+    761: getlocal_0
+    762: getproperty autoText2
+    765: newarray 3
+    767: initproperty auto_Text
+    770: getlocal_0
+    771: pushnull
+    772: getlocal_0
+    773: getproperty fuelText
+    776: getlocal_0
+    777: getproperty fuelText2
+    780: newarray 3
+    782: initproperty fuel_Text
+    785: getlocal_0
+    786: pushnull
+    787: getlocal_0
+    788: getproperty fieldText
+    791: getlocal_0
+    792: getproperty fieldText2
+    795: newarray 3
+    797: initproperty field_Text
+    800: getlocal_0
+    801: pushnull
+    802: getlocal_0
+    803: getproperty revPowerText
+    806: getlocal_0
+    807: getproperty revPowerText2
+    810: newarray 3
+    812: initproperty rev_PowerText
+    815: getlocal_0
+    816: pushnull
+    817: getlocal_0
+    818: getproperty genkWOut
+    821: getlocal_0
+    822: getproperty genkWOut2
+    825: newarray 3
+    827: initproperty arrowKW
+    830: getlocal_0
+    831: pushnull
+    832: getlocal_0
+    833: getproperty genkVArOut
+    836: getlocal_0
+    837: getproperty genkVArOut2
+    840: newarray 3
+    842: initproperty arrowKVAr
+    845: getlex stage
+    848: getlex flash.events.Event
+    850: getproperty ENTER_FRAME
+    853: getlocal_0
+    854: getproperty mainRoutine
+    857: callpropvoid addEventListener 2
+    861: getlocal_0
+    862: getproperty btnHelp
+    865: getlex flash.events.MouseEvent
+    867: getproperty CLICK
+    870: getlocal_0
+    871: getproperty onHelpClick
+    874: callpropvoid addEventListener 2
+    878: getlocal_0
+    879: getproperty btnPause
+    882: getlex flash.events.MouseEvent
+    884: getproperty CLICK
+    887: getlocal_0
+    888: getproperty onPauseClick
+    891: callpropvoid addEventListener 2
+    895: getlocal_0
+    896: getproperty btnQuit
+    899: getlex flash.events.MouseEvent
+    901: getproperty CLICK
+    904: getlocal_0
+    905: getproperty onQuitClick
+    908: callpropvoid addEventListener 2
+    912: getlocal_0
+    913: getproperty timer1
+    916: getlex flash.events.TimerEvent
+    918: getproperty TIMER
+    921: newfunction 333
+    924: callpropvoid addEventListener 2
+    928: getlocal_0
+    929: getproperty timer2
+    932: getlex flash.events.TimerEvent
+    934: getproperty TIMER
+    937: newfunction 334
+    940: callpropvoid addEventListener 2
+    944: getlocal_0
+    945: getproperty btnStart
+    948: getlex flash.events.MouseEvent
+    950: getproperty CLICK
+    953: newfunction 335
+    956: callpropvoid addEventListener 2
+    960: getlocal_0
+    961: getproperty btnStop
+    964: getlex flash.events.MouseEvent
+    966: getproperty CLICK
+    969: newfunction 336
+    972: callpropvoid addEventListener 2
+    976: getlocal_0
+    977: getproperty btnCloseCB
+    980: getlex flash.events.MouseEvent
+    982: getproperty CLICK
+    985: getlocal_0
+    986: getproperty onCloseCBClick
+    989: callpropvoid addEventListener 2
+    993: getlocal_0
+    994: getproperty btnOpenCB
+    997: getlex flash.events.MouseEvent
+    999: getproperty CLICK
+    1002: getlocal_0
+    1003: getproperty onOpenCBClick
+    1006: callpropvoid addEventListener 2
+    1010: getlocal_0
+    1011: getproperty btnAuto
+    1014: getlex flash.events.MouseEvent
+    1016: getproperty CLICK
+    1019: getlocal_0
+    1020: getproperty onAutoClick
+    1023: callpropvoid addEventListener 2
+    1027: getlocal_0
+    1028: getproperty btnStart2
+    1031: getlex flash.events.MouseEvent
+    1033: getproperty CLICK
+    1036: newfunction 337
+    1039: callpropvoid addEventListener 2
+    1043: getlocal_0
+    1044: getproperty btnStop2
+    1047: getlex flash.events.MouseEvent
+    1049: getproperty CLICK
+    1052: newfunction 338
+    1055: callpropvoid addEventListener 2
+    1059: getlocal_0
+    1060: getproperty btnCloseCB2
+    1063: getlex flash.events.MouseEvent
+    1065: getproperty CLICK
+    1068: getlocal_0
+    1069: getproperty onCloseCBClick2
+    1072: callpropvoid addEventListener 2
+    1076: getlocal_0
+    1077: getproperty btnOpenCB2
+    1080: getlex flash.events.MouseEvent
+    1082: getproperty CLICK
+    1085: getlocal_0
+    1086: getproperty onOpenCBClick2
+    1089: callpropvoid addEventListener 2
+    1093: getlocal_0
+    1094: getproperty btnAuto2
+    1097: getlex flash.events.MouseEvent
+    1099: getproperty CLICK
+    1102: getlocal_0
+    1103: getproperty onAutoClick2
+    1106: callpropvoid addEventListener 2
+    1110: getlocal_0
+    1111: getproperty jogDemand
+    1114: pushstring "onValChg"
+    1117: getlocal_0
+    1118: getproperty onjogDemandChange
+    1121: callpropvoid addEventListener 2
+    1125: getlocal_0
+    1126: getproperty jogFuel
+    1129: pushstring "onValChg"
+    1132: newfunction 339
+    1135: callpropvoid addEventListener 2
+    1139: getlocal_0
+    1140: getproperty jogField
+    1143: pushstring "onValChg"
+    1146: newfunction 340
+    1149: callpropvoid addEventListener 2
+    1153: getlocal_0
+    1154: getproperty jogFuel2
+    1157: pushstring "onValChg"
+    1160: newfunction 341
+    1163: callpropvoid addEventListener 2
+    1167: getlocal_0
+    1168: getproperty jogField2
+    1171: pushstring "onValChg"
+    1174: newfunction 342
+    1177: callpropvoid addEventListener 2
+    1181: getlocal_0
+    1182: callpropvoid InitMeters 0
+    1186: getlocal_0
+    1187: pushnull
+    1188: getlocal_0
+    1189: getproperty V_Meter
+    1192: getlocal_0
+    1193: getproperty V_Meter2
+    1196: newarray 3
+    1198: initproperty V_Meters
+    1201: getlocal_0
+    1202: pushnull
+    1203: getlocal_0
+    1204: getproperty Hz_Meter
+    1207: getlocal_0
+    1208: getproperty Hz_Meter2
+    1211: newarray 3
+    1213: initproperty Hz_Meters
+    1216: getlocal_0
+    1217: pushnull
+    1218: getlocal_0
+    1219: getproperty kW_Meter
+    1222: getlocal_0
+    1223: getproperty kW_Meter2
+    1226: newarray 3
+    1228: initproperty kW_Meters
+    1231: getlocal_0
+    1232: pushnull
+    1233: getlocal_0
+    1234: getproperty kVAr_Meter
+    1237: getlocal_0
+    1238: getproperty kVAr_Meter2
+    1241: newarray 3
+    1243: initproperty kVAr_Meters
+    1246: getlocal_0
+    1247: pushnull
+    1248: getlocal_0
+    1249: getproperty pf_Meter
+    1252: getlocal_0
+    1253: getproperty pf_Meter2
+    1256: newarray 3
+    1258: initproperty pf_Meters
+    1261: getscopeobject 1
+    1263: pushbyte 1
+    1265: coerce_a
+    1266: setslot 1
+    1268: jump ->1409
+    1272: label
+    1273: getlocal_0
+    1274: getproperty arrowKW
+    1277: getscopeobject 1
+    1279: getslot 1
+    1281: getproperty <rt>
+    1284: pushfalse
+    1285: setproperty visible
+    1288: getlocal_0
+    1289: getproperty arrowKVAr
+    1292: getscopeobject 1
+    1294: getslot 1
+    1296: getproperty <rt>
+    1299: pushfalse
+    1300: setproperty visible
+    1303: getlocal_0
+    1304: getproperty Breaker
+    1307: getscopeobject 1
+    1309: getslot 1
+    1311: getproperty <rt>
+    1314: pushtrue
+    1315: setproperty visible
+    1318: getlocal_0
+    1319: getproperty revpowerLamp
+    1322: getscopeobject 1
+    1324: getslot 1
+    1326: getproperty <rt>
+    1329: pushfalse
+    1330: setproperty visible
+    1333: getlocal_0
+    1334: getproperty revpowerAlarm
+    1337: getscopeobject 1
+    1339: getslot 1
+    1341: getproperty <rt>
+    1344: pushfalse
+    1345: setproperty visible
+    1348: getlocal_0
+    1349: getproperty rev_PowerText
+    1352: getscopeobject 1
+    1354: getslot 1
+    1356: getproperty <rt>
+    1359: pushstring ""
+    1361: setproperty text
+    1364: getlocal_0
+    1365: getproperty fuel_Text
+    1368: getscopeobject 1
+    1370: getslot 1
+    1372: getproperty <rt>
+    1375: pushstring "0 %"
+    1378: setproperty text
+    1381: getlocal_0
+    1382: getproperty field_Text
+    1385: getscopeobject 1
+    1387: getslot 1
+    1389: getproperty <rt>
+    1392: pushstring "0 %"
+    1395: setproperty text
+    1398: getscopeobject 1
+    1400: getslot 1
+    1402: increment
+    1403: coerce_a
+    1404: getscopeobject 1
+    1406: swap
+    1407: setslot 1
+    1409: getscopeobject 1
+    1411: getslot 1
+    1413: pushbyte 2
+    1415: ifle ->1272
+    1419: getlocal_0
+    1420: getproperty syncText
+    1423: pushfalse
+    1424: setproperty visible
+    1427: getlocal_0
+    1428: getproperty textVersion
+    1431: pushstring "© S.Zaitschenko 2014 v"
+    1434: getlocal_0
+    1435: getproperty VERSION
+    1438: add
+    1439: setproperty text
+    1442: getlocal_0
+    1443: getproperty helpPage_mc
+    1446: getlex stage
+    1449: getproperty stageWidth
+    1452: pushdouble 0.6
+    1454: multiply
+    1455: setproperty x
+    1458: getlocal_0
+    1459: getproperty helpPage_mc
+    1462: getlex stage
+    1465: getproperty stageHeight
+    1468: pushdouble 0.15
+    1470: multiply
+    1471: setproperty y
+    1474: findpropstrict addChild
+    1477: getlocal_0
+    1478: getproperty helpPage_mc
+    1481: callpropvoid addChild 1
+    1485: getlocal_0
+    1486: findpropstrict HelpPage
+    1489: getlex stage
+    1492: getproperty stageWidth
+    1495: pushdouble 0.37
+    1497: multiply
+    1498: getlex stage
+    1501: getproperty stageHeight
+    1504: pushdouble 0.5
+    1506: multiply
+    1507: constructprop HelpPage 2
+    1511: initproperty helpPage
+    1514: getlocal_0
+    1515: getproperty helpPage_mc
+    1518: getlocal_0
+    1519: getproperty helpPage
+    1522: callpropvoid addChild 1
+    1526: getlocal_0
+    1527: getproperty helpPage_mc
+    1530: getlex flash.events.MouseEvent
+    1532: getproperty MOUSE_DOWN
+    1535: getlocal_0
+    1536: getproperty startDragging
+    1539: pushtrue
+    1540: callpropvoid addEventListener 3
+    1544: getlocal_0
+    1545: getproperty helpPage_mc
+    1548: getlex flash.events.MouseEvent
+    1550: getproperty MOUSE_UP
+    1553: getlocal_0
+    1554: getproperty stopDragging
+    1557: pushtrue
+    1558: callpropvoid addEventListener 3
+    1562: getlocal_0
+    1563: callpropvoid __setProp_btnPause_Scene1_Layer1_0 0
+    1567: getlocal_0
+    1568: callpropvoid __setProp_btnQuit_Scene1_Layer1_0 0
+    1572: getlocal_0
+    1573: callpropvoid __setProp_btnAuto_Scene1_Layer1_0 0
+    1577: getlocal_0
+    1578: callpropvoid __setProp_btnStart_Scene1_Layer1_0 0
+    1582: getlocal_0
+    1583: callpropvoid __setProp_btnStop_Scene1_Layer1_0 0
+    1587: getlocal_0
+    1588: callpropvoid __setProp_btnCloseCB_Scene1_Layer1_0 0
+    1592: getlocal_0
+    1593: callpropvoid __setProp_btnOpenCB_Scene1_Layer1_0 0
+    1597: getlocal_0
+    1598: callpropvoid __setProp_btnStart2_Scene1_Layer1_0 0
+    1602: getlocal_0
+    1603: callpropvoid __setProp_btnStop2_Scene1_Layer1_0 0
+    1607: getlocal_0
+    1608: callpropvoid __setProp_btnCloseCB2_Scene1_Layer1_0 0
+    1612: getlocal_0
+    1613: callpropvoid __setProp_btnOpenCB2_Scene1_Layer1_0 0
+    1617: getlocal_0
+    1618: callpropvoid __setProp_jogField2_Scene1_Layer1_0 0
+    1622: getlocal_0
+    1623: callpropvoid __setProp_jogFuel2_Scene1_Layer1_0 0
+    1627: getlocal_0
+    1628: callpropvoid __setProp_jogField_Scene1_Layer1_0 0
+    1632: getlocal_0
+    1633: callpropvoid __setProp_jogFuel_Scene1_Layer1_0 0
+    1637: getlocal_0
+    1638: callpropvoid __setProp_jogDemand_Scene1_Layer1_0 0
+    1642: getlocal_0
+    1643: callpropvoid __setProp_btnAuto2_Scene1_Layer1_0 0
+    1647: getlocal_0
+    1648: callpropvoid __setProp_btnHelp_Scene1_Layer1_0 0
+    1652: returnvoid
+  var tempText2: flash.text.TextField
+  var genCB_ON: flash.display.MovieClip
+  var genBreaker2: flash.display.MovieClip
+  var tempText3: flash.text.TextField
+  var jogFuel2: com.eqsim.components.Jog
+  var jogField2: com.eqsim.components.Jog
+  var tempText: flash.text.TextField
+  var textVersion: flash.text.TextField
+  var btnHelp: fl.controls.Button
+  var btnAuto2: fl.controls.Button
+  var btnOpenCB: fl.controls.Button
+  var genRotor: flash.display.MovieClip
+  var btnPause: fl.controls.Button
+  var genkVArOut2: flash.display.MovieClip
+  var genkVArOut: flash.display.MovieClip
+  var fieldText2: flash.text.TextField
+  var genkWOut2: flash.display.MovieClip
+  var autoText: flash.text.TextField
+  var autoText2: flash.text.TextField
+  var jogField: com.eqsim.components.Jog
+  var fuelText2: flash.text.TextField
+  var btnStart: fl.controls.Button
+  var revPowerLampAlarm2: flash.display.MovieClip
+  var fieldText: flash.text.TextField
+  var revPowerLampAlarm: flash.display.MovieClip
+  var revPowerText: flash.text.TextField
+  var btnCloseCB: fl.controls.Button
+  var syncRotor: flash.display.MovieClip
+  var revPowerLampRed: flash.display.MovieClip
+  var revPowerLampRed2: flash.display.MovieClip
+  var revPowerText2: flash.text.TextField
+  var jogFuel: com.eqsim.components.Jog
+  var loadDemandkWText: flash.text.TextField
+  var btnStart2: fl.controls.Button
+  var btnQuit: fl.controls.Button
+  var fuelText: flash.text.TextField
+  var loadDemandkVArText: flash.text.TextField
+  var genkWOut: flash.display.MovieClip
+  var genBreaker: flash.display.MovieClip
+  var genRotor2: flash.display.MovieClip
+  var btnStop2: fl.controls.Button
+  var syncText: flash.text.TextField
+  var btnStop: fl.controls.Button
+  var jogDemand: com.eqsim.components.Jog
+  var btnOpenCB2: fl.controls.Button
+  var btnCloseCB2: fl.controls.Button
+  var btnAuto: fl.controls.Button
+  var genCB_ON2: flash.display.MovieClip
+  var VERSION: * = "7.1"
+  var demandLoadKW: Number = 0
+  var demandLoadKVAr: Number = 0
+  var loadPF: * = 0.5
+  var minField: Number = 20
+  var minFuel: Number = 10
+  var genMaxKW: * = 50
+  var genMaxKVAr: * = 30
+  var genUseKW: * = 5
+  var genUseKVAr: * = 3
+  var genDeltaV: Number = 20
+  var genDeltaF: Number = 2
+  var genDeltaAngle: Number = 2
+  var diffKW: Number = 0
+  var diffKVAr: Number = 0
+  var reqSynchronisation: Boolean = kind10:10
+  var simPaused: Boolean = kind10:10
+  var timer1: flash.utils.Timer
+  var timer2: flash.utils.Timer
+  var REVERSEPOWERTRIGGER: * = -2
+  var colorTransform: flash.geom.ColorTransform
+  var metertextcolour: Number
+  var jogFieldArray: Array
+  var jogFuelArray: Array
+  var gen: Array
+  var timers: Array
+  var revpowerLamp: Array
+  var revpowerAlarm: Array
+  var Breaker: Array
+  var btn_Auto: Array
+  var btn_Start: Array
+  var btn_Stop: Array
+  var btn_CloseCB: Array
+  var btn_OpenCB: Array
+  var auto_Text: Array
+  var fuel_Text: Array
+  var field_Text: Array
+  var rev_PowerText: Array
+  var arrowKW: Array
+  var arrowKVAr: Array
+  var genRotors: Array
+  var V_Meters: Array
+  var Hz_Meters: Array
+  var kW_Meters: Array
+  var kVAr_Meters: Array
+  var pf_Meters: Array
+  var kWnums: Array
+  var Hznums: Array
+  var Vnums: Array
+  var KVArnums: Array
+  var pfnums: Array
+  var V_Meter: AnalogMeter
+  var Hz_Meter: AnalogMeter
+  var kW_Meter: AnalogMeter
+  var kVAr_Meter: AnalogMeter
+  var pf_Meter: AnalogMeter
+  var V_Meter2: AnalogMeter
+  var Hz_Meter2: AnalogMeter
+  var kW_Meter2: AnalogMeter
+  var kVAr_Meter2: AnalogMeter
+  var pf_Meter2: AnalogMeter
+  var helpPage_mc: flash.display.Sprite
+  var helpPage: HelpPage
+  var helpVisible: Boolean = kind10:10
+  var gen1: Object
+  var gen2: Object
+  fn startDragging (method 344):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty helpPage_mc
+    6: callpropvoid startDrag 0
+    10: returnvoid
+  fn stopDragging (method 345):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty helpPage_mc
+    6: callpropvoid stopDrag 0
+    10: returnvoid
+  fn checkGenOutput (method 346):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: pushtrue
+    11: setproperty closeCBOK
+    14: getlocal_0
+    15: getproperty gen
+    18: getlocal_1
+    19: getproperty <rt>
+    22: getproperty rotorspeed
+    25: pushbyte 100
+    27: getlocal_0
+    28: getproperty genDeltaF
+    31: subtract
+    32: lessthan
+    33: dup
+    34: iftrue ->58
+    38: pop
+    39: getlocal_0
+    40: getproperty gen
+    43: getlocal_1
+    44: getproperty <rt>
+    47: getproperty rotorspeed
+    50: pushbyte 100
+    52: getlocal_0
+    53: getproperty genDeltaF
+    56: add
+    57: greaterthan
+    58: iffalse ->74
+    62: getlocal_0
+    63: getproperty gen
+    66: getlocal_1
+    67: getproperty <rt>
+    70: pushfalse
+    71: setproperty closeCBOK
+    74: getlocal_0
+    75: getproperty gen
+    78: getlocal_1
+    79: getproperty <rt>
+    82: getproperty volts
+    85: pushshort 415
+    88: getlocal_0
+    89: getproperty genDeltaV
+    92: subtract
+    93: lessthan
+    94: dup
+    95: iftrue ->120
+    99: pop
+    100: getlocal_0
+    101: getproperty gen
+    104: getlocal_1
+    105: getproperty <rt>
+    108: getproperty volts
+    111: pushshort 415
+    114: getlocal_0
+    115: getproperty genDeltaV
+    118: add
+    119: greaterthan
+    120: iffalse ->136
+    124: getlocal_0
+    125: getproperty gen
+    128: getlocal_1
+    129: getproperty <rt>
+    132: pushfalse
+    133: setproperty closeCBOK
+    136: returnvoid
+  fn tripReversePower (method 347):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty timers
+    6: getlocal_1
+    7: getproperty <rt>
+    10: callpropvoid stop 0
+    14: getlocal_0
+    15: getproperty revpowerLamp
+    18: getlocal_1
+    19: getproperty <rt>
+    22: pushtrue
+    23: setproperty visible
+    26: getlocal_0
+    27: getproperty revpowerAlarm
+    30: getlocal_1
+    31: getproperty <rt>
+    34: pushfalse
+    35: setproperty visible
+    38: getlocal_0
+    39: getproperty gen
+    42: getlocal_1
+    43: getproperty <rt>
+    46: pushbyte 0
+    48: setproperty state
+    51: getlocal_0
+    52: getlocal_1
+    53: callpropvoid resetGenerator 1
+    57: returnvoid
+  fn resetGenerator (method 348):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: pushfalse
+    11: setproperty loaded
+    14: getlocal_0
+    15: getproperty Breaker
+    18: getlocal_1
+    19: getproperty <rt>
+    22: pushtrue
+    23: setproperty visible
+    26: getlocal_0
+    27: getproperty btn_Auto
+    30: getlocal_1
+    31: getproperty <rt>
+    34: pushstring "invert"
+    37: setproperty blendMode
+    40: getlocal_0
+    41: getproperty auto_Text
+    44: getlocal_1
+    45: getproperty <rt>
+    48: pushstring "Man"
+    51: setproperty text
+    54: getlocal_0
+    55: getproperty auto_Text
+    58: getlocal_1
+    59: getproperty <rt>
+    62: pushint 16711680
+    64: setproperty textColor
+    67: returnvoid
+  fn doOutputArrows (method 349):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: pushbyte 1
+    12: setproperty pf
+    15: findpropstrict int
+    17: getlocal_0
+    18: getproperty gen
+    21: getlocal_1
+    22: getproperty <rt>
+    25: getproperty outputKW
+    28: callproperty int 1
+    31: pushbyte 0
+    33: ifeq ->199
+    37: getlocal_0
+    38: getproperty arrowKW
+    41: getlocal_1
+    42: getproperty <rt>
+    45: pushtrue
+    46: setproperty visible
+    49: getlocal_0
+    50: getproperty arrowKW
+    53: getlocal_1
+    54: getproperty <rt>
+    57: pushbyte 20
+    59: pushshort 180
+    62: getlocal_0
+    63: getproperty gen
+    66: getlocal_1
+    67: getproperty <rt>
+    70: getproperty outputKW
+    73: getlocal_0
+    74: getproperty genMaxKW
+    77: pushbyte 10
+    79: multiply
+    80: divide
+    81: multiply
+    82: add
+    83: setproperty height
+    86: getlocal_0
+    87: getproperty gen
+    90: getlocal_1
+    91: getproperty <rt>
+    94: getproperty outputKW
+    97: pushbyte 0
+    99: ifngt ->152
+    103: getlocal_0
+    104: getproperty arrowKW
+    107: getlocal_1
+    108: getproperty <rt>
+    111: pushshort 180
+    114: getlocal_1
+    115: decrement
+    116: multiply
+    117: setproperty rotation
+    120: getlocal_0
+    121: getproperty colorTransform
+    124: pushshort 255
+    127: setproperty color
+    130: getlocal_0
+    131: getproperty arrowKW
+    134: getlocal_1
+    135: getproperty <rt>
+    138: getproperty transform
+    141: getlocal_0
+    142: getproperty colorTransform
+    145: setproperty colorTransform
+    148: jump ->195
+    152: getlocal_0
+    153: getproperty arrowKW
+    156: getlocal_1
+    157: getproperty <rt>
+    160: pushshort 180
+    163: getlocal_1
+    164: multiply
+    165: setproperty rotation
+    168: getlocal_0
+    169: getproperty colorTransform
+    172: pushint 16711680
+    174: setproperty color
+    177: getlocal_0
+    178: getproperty arrowKW
+    181: getlocal_1
+    182: getproperty <rt>
+    185: getproperty transform
+    188: getlocal_0
+    189: getproperty colorTransform
+    192: setproperty colorTransform
+    195: jump ->211
+    199: getlocal_0
+    200: getproperty arrowKW
+    203: getlocal_1
+    204: getproperty <rt>
+    207: pushfalse
+    208: setproperty visible
+    211: findpropstrict int
+    213: getlocal_0
+    214: getproperty gen
+    217: getlocal_1
+    218: getproperty <rt>
+    221: getproperty outputKVAr
+    224: callproperty int 1
+    227: pushbyte 0
+    229: ifeq ->464
+    233: getlocal_0
+    234: getproperty arrowKVAr
+    237: getlocal_1
+    238: getproperty <rt>
+    241: pushtrue
+    242: setproperty visible
+    245: getlocal_0
+    246: getproperty arrowKVAr
+    249: getlocal_1
+    250: getproperty <rt>
+    253: pushbyte 10
+    255: pushbyte 90
+    257: getlocal_0
+    258: getproperty gen
+    261: getlocal_1
+    262: getproperty <rt>
+    265: getproperty outputKVAr
+    268: getlocal_0
+    269: getproperty genMaxKVAr
+    272: pushbyte 10
+    274: multiply
+    275: divide
+    276: multiply
+    277: add
+    278: setproperty height
+    281: getlocal_0
+    282: getproperty gen
+    285: getlocal_1
+    286: getproperty <rt>
+    289: getlex Math
+    292: getlex Math
+    295: getlocal_0
+    296: getproperty gen
+    299: getlocal_1
+    300: getproperty <rt>
+    303: getproperty outputKVAr
+    306: getlocal_0
+    307: getproperty gen
+    310: getlocal_1
+    311: getproperty <rt>
+    314: getproperty outputKW
+    317: divide
+    318: callproperty atan 1
+    322: callproperty cos 1
+    326: setproperty pf
+    329: getlocal_0
+    330: getproperty gen
+    333: getlocal_1
+    334: getproperty <rt>
+    337: getproperty outputKVAr
+    340: pushbyte 0
+    342: ifngt ->394
+    346: getlocal_0
+    347: getproperty arrowKVAr
+    350: getlocal_1
+    351: getproperty <rt>
+    354: pushshort 180
+    357: getlocal_1
+    358: decrement
+    359: multiply
+    360: setproperty rotation
+    363: getlocal_0
+    364: getproperty colorTransform
+    367: pushint 6579300
+    369: setproperty color
+    372: getlocal_0
+    373: getproperty arrowKVAr
+    376: getlocal_1
+    377: getproperty <rt>
+    380: getproperty transform
+    383: getlocal_0
+    384: getproperty colorTransform
+    387: setproperty colorTransform
+    390: jump ->460
+    394: getlocal_0
+    395: getproperty arrowKVAr
+    398: getlocal_1
+    399: getproperty <rt>
+    402: pushshort 180
+    405: getlocal_1
+    406: multiply
+    407: setproperty rotation
+    410: getlocal_0
+    411: getproperty colorTransform
+    414: pushint 16711680
+    416: setproperty color
+    419: getlocal_0
+    420: getproperty arrowKVAr
+    423: getlocal_1
+    424: getproperty <rt>
+    427: getproperty transform
+    430: getlocal_0
+    431: getproperty colorTransform
+    434: setproperty colorTransform
+    437: getlocal_0
+    438: getproperty gen
+    441: getlocal_1
+    442: getproperty <rt>
+    445: getlocal_0
+    446: getproperty gen
+    449: getlocal_1
+    450: getproperty <rt>
+    453: getproperty pf
+    456: negate
+    457: setproperty pf
+    460: jump ->476
+    464: getlocal_0
+    465: getproperty arrowKVAr
+    468: getlocal_1
+    469: getproperty <rt>
+    472: pushfalse
+    473: setproperty visible
+    476: returnvoid
+  fn onStopClick (method 350):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: pushbyte 0
+    12: setproperty state
+    15: getlocal_0
+    16: getlocal_1
+    17: callpropvoid resetGenerator 1
+    21: returnvoid
+  fn onStartClick (method 351):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty state
+    13: pushbyte 0
+    15: ifne ->105
+    19: getlocal_0
+    20: getproperty gen
+    23: getlocal_1
+    24: getproperty <rt>
+    27: pushbyte 1
+    29: setproperty state
+    32: getlocal_0
+    33: getproperty gen
+    36: getlocal_1
+    37: getproperty <rt>
+    40: getlocal_0
+    41: getproperty minField
+    44: setproperty field
+    47: getlocal_0
+    48: getproperty gen
+    51: getlocal_1
+    52: getproperty <rt>
+    55: getlocal_0
+    56: getproperty minFuel
+    59: setproperty fuel
+    62: getlocal_0
+    63: getlocal_1
+    64: callpropvoid jogFuelset 1
+    68: getlocal_0
+    69: getlocal_1
+    70: callpropvoid jogFieldset 1
+    74: getlocal_0
+    75: getproperty revpowerLamp
+    78: getlocal_1
+    79: getproperty <rt>
+    82: pushfalse
+    83: setproperty visible
+    86: getlocal_0
+    87: getproperty rev_PowerText
+    90: getlocal_1
+    91: getproperty <rt>
+    94: pushstring ""
+    96: setproperty text
+    99: getlocal_0
+    100: getlocal_1
+    101: callpropvoid resetGenerator 1
+    105: returnvoid
+  fn doGenRotor (method 352):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty state
+    13: pushbyte 0
+    15: ifngt ->153
+    19: getlocal_0
+    20: getproperty gen
+    23: getlocal_1
+    24: getproperty <rt>
+    27: getlocal_0
+    28: getlocal_1
+    29: callproperty genCalcRotorSpeed 1
+    33: setproperty rotorspeed
+    36: getlocal_0
+    37: getproperty genRotors
+    40: getlocal_1
+    41: getproperty <rt>
+    44: getlocal_0
+    45: getproperty genRotors
+    48: getlocal_1
+    49: getproperty <rt>
+    52: getproperty rotation
+    55: getlocal_0
+    56: getproperty gen
+    59: getlocal_1
+    60: getproperty <rt>
+    63: getproperty rotorspeed
+    66: pushbyte 10
+    68: divide
+    69: subtract
+    70: setproperty rotation
+    73: getlocal_0
+    74: getproperty gen
+    77: getlocal_1
+    78: getproperty <rt>
+    81: getlocal_0
+    82: getproperty gen
+    85: getlocal_1
+    86: getproperty <rt>
+    89: getproperty rotorangle
+    92: getlocal_0
+    93: getproperty gen
+    96: getlocal_1
+    97: getproperty <rt>
+    100: getproperty rotorspeed
+    103: pushbyte 10
+    105: divide
+    106: subtract
+    107: setproperty rotorangle
+    110: getlocal_0
+    111: getproperty gen
+    114: getlocal_1
+    115: getproperty <rt>
+    118: getproperty rotorangle
+    121: pushbyte 0
+    123: ifnle ->153
+    127: getlocal_0
+    128: getproperty gen
+    131: getlocal_1
+    132: getproperty <rt>
+    135: getlocal_0
+    136: getproperty gen
+    139: getlocal_1
+    140: getproperty <rt>
+    143: getproperty rotorangle
+    146: pushshort 360
+    149: add
+    150: setproperty rotorangle
+    153: returnvoid
+  fn doFuelFieldText (method 353):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty field_Text
+    6: getlocal_1
+    7: getproperty <rt>
+    10: findpropstrict int
+    12: getlocal_0
+    13: getproperty gen
+    16: getlocal_1
+    17: getproperty <rt>
+    20: getproperty field
+    23: callproperty int 1
+    26: pushstring " %"
+    29: add
+    30: setproperty text
+    33: getlocal_0
+    34: getproperty fuel_Text
+    37: getlocal_1
+    38: getproperty <rt>
+    41: findpropstrict int
+    43: getlocal_0
+    44: getproperty gen
+    47: getlocal_1
+    48: getproperty <rt>
+    51: getproperty fuel
+    54: callproperty int 1
+    57: pushstring " %"
+    60: add
+    61: setproperty text
+    64: returnvoid
+  fn calcMeterValues (method 354):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty state
+    13: pushbyte 0
+    15: ifngt ->115
+    19: getlocal_0
+    20: getproperty gen
+    23: getlocal_1
+    24: getproperty <rt>
+    27: getlocal_0
+    28: getlocal_1
+    29: callproperty genCalcVoltage 1
+    33: setproperty volts
+    36: getlocal_0
+    37: getproperty gen
+    40: getlocal_1
+    41: getproperty <rt>
+    44: getlocal_0
+    45: getproperty gen
+    48: getlocal_1
+    49: getproperty <rt>
+    52: getproperty rotorspeed
+    55: pushbyte 2
+    57: divide
+    58: setproperty Hz
+    61: getlocal_0
+    62: getproperty gen
+    65: getlocal_1
+    66: getproperty <rt>
+    69: getlocal_0
+    70: getproperty gen
+    73: getlocal_1
+    74: getproperty <rt>
+    77: getproperty outputKW
+    80: pushbyte 10
+    82: multiply
+    83: setproperty kW
+    86: getlocal_0
+    87: getproperty gen
+    90: getlocal_1
+    91: getproperty <rt>
+    94: getlocal_0
+    95: getproperty gen
+    98: getlocal_1
+    99: getproperty <rt>
+    102: getproperty outputKVAr
+    105: pushbyte 10
+    107: multiply
+    108: setproperty kVAr
+    111: jump ->180
+    115: getlocal_0
+    116: getproperty gen
+    119: getlocal_1
+    120: getproperty <rt>
+    123: pushbyte 0
+    125: setproperty volts
+    128: getlocal_0
+    129: getproperty gen
+    132: getlocal_1
+    133: getproperty <rt>
+    136: pushbyte 0
+    138: setproperty Hz
+    141: getlocal_0
+    142: getproperty gen
+    145: getlocal_1
+    146: getproperty <rt>
+    149: pushbyte 0
+    151: setproperty kW
+    154: getlocal_0
+    155: getproperty gen
+    158: getlocal_1
+    159: getproperty <rt>
+    162: pushbyte 0
+    164: setproperty kVAr
+    167: getlocal_0
+    168: getproperty gen
+    171: getlocal_1
+    172: getproperty <rt>
+    175: pushbyte 1
+    177: setproperty pf
+    180: returnvoid
+  fn genCalcRotorSpeed (method 355):
+    0: getlocal_0
+    1: pushscope
+    2: pushnan
+    3: setlocal_2
+    4: pushnan
+    5: setlocal_3
+    6: getlocal_0
+    7: getlocal_1
+    8: callproperty genCalcOutputKW 1
+    12: getlocal_0
+    13: getproperty genUseKW
+    16: subtract
+    17: getlocal_0
+    18: getproperty gen
+    21: getlocal_1
+    22: getproperty <rt>
+    25: getproperty demandKW
+    28: subtract
+    29: pushdouble 0.2
+    31: multiply
+    32: convert_d
+    33: setlocal_3
+    34: pushbyte 100
+    36: getlocal_3
+    37: add
+    38: convert_d
+    39: setlocal_2
+    40: getlocal_2
+    41: pushshort 130
+    44: ifngt ->53
+    48: pushshort 130
+    51: convert_d
+    52: setlocal_2
+    53: getlocal_2
+    54: returnvalue
+  fn genCalcVoltage (method 356):
+    0: getlocal_0
+    1: pushscope
+    2: pushnan
+    3: setlocal_2
+    4: pushnan
+    5: setlocal_3
+    6: getlocal_0
+    7: getlocal_1
+    8: callproperty genCalcOutputKVAr 1
+    12: getlocal_0
+    13: getproperty genUseKVAr
+    16: subtract
+    17: getlocal_0
+    18: getproperty gen
+    21: getlocal_1
+    22: getproperty <rt>
+    25: getproperty demandKVAr
+    28: subtract
+    29: pushdouble 2.5
+    31: multiply
+    32: convert_d
+    33: setlocal_3
+    34: getlex Math
+    37: pushshort 415
+    40: getlocal_3
+    41: add
+    42: pushshort 480
+    45: callproperty min 2
+    49: convert_d
+    50: setlocal_2
+    51: findpropstrict int
+    53: getlocal_2
+    54: callproperty int 1
+    57: returnvalue
+  fn genCalcOutputKVAr (method 357):
+    0: getlocal_0
+    1: pushscope
+    2: getlex Math
+    5: getlocal_0
+    6: getproperty gen
+    9: getlocal_1
+    10: getproperty <rt>
+    13: getproperty field
+    16: getlocal_0
+    17: getproperty genMaxKVAr
+    20: multiply
+    21: pushshort 200
+    24: divide
+    25: getlocal_0
+    26: getproperty genMaxKVAr
+    29: callproperty min 2
+    33: convert_d
+    34: setlocal_2
+    35: getlocal_2
+    36: returnvalue
+  fn genCalcOutputKW (method 358):
+    0: getlocal_0
+    1: pushscope
+    2: getlex Math
+    5: getlocal_0
+    6: getproperty gen
+    9: getlocal_1
+    10: getproperty <rt>
+    13: getproperty fuel
+    16: getlocal_0
+    17: getproperty genMaxKW
+    20: multiply
+    21: pushbyte 100
+    23: divide
+    24: getlocal_0
+    25: getproperty genMaxKW
+    28: callproperty min 2
+    32: convert_d
+    33: setlocal_2
+    34: getlocal_2
+    35: returnvalue
+  fn onCloseCBClick (method 359):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: pushbyte 1
+    8: getproperty <rt>
+    11: getproperty state
+    14: pushbyte 10
+    16: getlocal_0
+    17: getproperty gen
+    20: pushbyte 2
+    22: getproperty <rt>
+    25: getproperty state
+    28: multiply
+    29: add
+    30: coerce_a
+    31: setlocal_2
+    32: getlocal_0
+    33: pushbyte 1
+    35: callpropvoid checkGenOutput 1
+    39: getlocal_0
+    40: getproperty gen
+    43: pushbyte 1
+    45: getproperty <rt>
+    48: getproperty closeCBOK
+    51: iffalse ->243
+    55: jump ->155
+    59: label
+    60: getlocal_0
+    61: getproperty gen
+    64: pushbyte 1
+    66: getproperty <rt>
+    69: pushbyte 3
+    71: setproperty state
+    74: getlocal_0
+    75: getproperty Breaker
+    78: pushbyte 1
+    80: getproperty <rt>
+    83: pushfalse
+    84: setproperty visible
+    87: getlocal_0
+    88: getproperty gen
+    91: pushbyte 1
+    93: getproperty <rt>
+    96: pushtrue
+    97: setproperty loaded
+    100: jump ->243
+    104: label
+    105: getlocal_0
+    106: getproperty gen
+    109: pushbyte 1
+    111: getproperty <rt>
+    114: pushbyte 2
+    116: setproperty state
+    119: getlocal_0
+    120: getproperty syncText
+    123: pushtrue
+    124: setproperty visible
+    127: getlocal_0
+    128: pushtrue
+    129: initproperty reqSynchronisation
+    132: jump ->243
+    136: label
+    137: findpropstrict trace
+    140: pushstring " wrong gen[1].state in onCloseCBClick"
+    143: callpropvoid trace 1
+    147: jump ->243
+    151: jump ->243
+    155: getlocal_2
+    156: setlocal_3
+    157: pushbyte 1
+    159: getlocal_3
+    160: ifstrictne ->170
+    164: pushbyte 0
+    166: jump ->221
+    170: pushbyte 11
+    172: getlocal_3
+    173: ifstrictne ->183
+    177: pushbyte 1
+    179: jump ->221
+    183: pushbyte 31
+    185: getlocal_3
+    186: ifstrictne ->196
+    190: pushbyte 2
+    192: jump ->221
+    196: pushbyte 41
+    198: getlocal_3
+    199: ifstrictne ->209
+    203: pushbyte 3
+    205: jump ->221
+    209: jump ->219
+    213: pushbyte 4
+    215: jump ->221
+    219: pushbyte 4
+    221: kill 3
+    223: lookupswitch ...
+    243: returnvoid
+  fn onOpenCBClick (method 360):
+    0: getlocal_0
+    1: pushscope
+    2: jump ->84
+    6: label
+    7: getlocal_0
+    8: getproperty syncText
+    11: pushfalse
+    12: setproperty visible
+    15: getlocal_0
+    16: pushfalse
+    17: initproperty reqSynchronisation
+    20: label
+    21: getlocal_0
+    22: getproperty gen
+    25: pushbyte 1
+    27: getproperty <rt>
+    30: pushbyte 1
+    32: setproperty state
+    35: getlocal_0
+    36: getproperty Breaker
+    39: pushbyte 1
+    41: getproperty <rt>
+    44: pushtrue
+    45: setproperty visible
+    48: jump ->167
+    52: label
+    53: findpropstrict trace
+    56: pushstring " wrong gen[1].state in onOpenCBClick "
+    59: getlocal_0
+    60: getproperty gen
+    63: pushbyte 1
+    65: getproperty <rt>
+    68: getproperty state
+    71: add
+    72: callpropvoid trace 1
+    76: jump ->167
+    80: jump ->167
+    84: getlocal_0
+    85: getproperty gen
+    88: pushbyte 1
+    90: getproperty <rt>
+    93: getproperty state
+    96: setlocal_2
+    97: pushbyte 2
+    99: getlocal_2
+    100: ifstrictne ->110
+    104: pushbyte 0
+    106: jump ->148
+    110: pushbyte 3
+    112: getlocal_2
+    113: ifstrictne ->123
+    117: pushbyte 1
+    119: jump ->148
+    123: pushbyte 4
+    125: getlocal_2
+    126: ifstrictne ->136
+    130: pushbyte 2
+    132: jump ->148
+    136: jump ->146
+    140: pushbyte 3
+    142: jump ->148
+    146: pushbyte 3
+    148: kill 2
+    150: lookupswitch ...
+    167: returnvoid
+  fn onAutoClick (method 361):
+    0: getlocal_0
+    1: pushscope
+    2: jump ->163
+    6: label
+    7: getlocal_0
+    8: getproperty gen
+    11: pushbyte 1
+    13: getproperty <rt>
+    16: pushbyte 4
+    18: setproperty state
+    21: getlocal_0
+    22: getproperty btn_Auto
+    25: pushbyte 1
+    27: getproperty <rt>
+    30: pushstring "normal"
+    32: setproperty blendMode
+    35: getlocal_0
+    36: getproperty auto_Text
+    39: pushbyte 1
+    41: getproperty <rt>
+    44: pushstring "Auto"
+    47: setproperty text
+    50: getlocal_0
+    51: getproperty auto_Text
+    54: pushbyte 1
+    56: getproperty <rt>
+    59: pushint 117760
+    61: setproperty textColor
+    64: jump ->230
+    68: label
+    69: getlocal_0
+    70: getproperty gen
+    73: pushbyte 1
+    75: getproperty <rt>
+    78: pushbyte 3
+    80: setproperty state
+    83: getlocal_0
+    84: getproperty btn_Auto
+    87: pushbyte 1
+    89: getproperty <rt>
+    92: pushstring "invert"
+    95: setproperty blendMode
+    98: getlocal_0
+    99: getproperty auto_Text
+    102: pushbyte 1
+    104: getproperty <rt>
+    107: pushstring "Man"
+    110: setproperty text
+    113: getlocal_0
+    114: getproperty auto_Text
+    117: pushbyte 1
+    119: getproperty <rt>
+    122: pushint 16711680
+    124: setproperty textColor
+    127: jump ->230
+    131: label
+    132: findpropstrict trace
+    135: pushstring " wrong gen[1].state in OnAutoClick "
+    138: getlocal_0
+    139: getproperty gen
+    142: pushbyte 1
+    144: getproperty <rt>
+    147: getproperty state
+    150: add
+    151: callpropvoid trace 1
+    155: jump ->230
+    159: jump ->230
+    163: getlocal_0
+    164: getproperty gen
+    167: pushbyte 1
+    169: getproperty <rt>
+    172: getproperty state
+    175: setlocal_2
+    176: pushbyte 3
+    178: getlocal_2
+    179: ifstrictne ->189
+    183: pushbyte 0
+    185: jump ->214
+    189: pushbyte 4
+    191: getlocal_2
+    192: ifstrictne ->202
+    196: pushbyte 1
+    198: jump ->214
+    202: jump ->212
+    206: pushbyte 2
+    208: jump ->214
+    212: pushbyte 2
+    214: kill 2
+    216: lookupswitch ...
+    230: returnvoid
+  fn onCloseCBClick2 (method 362):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: pushbyte 1
+    8: getproperty <rt>
+    11: getproperty state
+    14: pushbyte 10
+    16: getlocal_0
+    17: getproperty gen
+    20: pushbyte 2
+    22: getproperty <rt>
+    25: getproperty state
+    28: multiply
+    29: add
+    30: coerce_a
+    31: setlocal_2
+    32: getlocal_0
+    33: pushbyte 2
+    35: callpropvoid checkGenOutput 1
+    39: getlocal_0
+    40: getproperty gen
+    43: pushbyte 2
+    45: getproperty <rt>
+    48: getproperty closeCBOK
+    51: iffalse ->243
+    55: jump ->155
+    59: label
+    60: getlocal_0
+    61: getproperty gen
+    64: pushbyte 2
+    66: getproperty <rt>
+    69: pushbyte 3
+    71: setproperty state
+    74: getlocal_0
+    75: getproperty Breaker
+    78: pushbyte 2
+    80: getproperty <rt>
+    83: pushfalse
+    84: setproperty visible
+    87: getlocal_0
+    88: getproperty gen
+    91: pushbyte 2
+    93: getproperty <rt>
+    96: pushtrue
+    97: setproperty loaded
+    100: jump ->243
+    104: label
+    105: getlocal_0
+    106: getproperty gen
+    109: pushbyte 2
+    111: getproperty <rt>
+    114: pushbyte 2
+    116: setproperty state
+    119: getlocal_0
+    120: getproperty syncText
+    123: pushtrue
+    124: setproperty visible
+    127: getlocal_0
+    128: pushtrue
+    129: initproperty reqSynchronisation
+    132: jump ->243
+    136: label
+    137: findpropstrict trace
+    140: pushstring " wrong genState in onCloseCBClick2"
+    143: callpropvoid trace 1
+    147: jump ->243
+    151: jump ->243
+    155: getlocal_2
+    156: setlocal_3
+    157: pushbyte 10
+    159: getlocal_3
+    160: ifstrictne ->170
+    164: pushbyte 0
+    166: jump ->221
+    170: pushbyte 11
+    172: getlocal_3
+    173: ifstrictne ->183
+    177: pushbyte 1
+    179: jump ->221
+    183: pushbyte 13
+    185: getlocal_3
+    186: ifstrictne ->196
+    190: pushbyte 2
+    192: jump ->221
+    196: pushbyte 14
+    198: getlocal_3
+    199: ifstrictne ->209
+    203: pushbyte 3
+    205: jump ->221
+    209: jump ->219
+    213: pushbyte 4
+    215: jump ->221
+    219: pushbyte 4
+    221: kill 3
+    223: lookupswitch ...
+    243: returnvoid
+  fn onOpenCBClick2 (method 363):
+    0: getlocal_0
+    1: pushscope
+    2: jump ->97
+    6: label
+    7: getlocal_0
+    8: getproperty syncText
+    11: pushfalse
+    12: setproperty visible
+    15: getlocal_0
+    16: pushfalse
+    17: initproperty reqSynchronisation
+    20: label
+    21: getlocal_0
+    22: getproperty gen
+    25: pushbyte 2
+    27: getproperty <rt>
+    30: pushbyte 1
+    32: setproperty state
+    35: getlocal_0
+    36: getproperty gen
+    39: pushbyte 2
+    41: getproperty <rt>
+    44: getlocal_0
+    45: getproperty minField
+    48: setproperty field
+    51: getlocal_0
+    52: getproperty gen
+    55: pushbyte 2
+    57: getproperty <rt>
+    60: getlocal_0
+    61: getproperty minFuel
+    64: setproperty fuel
+    67: getlocal_0
+    68: pushbyte 2
+    70: callpropvoid resetGenerator 1
+    74: jump ->180
+    78: label
+    79: findpropstrict trace
+    82: pushstring " wrong genState in onOpenCBClick2"
+    85: callpropvoid trace 1
+    89: jump ->180
+    93: jump ->180
+    97: getlocal_0
+    98: getproperty gen
+    101: pushbyte 2
+    103: getproperty <rt>
+    106: getproperty state
+    109: setlocal_2
+    110: pushbyte 2
+    112: getlocal_2
+    113: ifstrictne ->123
+    117: pushbyte 0
+    119: jump ->161
+    123: pushbyte 3
+    125: getlocal_2
+    126: ifstrictne ->136
+    130: pushbyte 1
+    132: jump ->161
+    136: pushbyte 4
+    138: getlocal_2
+    139: ifstrictne ->149
+    143: pushbyte 2
+    145: jump ->161
+    149: jump ->159
+    153: pushbyte 3
+    155: jump ->161
+    159: pushbyte 3
+    161: kill 2
+    163: lookupswitch ...
+    180: returnvoid
+  fn onAutoClick2 (method 364):
+    0: getlocal_0
+    1: pushscope
+    2: jump ->150
+    6: label
+    7: getlocal_0
+    8: getproperty gen
+    11: pushbyte 2
+    13: getproperty <rt>
+    16: pushbyte 4
+    18: setproperty state
+    21: getlocal_0
+    22: getproperty btn_Auto
+    25: pushbyte 2
+    27: getproperty <rt>
+    30: pushstring "normal"
+    32: setproperty blendMode
+    35: getlocal_0
+    36: getproperty auto_Text
+    39: pushbyte 2
+    41: getproperty <rt>
+    44: pushstring "Auto"
+    47: setproperty text
+    50: getlocal_0
+    51: getproperty auto_Text
+    54: pushbyte 2
+    56: getproperty <rt>
+    59: pushint 117760
+    61: setproperty textColor
+    64: jump ->217
+    68: label
+    69: getlocal_0
+    70: getproperty gen
+    73: pushbyte 2
+    75: getproperty <rt>
+    78: pushbyte 3
+    80: setproperty state
+    83: getlocal_0
+    84: getproperty btn_Auto
+    87: pushbyte 2
+    89: getproperty <rt>
+    92: pushstring "invert"
+    95: setproperty blendMode
+    98: getlocal_0
+    99: getproperty auto_Text
+    102: pushbyte 2
+    104: getproperty <rt>
+    107: pushstring "Man"
+    110: setproperty text
+    113: getlocal_0
+    114: getproperty auto_Text
+    117: pushbyte 2
+    119: getproperty <rt>
+    122: pushint 16711680
+    124: setproperty textColor
+    127: jump ->217
+    131: label
+    132: findpropstrict trace
+    135: pushstring " wrong gen[2].state in OnAutoClick2"
+    138: callpropvoid trace 1
+    142: jump ->217
+    146: jump ->217
+    150: getlocal_0
+    151: getproperty gen
+    154: pushbyte 2
+    156: getproperty <rt>
+    159: getproperty state
+    162: setlocal_2
+    163: pushbyte 3
+    165: getlocal_2
+    166: ifstrictne ->176
+    170: pushbyte 0
+    172: jump ->201
+    176: pushbyte 4
+    178: getlocal_2
+    179: ifstrictne ->189
+    183: pushbyte 1
+    185: jump ->201
+    189: jump ->199
+    193: pushbyte 2
+    195: jump ->201
+    199: pushbyte 2
+    201: kill 2
+    203: lookupswitch ...
+    217: returnvoid
+  fn onHelpClick (method 365):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty helpPage
+    6: pushbyte 1
+    8: callpropvoid showPage 1
+    12: returnvoid
+  fn onPauseClick (method 366):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getlocal_0
+    4: getproperty simPaused
+    7: not
+    8: initproperty simPaused
+    11: getlocal_0
+    12: getproperty simPaused
+    15: iffalse ->33
+    19: getlocal_0
+    20: getproperty btnPause
+    23: pushstring "Resume"
+    26: setproperty label
+    29: jump ->43
+    33: getlocal_0
+    34: getproperty btnPause
+    37: pushstring "Pause"
+    40: setproperty label
+    43: returnvoid
+  fn onQuitClick (method 367):
+    0: getlocal_0
+    1: pushscope
+    2: findpropstrict flash.system.fscommand
+    5: pushstring "quit"
+    8: callpropvoid flash.system.fscommand 1
+    12: returnvoid
+  fn updateText (method 368):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty loadDemandkWText
+    6: getlocal_0
+    7: getproperty demandLoadKW
+    10: pushbyte 10
+    12: multiply
+    13: pushstring " kW"
+    16: add
+    17: setproperty text
+    20: getlocal_0
+    21: getproperty loadDemandkVArText
+    24: getlocal_0
+    25: getproperty demandLoadKVAr
+    28: pushbyte 10
+    30: multiply
+    31: pushstring " kVAr"
+    34: add
+    35: setproperty text
+    38: returnvoid
+  fn checkReverseKW (method 369):
+    0: getlocal_0
+    1: pushscope
+    2: pushbyte 1
+    4: coerce_a
+    5: setlocal_1
+    6: jump ->132
+    10: label
+    11: getlocal_0
+    12: getproperty gen
+    15: getlocal_1
+    16: getproperty <rt>
+    19: getproperty outputKW
+    22: getlocal_0
+    23: getproperty REVERSEPOWERTRIGGER
+    26: ifnlt ->81
+    30: getlocal_0
+    31: getproperty rev_PowerText
+    34: getlocal_1
+    35: getproperty <rt>
+    38: pushstring "Reverse Power"
+    41: setproperty text
+    44: getlocal_0
+    45: getproperty revpowerAlarm
+    48: getlocal_1
+    49: getproperty <rt>
+    52: pushtrue
+    53: setproperty visible
+    56: getlocal_0
+    57: getproperty colorTransform
+    60: pushint 16711680
+    62: setproperty color
+    65: getlocal_0
+    66: getproperty timers
+    69: getlocal_1
+    70: getproperty <rt>
+    73: callpropvoid start 0
+    77: jump ->128
+    81: getlocal_0
+    82: getproperty rev_PowerText
+    85: getlocal_1
+    86: getproperty <rt>
+    89: pushstring ""
+    91: setproperty text
+    94: getlocal_0
+    95: getproperty revpowerAlarm
+    98: getlocal_1
+    99: getproperty <rt>
+    102: pushfalse
+    103: setproperty visible
+    106: getlocal_0
+    107: getproperty colorTransform
+    110: pushshort 255
+    113: setproperty color
+    116: getlocal_0
+    117: getproperty timers
+    120: getlocal_1
+    121: getproperty <rt>
+    124: callpropvoid stop 0
+    128: getlocal_1
+    129: increment
+    130: coerce_a
+    131: setlocal_1
+    132: getlocal_1
+    133: pushbyte 2
+    135: ifle ->10
+    139: returnvoid
+  fn checkSynchronisation (method 370):
+    0: getlocal_0
+    1: pushscope
+    2: pushundefined
+    3: coerce_a
+    4: setlocal_3
+    5: getlocal_0
+    6: getproperty gen
+    9: pushbyte 1
+    11: getproperty <rt>
+    14: getproperty rotorangle
+    17: convert_d
+    18: setlocal_1
+    19: getlocal_0
+    20: getproperty gen
+    23: pushbyte 2
+    25: getproperty <rt>
+    28: getproperty rotorangle
+    31: convert_d
+    32: setlocal_2
+    33: getlocal_0
+    34: getproperty reqSynchronisation
+    37: iffalse ->250
+    41: getlex Math
+    44: getlocal_1
+    45: getlocal_2
+    46: subtract
+    47: callproperty abs 1
+    51: coerce_a
+    52: setlocal_3
+    53: getlocal_0
+    54: getproperty gen
+    57: pushbyte 1
+    59: getproperty <rt>
+    62: getproperty state
+    65: pushbyte 2
+    67: ifne ->85
+    71: getlocal_0
+    72: getproperty syncRotor
+    75: getlocal_2
+    76: getlocal_1
+    77: subtract
+    78: setproperty rotation
+    81: jump ->95
+    85: getlocal_0
+    86: getproperty syncRotor
+    89: getlocal_1
+    90: getlocal_2
+    91: subtract
+    92: setproperty rotation
+    95: getlocal_3
+    96: pushshort 180
+    99: ifngt ->110
+    103: pushshort 360
+    106: getlocal_3
+    107: subtract
+    108: coerce_a
+    109: setlocal_3
+    110: getlocal_3
+    111: getlocal_0
+    112: getproperty genDeltaAngle
+    115: ifnle ->250
+    119: getlocal_0
+    120: pushfalse
+    121: initproperty reqSynchronisation
+    124: getlocal_0
+    125: getproperty gen
+    128: pushbyte 1
+    130: getproperty <rt>
+    133: getproperty state
+    136: pushbyte 2
+    138: ifne ->198
+    142: getlocal_0
+    143: getproperty gen
+    146: pushbyte 1
+    148: getproperty <rt>
+    151: pushtrue
+    152: setproperty loaded
+    155: getlocal_0
+    156: getproperty Breaker
+    159: pushbyte 1
+    161: getproperty <rt>
+    164: pushfalse
+    165: setproperty visible
+    168: getlocal_0
+    169: getproperty syncText
+    172: pushfalse
+    173: setproperty visible
+    176: pushbyte 0
+    178: coerce_a
+    179: setlocal_3
+    180: getlocal_0
+    181: getproperty gen
+    184: pushbyte 1
+    186: getproperty <rt>
+    189: pushbyte 3
+    191: setproperty state
+    194: jump ->250
+    198: getlocal_0
+    199: getproperty gen
+    202: pushbyte 2
+    204: getproperty <rt>
+    207: pushtrue
+    208: setproperty loaded
+    211: getlocal_0
+    212: getproperty Breaker
+    215: pushbyte 2
+    217: getproperty <rt>
+    220: pushfalse
+    221: setproperty visible
+    224: getlocal_0
+    225: getproperty syncText
+    228: pushfalse
+    229: setproperty visible
+    232: pushbyte 0
+    234: coerce_a
+    235: setlocal_3
+    236: getlocal_0
+    237: getproperty gen
+    240: pushbyte 2
+    242: getproperty <rt>
+    245: pushbyte 3
+    247: setproperty state
+    250: returnvoid
+  fn genCalcRequiredFuel (method 371):
+    0: getlocal_0
+    1: pushscope
+    2: getlex Math
+    5: getlex Math
+    8: getlocal_1
+    9: getlocal_0
+    10: getproperty genUseKW
+    13: add
+    14: pushbyte 100
+    16: multiply
+    17: getlocal_0
+    18: getproperty genMaxKW
+    21: divide
+    22: pushbyte 0
+    24: callproperty max 2
+    28: pushbyte 100
+    30: callproperty min 2
+    34: convert_d
+    35: setlocal_2
+    36: getlocal_2
+    37: returnvalue
+  fn genCalcRequiredField (method 372):
+    0: getlocal_0
+    1: pushscope
+    2: getlex Math
+    5: getlex Math
+    8: getlocal_1
+    9: getlocal_0
+    10: getproperty genUseKVAr
+    13: add
+    14: pushshort 200
+    17: multiply
+    18: getlocal_0
+    19: getproperty genMaxKVAr
+    22: divide
+    23: pushbyte 0
+    25: callproperty max 2
+    29: pushshort 200
+    32: callproperty min 2
+    36: convert_d
+    37: setlocal_2
+    38: getlocal_2
+    39: returnvalue
+  fn updateOuputsBothLoaded (method 373):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: pushbyte 1
+    8: getproperty <rt>
+    11: getlocal_0
+    12: getproperty demandLoadKW
+    15: getlocal_0
+    16: getproperty diffKW
+    19: add
+    20: pushbyte 2
+    22: divide
+    23: setproperty demandKW
+    26: getlocal_0
+    27: getproperty gen
+    30: pushbyte 2
+    32: getproperty <rt>
+    35: getlocal_0
+    36: getproperty demandLoadKW
+    39: getlocal_0
+    40: getproperty diffKW
+    43: subtract
+    44: pushbyte 2
+    46: divide
+    47: setproperty demandKW
+    50: getlocal_0
+    51: getproperty gen
+    54: pushbyte 1
+    56: getproperty <rt>
+    59: getlocal_0
+    60: getproperty demandLoadKW
+    63: getlocal_0
+    64: getproperty diffKW
+    67: add
+    68: pushbyte 2
+    70: divide
+    71: setproperty outputKW
+    74: getlocal_0
+    75: getproperty gen
+    78: pushbyte 2
+    80: getproperty <rt>
+    83: getlocal_0
+    84: getproperty demandLoadKW
+    87: getlocal_0
+    88: getproperty diffKW
+    91: subtract
+    92: pushbyte 2
+    94: divide
+    95: setproperty outputKW
+    98: getlocal_0
+    99: getproperty gen
+    102: pushbyte 1
+    104: getproperty <rt>
+    107: getlocal_0
+    108: getproperty demandLoadKVAr
+    111: getlocal_0
+    112: getproperty diffKVAr
+    115: add
+    116: pushbyte 2
+    118: divide
+    119: setproperty demandKVAr
+    122: getlocal_0
+    123: getproperty gen
+    126: pushbyte 2
+    128: getproperty <rt>
+    131: getlocal_0
+    132: getproperty demandLoadKVAr
+    135: getlocal_0
+    136: getproperty diffKVAr
+    139: subtract
+    140: pushbyte 2
+    142: divide
+    143: setproperty demandKVAr
+    146: getlocal_0
+    147: getproperty gen
+    150: pushbyte 1
+    152: getproperty <rt>
+    155: getlocal_0
+    156: getproperty demandLoadKVAr
+    159: getlocal_0
+    160: getproperty diffKVAr
+    163: add
+    164: pushbyte 2
+    166: divide
+    167: setproperty outputKVAr
+    170: getlocal_0
+    171: getproperty gen
+    174: pushbyte 2
+    176: getproperty <rt>
+    179: getlocal_0
+    180: getproperty demandLoadKVAr
+    183: getlocal_0
+    184: getproperty diffKVAr
+    187: subtract
+    188: pushbyte 2
+    190: divide
+    191: setproperty outputKVAr
+    194: returnvoid
+  fn calcOutputPowers (method 374):
+    0: getlocal_0
+    1: pushscope
+    2: pushbyte 1
+    4: coerce_a
+    5: setlocal_1
+    6: jump ->113
+    10: label
+    11: getlocal_0
+    12: getproperty gen
+    15: getlocal_1
+    16: getproperty <rt>
+    19: pushbyte 0
+    21: setproperty demandKW
+    24: getlocal_0
+    25: getproperty gen
+    28: getlocal_1
+    29: getproperty <rt>
+    32: pushbyte 0
+    34: setproperty demandKVAr
+    37: getlocal_0
+    38: getproperty gen
+    41: getlocal_1
+    42: getproperty <rt>
+    45: pushbyte 0
+    47: setproperty outputKW
+    50: getlocal_0
+    51: getproperty gen
+    54: getlocal_1
+    55: getproperty <rt>
+    58: pushbyte 0
+    60: setproperty outputKVAr
+    63: getlocal_0
+    64: getproperty gen
+    67: getlocal_1
+    68: getproperty <rt>
+    71: getlocal_0
+    72: getlocal_1
+    73: callproperty genCalcOutputKW 1
+    77: setproperty fuelKW
+    80: getlocal_0
+    81: getproperty gen
+    84: getlocal_1
+    85: getproperty <rt>
+    88: getlex Math
+    91: getlocal_0
+    92: getlocal_1
+    93: callproperty genCalcOutputKVAr 1
+    97: getlocal_0
+    98: getproperty genUseKVAr
+    101: negate
+    102: callproperty max 2
+    106: setproperty fieldKVAr
+    109: getlocal_1
+    110: increment
+    111: coerce_a
+    112: setlocal_1
+    113: getlocal_1
+    114: pushbyte 2
+    116: ifle ->10
+    120: getlocal_0
+    121: getproperty gen
+    124: pushbyte 1
+    126: getproperty <rt>
+    129: getproperty state
+    132: pushbyte 10
+    134: getlocal_0
+    135: getproperty gen
+    138: pushbyte 2
+    140: getproperty <rt>
+    143: getproperty state
+    146: multiply
+    147: add
+    148: coerce_a
+    149: setlocal_2
+    150: jump ->1760
+    154: label
+    155: getlocal_0
+    156: getproperty gen
+    159: pushbyte 1
+    161: getproperty <rt>
+    164: getlocal_0
+    165: getproperty demandLoadKW
+    168: setproperty demandKW
+    171: getlocal_0
+    172: getproperty gen
+    175: pushbyte 1
+    177: getproperty <rt>
+    180: getlocal_0
+    181: getproperty demandLoadKVAr
+    184: setproperty demandKVAr
+    187: getlocal_0
+    188: getproperty gen
+    191: pushbyte 1
+    193: getproperty <rt>
+    196: getlex Math
+    199: getlex Math
+    202: getlocal_0
+    203: getproperty gen
+    206: pushbyte 1
+    208: getproperty <rt>
+    211: getproperty fuelKW
+    214: getlocal_0
+    215: getproperty genUseKW
+    218: subtract
+    219: getlocal_0
+    220: getproperty gen
+    223: pushbyte 1
+    225: getproperty <rt>
+    228: getproperty demandKW
+    231: callproperty min 2
+    235: pushbyte 0
+    237: callproperty max 2
+    241: setproperty outputKW
+    244: getlocal_0
+    245: getproperty gen
+    248: pushbyte 1
+    250: getproperty <rt>
+    253: getlex Math
+    256: getlex Math
+    259: getlocal_0
+    260: getproperty gen
+    263: pushbyte 1
+    265: getproperty <rt>
+    268: getproperty fieldKVAr
+    271: getlocal_0
+    272: getproperty genUseKVAr
+    275: subtract
+    276: getlocal_0
+    277: getproperty gen
+    280: pushbyte 1
+    282: getproperty <rt>
+    285: getproperty demandKVAr
+    288: callproperty min 2
+    292: pushbyte 0
+    294: callproperty max 2
+    298: setproperty outputKVAr
+    301: jump ->2040
+    305: label
+    306: getlocal_0
+    307: getproperty gen
+    310: pushbyte 1
+    312: getproperty <rt>
+    315: getlocal_0
+    316: getproperty demandLoadKW
+    319: setproperty demandKW
+    322: getlocal_0
+    323: getproperty gen
+    326: pushbyte 1
+    328: getproperty <rt>
+    331: getlocal_0
+    332: getproperty demandLoadKVAr
+    335: setproperty demandKVAr
+    338: getlocal_0
+    339: getproperty gen
+    342: pushbyte 1
+    344: getproperty <rt>
+    347: getlocal_0
+    348: getlocal_0
+    349: getproperty gen
+    352: pushbyte 1
+    354: getproperty <rt>
+    357: getproperty demandKW
+    360: callproperty genCalcRequiredFuel 1
+    364: setproperty fuel
+    367: getlocal_0
+    368: pushbyte 1
+    370: callpropvoid jogFuelset 1
+    374: getlocal_0
+    375: getproperty gen
+    378: pushbyte 1
+    380: getproperty <rt>
+    383: getlocal_0
+    384: getlocal_0
+    385: getproperty gen
+    388: pushbyte 1
+    390: getproperty <rt>
+    393: getproperty demandKVAr
+    396: callproperty genCalcRequiredField 1
+    400: setproperty field
+    403: getlocal_0
+    404: pushbyte 1
+    406: callpropvoid jogFieldset 1
+    410: getlocal_0
+    411: getproperty gen
+    414: pushbyte 1
+    416: getproperty <rt>
+    419: getlocal_0
+    420: pushbyte 1
+    422: callproperty genCalcOutputKW 1
+    426: setproperty fuelKW
+    429: getlocal_0
+    430: getproperty gen
+    433: pushbyte 1
+    435: getproperty <rt>
+    438: getlocal_0
+    439: pushbyte 1
+    441: callproperty genCalcOutputKVAr 1
+    445: setproperty fieldKVAr
+    448: getlocal_0
+    449: getproperty gen
+    452: pushbyte 1
+    454: getproperty <rt>
+    457: getlex Math
+    460: getlex Math
+    463: getlocal_0
+    464: getproperty gen
+    467: pushbyte 1
+    469: getproperty <rt>
+    472: getproperty fuelKW
+    475: getlocal_0
+    476: getproperty genUseKW
+    479: subtract
+    480: getlocal_0
+    481: getproperty gen
+    484: pushbyte 1
+    486: getproperty <rt>
+    489: getproperty demandKW
+    492: callproperty min 2
+    496: pushbyte 0
+    498: callproperty max 2
+    502: setproperty outputKW
+    505: getlocal_0
+    506: getproperty gen
+    509: pushbyte 1
+    511: getproperty <rt>
+    514: getlex Math
+    517: getlex Math
+    520: getlocal_0
+    521: getproperty gen
+    524: pushbyte 1
+    526: getproperty <rt>
+    529: getproperty fieldKVAr
+    532: getlocal_0
+    533: getproperty genUseKVAr
+    536: subtract
+    537: getlocal_0
+    538: getproperty gen
+    541: pushbyte 1
+    543: getproperty <rt>
+    546: getproperty demandKVAr
+    549: callproperty min 2
+    553: pushbyte 0
+    555: callproperty max 2
+    559: setproperty outputKVAr
+    562: jump ->2040
+    566: label
+    567: getlocal_0
+    568: getproperty gen
+    571: pushbyte 2
+    573: getproperty <rt>
+    576: getlocal_0
+    577: getproperty demandLoadKW
+    580: setproperty demandKW
+    583: getlocal_0
+    584: getproperty gen
+    587: pushbyte 2
+    589: getproperty <rt>
+    592: getlocal_0
+    593: getproperty demandLoadKVAr
+    596: setproperty demandKVAr
+    599: getlocal_0
+    600: getproperty gen
+    603: pushbyte 2
+    605: getproperty <rt>
+    608: getlex Math
+    611: getlex Math
+    614: getlocal_0
+    615: getproperty gen
+    618: pushbyte 2
+    620: getproperty <rt>
+    623: getproperty fuelKW
+    626: getlocal_0
+    627: getproperty genUseKW
+    630: subtract
+    631: getlocal_0
+    632: getproperty gen
+    635: pushbyte 2
+    637: getproperty <rt>
+    640: getproperty demandKW
+    643: callproperty min 2
+    647: pushbyte 0
+    649: callproperty max 2
+    653: setproperty outputKW
+    656: getlocal_0
+    657: getproperty gen
+    660: pushbyte 2
+    662: getproperty <rt>
+    665: getlex Math
+    668: getlex Math
+    671: getlocal_0
+    672: getproperty gen
+    675: pushbyte 2
+    677: getproperty <rt>
+    680: getproperty fieldKVAr
+    683: getlocal_0
+    684: getproperty genUseKVAr
+    687: subtract
+    688: getlocal_0
+    689: getproperty gen
+    692: pushbyte 2
+    694: getproperty <rt>
+    697: getproperty demandKVAr
+    700: callproperty min 2
+    704: pushbyte 0
+    706: callproperty max 2
+    710: setproperty outputKVAr
+    713: jump ->2040
+    717: label
+    718: getlocal_0
+    719: getproperty gen
+    722: pushbyte 2
+    724: getproperty <rt>
+    727: getlocal_0
+    728: getproperty demandLoadKW
+    731: setproperty demandKW
+    734: getlocal_0
+    735: getproperty gen
+    738: pushbyte 2
+    740: getproperty <rt>
+    743: getlocal_0
+    744: getproperty demandLoadKVAr
+    747: setproperty demandKVAr
+    750: getlocal_0
+    751: getproperty gen
+    754: pushbyte 2
+    756: getproperty <rt>
+    759: getlocal_0
+    760: getlocal_0
+    761: getproperty gen
+    764: pushbyte 2
+    766: getproperty <rt>
+    769: getproperty demandKW
+    772: callproperty genCalcRequiredFuel 1
+    776: setproperty fuel
+    779: getlocal_0
+    780: pushbyte 2
+    782: callpropvoid jogFuelset 1
+    786: getlocal_0
+    787: getproperty gen
+    790: pushbyte 2
+    792: getproperty <rt>
+    795: getlocal_0
+    796: getlocal_0
+    797: getproperty gen
+    800: pushbyte 2
+    802: getproperty <rt>
+    805: getproperty demandKVAr
+    808: callproperty genCalcRequiredField 1
+    812: setproperty field
+    815: getlocal_0
+    816: pushbyte 2
+    818: callpropvoid jogFieldset 1
+    822: getlocal_0
+    823: getproperty gen
+    826: pushbyte 2
+    828: getproperty <rt>
+    831: getlocal_0
+    832: pushbyte 2
+    834: callproperty genCalcOutputKW 1
+    838: setproperty fuelKW
+    841: getlocal_0
+    842: getproperty gen
+    845: pushbyte 2
+    847: getproperty <rt>
+    850: getlocal_0
+    851: pushbyte 2
+    853: callproperty genCalcOutputKVAr 1
+    857: setproperty fieldKVAr
+    860: getlocal_0
+    861: getproperty gen
+    864: pushbyte 2
+    866: getproperty <rt>
+    869: getlex Math
+    872: getlex Math
+    875: getlocal_0
+    876: getproperty gen
+    879: pushbyte 2
+    881: getproperty <rt>
+    884: getproperty fuelKW
+    887: getlocal_0
+    888: getproperty genUseKW
+    891: subtract
+    892: getlocal_0
+    893: getproperty gen
+    896: pushbyte 2
+    898: getproperty <rt>
+    901: getproperty demandKW
+    904: callproperty min 2
+    908: pushbyte 0
+    910: callproperty max 2
+    914: setproperty outputKW
+    917: getlocal_0
+    918: getproperty gen
+    921: pushbyte 2
+    923: getproperty <rt>
+    926: getlex Math
+    929: getlex Math
+    932: getlocal_0
+    933: getproperty gen
+    936: pushbyte 2
+    938: getproperty <rt>
+    941: getproperty fieldKVAr
+    944: getlocal_0
+    945: getproperty genUseKVAr
+    948: subtract
+    949: getlocal_0
+    950: getproperty gen
+    953: pushbyte 2
+    955: getproperty <rt>
+    958: getproperty demandKVAr
+    961: callproperty min 2
+    965: pushbyte 0
+    967: callproperty max 2
+    971: setproperty outputKVAr
+    974: jump ->2040
+    978: label
+    979: getlocal_0
+    980: getlocal_0
+    981: getproperty gen
+    984: pushbyte 1
+    986: getproperty <rt>
+    989: getproperty fuelKW
+    992: getlocal_0
+    993: getproperty gen
+    996: pushbyte 2
+    998: getproperty <rt>
+    1001: getproperty fuelKW
+    1004: subtract
+    1005: initproperty diffKW
+    1008: getlocal_0
+    1009: getlocal_0
+    1010: getproperty gen
+    1013: pushbyte 1
+    1015: getproperty <rt>
+    1018: getproperty fieldKVAr
+    1021: getlocal_0
+    1022: getproperty gen
+    1025: pushbyte 2
+    1027: getproperty <rt>
+    1030: getproperty fieldKVAr
+    1033: subtract
+    1034: initproperty diffKVAr
+    1037: getlocal_0
+    1038: callpropvoid updateOuputsBothLoaded 0
+    1042: jump ->2040
+    1046: label
+    1047: getlocal_0
+    1048: getproperty gen
+    1051: pushbyte 1
+    1053: getproperty <rt>
+    1056: getlex Math
+    1059: getlocal_0
+    1060: getlocal_0
+    1061: getproperty demandLoadKW
+    1064: getlocal_0
+    1065: getproperty gen
+    1068: pushbyte 2
+    1070: getproperty <rt>
+    1073: getproperty fuelKW
+    1076: getlocal_0
+    1077: getproperty genUseKW
+    1080: subtract
+    1081: subtract
+    1082: callproperty genCalcRequiredFuel 1
+    1086: getlocal_0
+    1087: getproperty minFuel
+    1090: callproperty max 2
+    1094: setproperty fuel
+    1097: getlocal_0
+    1098: getproperty gen
+    1101: pushbyte 1
+    1103: getproperty <rt>
+    1106: getlocal_0
+    1107: pushbyte 1
+    1109: callproperty genCalcOutputKW 1
+    1113: setproperty fuelKW
+    1116: getlocal_0
+    1117: pushbyte 1
+    1119: callpropvoid jogFuelset 1
+    1123: getlocal_0
+    1124: getlocal_0
+    1125: getproperty gen
+    1128: pushbyte 1
+    1130: getproperty <rt>
+    1133: getproperty fuelKW
+    1136: getlocal_0
+    1137: getproperty gen
+    1140: pushbyte 2
+    1142: getproperty <rt>
+    1145: getproperty fuelKW
+    1148: subtract
+    1149: initproperty diffKW
+    1152: getlocal_0
+    1153: getproperty gen
+    1156: pushbyte 1
+    1158: getproperty <rt>
+    1161: getlex Math
+    1164: getlocal_0
+    1165: getlocal_0
+    1166: getproperty demandLoadKVAr
+    1169: getlocal_0
+    1170: getproperty gen
+    1173: pushbyte 2
+    1175: getproperty <rt>
+    1178: getproperty fieldKVAr
+    1181: getlocal_0
+    1182: getproperty genUseKVAr
+    1185: subtract
+    1186: subtract
+    1187: callproperty genCalcRequiredField 1
+    1191: getlocal_0
+    1192: getproperty minField
+    1195: callproperty max 2
+    1199: setproperty field
+    1202: getlocal_0
+    1203: getproperty gen
+    1206: pushbyte 1
+    1208: getproperty <rt>
+    1211: getlocal_0
+    1212: pushbyte 1
+    1214: callproperty genCalcOutputKVAr 1
+    1218: setproperty fieldKVAr
+    1221: getlocal_0
+    1222: pushbyte 1
+    1224: callpropvoid jogFieldset 1
+    1228: getlocal_0
+    1229: getlocal_0
+    1230: getproperty gen
+    1233: pushbyte 1
+    1235: getproperty <rt>
+    1238: getproperty fieldKVAr
+    1241: getlocal_0
+    1242: getproperty gen
+    1245: pushbyte 2
+    1247: getproperty <rt>
+    1250: getproperty fieldKVAr
+    1253: subtract
+    1254: initproperty diffKVAr
+    1257: getlocal_0
+    1258: callpropvoid updateOuputsBothLoaded 0
+    1262: jump ->2040
+    1266: label
+    1267: getlocal_0
+    1268: getproperty gen
+    1271: pushbyte 2
+    1273: getproperty <rt>
+    1276: getlex Math
+    1279: getlocal_0
+    1280: getlocal_0
+    1281: getproperty demandLoadKW
+    1284: getlocal_0
+    1285: getproperty gen
+    1288: pushbyte 1
+    1290: getproperty <rt>
+    1293: getproperty fuelKW
+    1296: getlocal_0
+    1297: getproperty genUseKW
+    1300: subtract
+    1301: subtract
+    1302: callproperty genCalcRequiredFuel 1
+    1306: getlocal_0
+    1307: getproperty minFuel
+    1310: callproperty max 2
+    1314: setproperty fuel
+    1317: getlocal_0
+    1318: getproperty gen
+    1321: pushbyte 2
+    1323: getproperty <rt>
+    1326: getlocal_0
+    1327: pushbyte 2
+    1329: callproperty genCalcOutputKW 1
+    1333: setproperty fuelKW
+    1336: getlocal_0
+    1337: pushbyte 2
+    1339: callpropvoid jogFuelset 1
+    1343: getlocal_0
+    1344: getlocal_0
+    1345: getproperty gen
+    1348: pushbyte 1
+    1350: getproperty <rt>
+    1353: getproperty fuelKW
+    1356: getlocal_0
+    1357: getproperty gen
+    1360: pushbyte 2
+    1362: getproperty <rt>
+    1365: getproperty fuelKW
+    1368: subtract
+    1369: initproperty diffKW
+    1372: getlocal_0
+    1373: getproperty gen
+    1376: pushbyte 2
+    1378: getproperty <rt>
+    1381: getlex Math
+    1384: getlocal_0
+    1385: getlocal_0
+    1386: getproperty demandLoadKVAr
+    1389: getlocal_0
+    1390: getproperty gen
+    1393: pushbyte 1
+    1395: getproperty <rt>
+    1398: getproperty fieldKVAr
+    1401: getlocal_0
+    1402: getproperty genUseKVAr
+    1405: subtract
+    1406: subtract
+    1407: callproperty genCalcRequiredField 1
+    1411: getlocal_0
+    1412: getproperty minField
+    1415: callproperty max 2
+    1419: setproperty field
+    1422: getlocal_0
+    1423: getproperty gen
+    1426: pushbyte 2
+    1428: getproperty <rt>
+    1431: getlocal_0
+    1432: pushbyte 2
+    1434: callproperty genCalcOutputKVAr 1
+    1438: setproperty fieldKVAr
+    1441: getlocal_0
+    1442: pushbyte 2
+    1444: callpropvoid jogFieldset 1
+    1448: getlocal_0
+    1449: getlocal_0
+    1450: getproperty gen
+    1453: pushbyte 1
+    1455: getproperty <rt>
+    1458: getproperty fieldKVAr
+    1461: getlocal_0
+    1462: getproperty gen
+    1465: pushbyte 2
+    1467: getproperty <rt>
+    1470: getproperty fieldKVAr
+    1473: subtract
+    1474: initproperty diffKVAr
+    1477: getlocal_0
+    1478: callpropvoid updateOuputsBothLoaded 0
+    1482: jump ->2040
+    1486: label
+    1487: pushbyte 1
+    1489: coerce_a
+    1490: setlocal_1
+    1491: jump ->1744
+    1495: label
+    1496: getlocal_0
+    1497: getproperty gen
+    1500: getlocal_1
+    1501: getproperty <rt>
+    1504: getlocal_0
+    1505: getproperty demandLoadKW
+    1508: pushbyte 2
+    1510: divide
+    1511: setproperty demandKW
+    1514: getlocal_0
+    1515: getproperty gen
+    1518: getlocal_1
+    1519: getproperty <rt>
+    1522: getlocal_0
+    1523: getlocal_0
+    1524: getproperty gen
+    1527: getlocal_1
+    1528: getproperty <rt>
+    1531: getproperty demandKW
+    1534: callproperty genCalcRequiredFuel 1
+    1538: setproperty fuel
+    1541: getlocal_0
+    1542: getlocal_1
+    1543: callpropvoid jogFuelset 1
+    1547: getlocal_0
+    1548: getproperty gen
+    1551: getlocal_1
+    1552: getproperty <rt>
+    1555: getlocal_0
+    1556: getlocal_1
+    1557: callproperty genCalcOutputKW 1
+    1561: setproperty fuelKW
+    1564: getlocal_0
+    1565: getproperty gen
+    1568: getlocal_1
+    1569: getproperty <rt>
+    1572: getlex Math
+    1575: getlex Math
+    1578: getlocal_0
+    1579: getproperty gen
+    1582: getlocal_1
+    1583: getproperty <rt>
+    1586: getproperty fuelKW
+    1589: getlocal_0
+    1590: getproperty genUseKW
+    1593: subtract
+    1594: getlocal_0
+    1595: getproperty gen
+    1598: getlocal_1
+    1599: getproperty <rt>
+    1602: getproperty demandKW
+    1605: callproperty min 2
+    1609: pushbyte 0
+    1611: callproperty max 2
+    1615: setproperty outputKW
+    1618: getlocal_0
+    1619: getproperty gen
+    1622: getlocal_1
+    1623: getproperty <rt>
+    1626: getlocal_0
+    1627: getproperty demandLoadKVAr
+    1630: pushbyte 2
+    1632: divide
+    1633: setproperty demandKVAr
+    1636: getlocal_0
+    1637: getproperty gen
+    1640: getlocal_1
+    1641: getproperty <rt>
+    1644: getlocal_0
+    1645: getlocal_0
+    1646: getproperty gen
+    1649: getlocal_1
+    1650: getproperty <rt>
+    1653: getproperty demandKVAr
+    1656: callproperty genCalcRequiredField 1
+    1660: setproperty field
+    1663: getlocal_0
+    1664: getlocal_1
+    1665: callpropvoid jogFieldset 1
+    1669: getlocal_0
+    1670: getproperty gen
+    1673: getlocal_1
+    1674: getproperty <rt>
+    1677: getlocal_0
+    1678: getlocal_1
+    1679: callproperty genCalcOutputKVAr 1
+    1683: setproperty fieldKVAr
+    1686: getlocal_0
+    1687: getproperty gen
+    1690: getlocal_1
+    1691: getproperty <rt>
+    1694: getlex Math
+    1697: getlex Math
+    1700: getlocal_0
+    1701: getproperty gen
+    1704: getlocal_1
+    1705: getproperty <rt>
+    1708: getproperty fieldKVAr
+    1711: getlocal_0
+    1712: getproperty genUseKVAr
+    1715: subtract
+    1716: getlocal_0
+    1717: getproperty gen
+    1720: getlocal_1
+    1721: getproperty <rt>
+    1724: getproperty demandKVAr
+    1727: callproperty min 2
+    1731: pushbyte 0
+    1733: callproperty max 2
+    1737: setproperty outputKVAr
+    1740: getlocal_1
+    1741: increment
+    1742: coerce_a
+    1743: setlocal_1
+    1744: getlocal_1
+    1745: pushbyte 2
+    1747: ifle ->1495
+    1751: jump ->2040
+    1755: label
+    1756: jump ->2040
+    1760: getlocal_2
+    1761: setlocal_3
+    1762: pushbyte 3
+    1764: getlocal_3
+    1765: ifstrictne ->1775
+    1769: pushbyte 0
+    1771: jump ->1982
+    1775: pushbyte 13
+    1777: getlocal_3
+    1778: ifstrictne ->1788
+    1782: pushbyte 1
+    1784: jump ->1982
+    1788: pushbyte 23
+    1790: getlocal_3
+    1791: ifstrictne ->1801
+    1795: pushbyte 2
+    1797: jump ->1982
+    1801: pushbyte 4
+    1803: getlocal_3
+    1804: ifstrictne ->1814
+    1808: pushbyte 3
+    1810: jump ->1982
+    1814: pushbyte 14
+    1816: getlocal_3
+    1817: ifstrictne ->1827
+    1821: pushbyte 4
+    1823: jump ->1982
+    1827: pushbyte 24
+    1829: getlocal_3
+    1830: ifstrictne ->1840
+    1834: pushbyte 5
+    1836: jump ->1982
+    1840: pushbyte 30
+    1842: getlocal_3
+    1843: ifstrictne ->1853
+    1847: pushbyte 6
+    1849: jump ->1982
+    1853: pushbyte 31
+    1855: getlocal_3
+    1856: ifstrictne ->1866
+    1860: pushbyte 7
+    1862: jump ->1982
+    1866: pushbyte 32
+    1868: getlocal_3
+    1869: ifstrictne ->1879
+    1873: pushbyte 8
+    1875: jump ->1982
+    1879: pushbyte 40
+    1881: getlocal_3
+    1882: ifstrictne ->1892
+    1886: pushbyte 9
+    1888: jump ->1982
+    1892: pushbyte 41
+    1894: getlocal_3
+    1895: ifstrictne ->1905
+    1899: pushbyte 10
+    1901: jump ->1982
+    1905: pushbyte 42
+    1907: getlocal_3
+    1908: ifstrictne ->1918
+    1912: pushbyte 11
+    1914: jump ->1982
+    1918: pushbyte 33
+    1920: getlocal_3
+    1921: ifstrictne ->1931
+    1925: pushbyte 12
+    1927: jump ->1982
+    1931: pushbyte 34
+    1933: getlocal_3
+    1934: ifstrictne ->1944
+    1938: pushbyte 13
+    1940: jump ->1982
+    1944: pushbyte 43
+    1946: getlocal_3
+    1947: ifstrictne ->1957
+    1951: pushbyte 14
+    1953: jump ->1982
+    1957: pushbyte 44
+    1959: getlocal_3
+    1960: ifstrictne ->1970
+    1964: pushbyte 15
+    1966: jump ->1982
+    1970: jump ->1980
+    1974: pushbyte 16
+    1976: jump ->1982
+    1980: pushbyte 16
+    1982: kill 3
+    1984: lookupswitch ...
+    2040: returnvoid
+  fn updateMeters (method 375):
+    0: getlocal_0
+    1: pushscope
+    2: pushbyte 1
+    4: coerce_a
+    5: setlocal_1
+    6: jump ->45
+    10: label
+    11: getlocal_0
+    12: getlocal_1
+    13: callpropvoid updateV_Meter 1
+    17: getlocal_0
+    18: getlocal_1
+    19: callpropvoid updateHz_Meter 1
+    23: getlocal_0
+    24: getlocal_1
+    25: callpropvoid updatekW_Meter 1
+    29: getlocal_0
+    30: getlocal_1
+    31: callpropvoid updatekVAr_Meter 1
+    35: getlocal_0
+    36: getlocal_1
+    37: callpropvoid updatepf_Meter 1
+    41: getlocal_1
+    42: increment
+    43: coerce_a
+    44: setlocal_1
+    45: getlocal_1
+    46: pushbyte 2
+    48: ifle ->10
+    52: returnvoid
+  fn InitMeters (method 376):
+    0: getlocal_0
+    1: pushscope
+    2: findpropstrict flash.display.Sprite
+    5: constructprop flash.display.Sprite 0
+    9: coerce flash.display.Sprite
+    12: setlocal_1
+    13: getlocal_1
+    14: pushshort 200
+    17: setproperty x
+    20: getlocal_1
+    21: pushshort 200
+    24: setproperty y
+    27: findpropstrict addChild
+    30: getlocal_1
+    31: callpropvoid addChild 1
+    35: pushshort 4294967136
+    41: convert_d
+    42: setlocal_2
+    43: pushshort 260
+    46: convert_d
+    47: setlocal_3
+    48: getlocal_0
+    49: findpropstrict AnalogMeter
+    52: getlocal_2
+    53: getlocal_3
+    54: pushstring "V"
+    57: getlocal_0
+    58: getproperty Vnums
+    61: pushbyte 11
+    63: pushbyte 24
+    65: constructprop AnalogMeter 6
+    69: initproperty V_Meter
+    72: getlocal_0
+    73: findpropstrict AnalogMeter
+    76: getlocal_2
+    77: pushshort 320
+    80: add
+    81: getlocal_3
+    82: pushstring "Hz"
+    85: getlocal_0
+    86: getproperty Hznums
+    89: pushbyte 9
+    91: pushbyte 30
+    93: constructprop AnalogMeter 6
+    97: initproperty Hz_Meter
+    100: getlocal_0
+    101: findpropstrict AnalogMeter
+    104: getlocal_2
+    105: getlocal_3
+    106: pushshort 320
+    109: subtract
+    110: pushstring "kW"
+    113: getlocal_0
+    114: getproperty kWnums
+    117: pushbyte 11
+    119: pushbyte 24
+    121: constructprop AnalogMeter 6
+    125: initproperty kW_Meter
+    128: getlocal_0
+    129: findpropstrict AnalogMeter
+    132: getlocal_2
+    133: pushshort 320
+    136: add
+    137: getlocal_3
+    138: pushshort 320
+    141: subtract
+    142: pushstring "KVAr"
+    145: getlocal_0
+    146: getproperty KVArnums
+    149: pushbyte 11
+    151: pushbyte 24
+    153: constructprop AnalogMeter 6
+    157: initproperty kVAr_Meter
+    160: getlocal_0
+    161: findpropstrict AnalogMeter
+    164: getlocal_2
+    165: pushshort 640
+    168: add
+    169: getlocal_3
+    170: pushshort 320
+    173: subtract
+    174: pushstring "cos φ"
+    177: getlocal_0
+    178: getproperty pfnums
+    181: pushbyte 9
+    183: pushbyte 30
+    185: constructprop AnalogMeter 6
+    189: initproperty pf_Meter
+    192: getlocal_1
+    193: getlocal_0
+    194: getproperty V_Meter
+    197: callpropvoid addChild 1
+    201: getlocal_1
+    202: getlocal_0
+    203: getproperty Hz_Meter
+    206: callpropvoid addChild 1
+    210: getlocal_1
+    211: getlocal_0
+    212: getproperty kW_Meter
+    215: callpropvoid addChild 1
+    219: getlocal_1
+    220: getlocal_0
+    221: getproperty kVAr_Meter
+    224: callpropvoid addChild 1
+    228: getlocal_1
+    229: getlocal_0
+    230: getproperty pf_Meter
+    233: callpropvoid addChild 1
+    237: pushshort 1845
+    240: convert_d
+    241: setlocal_2
+    242: getlocal_0
+    243: findpropstrict AnalogMeter
+    246: getlocal_2
+    247: pushshort 320
+    250: add
+    251: getlocal_3
+    252: pushstring "V"
+    255: getlocal_0
+    256: getproperty Vnums
+    259: pushbyte 11
+    261: pushbyte 24
+    263: constructprop AnalogMeter 6
+    267: initproperty V_Meter2
+    270: getlocal_0
+    271: findpropstrict AnalogMeter
+    274: getlocal_2
+    275: getlocal_3
+    276: pushstring "Hz"
+    279: getlocal_0
+    280: getproperty Hznums
+    283: pushbyte 9
+    285: pushbyte 30
+    287: constructprop AnalogMeter 6
+    291: initproperty Hz_Meter2
+    294: getlocal_0
+    295: findpropstrict AnalogMeter
+    298: getlocal_2
+    299: pushshort 320
+    302: add
+    303: getlocal_3
+    304: pushshort 320
+    307: subtract
+    308: pushstring "kW"
+    311: getlocal_0
+    312: getproperty kWnums
+    315: pushbyte 11
+    317: pushbyte 24
+    319: constructprop AnalogMeter 6
+    323: initproperty kW_Meter2
+    326: getlocal_0
+    327: findpropstrict AnalogMeter
+    330: getlocal_2
+    331: getlocal_3
+    332: pushshort 320
+    335: subtract
+    336: pushstring "KVAr"
+    339: getlocal_0
+    340: getproperty KVArnums
+    343: pushbyte 11
+    345: pushbyte 24
+    347: constructprop AnalogMeter 6
+    351: initproperty kVAr_Meter2
+    354: getlocal_0
+    355: findpropstrict AnalogMeter
+    358: getlocal_2
+    359: pushshort 320
+    362: subtract
+    363: getlocal_3
+    364: pushshort 320
+    367: subtract
+    368: pushstring "cos φ"
+    371: getlocal_0
+    372: getproperty pfnums
+    375: pushbyte 9
+    377: pushbyte 30
+    379: constructprop AnalogMeter 6
+    383: initproperty pf_Meter2
+    386: getlocal_1
+    387: getlocal_0
+    388: getproperty V_Meter2
+    391: callpropvoid addChild 1
+    395: getlocal_1
+    396: getlocal_0
+    397: getproperty Hz_Meter2
+    400: callpropvoid addChild 1
+    404: getlocal_1
+    405: getlocal_0
+    406: getproperty kW_Meter2
+    409: callpropvoid addChild 1
+    413: getlocal_1
+    414: getlocal_0
+    415: getproperty kVAr_Meter2
+    418: callpropvoid addChild 1
+    422: getlocal_1
+    423: getlocal_0
+    424: getproperty pf_Meter2
+    427: callpropvoid addChild 1
+    431: returnvoid
+  fn updateV_Meter (method 377):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty volts
+    13: convert_d
+    14: setlocal_2
+    15: getlocal_2
+    16: pushshort 240
+    19: multiply
+    20: pushshort 500
+    23: divide
+    24: convert_d
+    25: setlocal_3
+    26: getlocal_0
+    27: getproperty V_Meters
+    30: getlocal_1
+    31: getproperty <rt>
+    34: getlocal_3
+    35: pushbyte 120
+    37: subtract
+    38: getlocal_2
+    39: pushbyte 0
+    41: callproperty http://adobe.com/AS3/2006/builtin.toFixed 1
+    45: pushbyte 0
+    47: callpropvoid setAngle 3
+    51: returnvoid
+  fn updateHz_Meter (method 378):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty Hz
+    13: convert_d
+    14: setlocal_2
+    15: getlex Math
+    18: getlex Math
+    21: getlocal_2
+    22: pushbyte 48
+    24: callproperty max 2
+    28: pushbyte 52
+    30: callproperty min 2
+    34: convert_d
+    35: setlocal_2
+    36: getlocal_2
+    37: pushbyte 48
+    39: subtract
+    40: pushshort 240
+    43: multiply
+    44: pushbyte 4
+    46: divide
+    47: convert_d
+    48: setlocal_3
+    49: getlocal_0
+    50: getproperty Hz_Meters
+    53: getlocal_1
+    54: getproperty <rt>
+    57: getlocal_3
+    58: pushbyte 120
+    60: subtract
+    61: getlocal_2
+    62: pushbyte 0
+    64: callproperty http://adobe.com/AS3/2006/builtin.toFixed 1
+    68: pushbyte 0
+    70: callpropvoid setAngle 3
+    74: returnvoid
+  fn updatekW_Meter (method 379):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty kW
+    13: convert_d
+    14: setlocal_2
+    15: getlocal_2
+    16: pushshort 240
+    19: multiply
+    20: pushshort 500
+    23: divide
+    24: convert_d
+    25: setlocal_3
+    26: getlocal_0
+    27: pushbyte 0
+    29: initproperty metertextcolour
+    32: getlocal_2
+    33: pushbyte 0
+    35: ifnle ->45
+    39: getlocal_0
+    40: pushint 16711680
+    42: initproperty metertextcolour
+    45: getlocal_0
+    46: getproperty kW_Meters
+    49: getlocal_1
+    50: getproperty <rt>
+    53: getlex Math
+    56: getlocal_3
+    57: pushbyte 120
+    59: subtract
+    60: pushshort 4294967166
+    66: callproperty max 2
+    70: getlocal_2
+    71: pushbyte 0
+    73: callproperty http://adobe.com/AS3/2006/builtin.toFixed 1
+    77: getlocal_0
+    78: getproperty metertextcolour
+    81: callpropvoid setAngle 3
+    85: returnvoid
+  fn updatekVAr_Meter (method 380):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty kVAr
+    13: convert_d
+    14: setlocal_2
+    15: getlocal_2
+    16: pushshort 240
+    19: multiply
+    20: pushshort 250
+    23: divide
+    24: convert_d
+    25: setlocal_3
+    26: getlocal_0
+    27: pushbyte 0
+    29: initproperty metertextcolour
+    32: getlocal_2
+    33: pushbyte 0
+    35: ifnle ->45
+    39: getlocal_0
+    40: pushint 16711680
+    42: initproperty metertextcolour
+    45: getlocal_0
+    46: getproperty kVAr_Meters
+    49: getlocal_1
+    50: getproperty <rt>
+    53: getlex Math
+    56: getlocal_3
+    57: pushbyte 120
+    59: subtract
+    60: pushshort 4294967166
+    66: callproperty max 2
+    70: getlocal_2
+    71: pushbyte 0
+    73: callproperty http://adobe.com/AS3/2006/builtin.toFixed 1
+    77: getlocal_0
+    78: getproperty metertextcolour
+    81: callpropvoid setAngle 3
+    85: returnvoid
+  fn updatepf_Meter (method 381):
+    0: getlocal_0
+    1: pushscope
+    2: pushnan
+    3: setlocal_3
+    4: getlocal_0
+    5: getproperty gen
+    8: getlocal_1
+    9: getproperty <rt>
+    12: getproperty pf
+    15: convert_d
+    16: setlocal_2
+    17: getlocal_2
+    18: pushbyte -1
+    20: ifne ->28
+    24: pushbyte 1
+    26: convert_d
+    27: setlocal_2
+    28: getlocal_2
+    29: pushbyte 0
+    31: ifnle ->54
+    35: pushbyte 120
+    37: getlocal_2
+    38: pushbyte 1
+    40: add
+    41: multiply
+    42: convert_d
+    43: setlocal_3
+    44: getlocal_0
+    45: pushint 16711680
+    47: initproperty metertextcolour
+    50: jump ->67
+    54: pushbyte 120
+    56: getlocal_2
+    57: decrement
+    58: multiply
+    59: convert_d
+    60: setlocal_3
+    61: getlocal_0
+    62: pushbyte 0
+    64: initproperty metertextcolour
+    67: getlocal_0
+    68: getproperty pf_Meters
+    71: getlocal_1
+    72: getproperty <rt>
+    75: getlocal_3
+    76: getlocal_2
+    77: pushbyte 2
+    79: callproperty http://adobe.com/AS3/2006/builtin.toFixed 1
+    83: getlocal_0
+    84: getproperty metertextcolour
+    87: callpropvoid setAngle 3
+    91: returnvoid
+  fn onjogDemandChange (method 382):
+    0: getlocal_0
+    1: pushscope
+    2: pushnan
+    3: setlocal_2
+    4: getlex Math
+    7: pushbyte 8
+    9: getlex Math
+    12: pushbyte 16
+    14: getlocal_0
+    15: getproperty jogDemand
+    18: getproperty val
+    21: callproperty min 2
+    25: callproperty max 2
+    29: convert_d
+    30: setlocal_2
+    31: getlocal_0
+    32: getproperty jogDemand
+    35: getlocal_2
+    36: setproperty val
+    39: getlocal_0
+    40: findpropstrict int
+    42: getlocal_2
+    43: pushbyte 8
+    45: subtract
+    46: pushbyte 100
+    48: multiply
+    49: pushbyte 8
+    51: divide
+    52: callproperty int 1
+    55: initproperty demandLoadKW
+    58: getlocal_0
+    59: getlocal_0
+    60: getproperty demandLoadKW
+    63: getlocal_0
+    64: getproperty loadPF
+    67: multiply
+    68: initproperty demandLoadKVAr
+    71: returnvoid
+  fn jogDemandset (method 383):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty jogDemand
+    6: getlocal_1
+    7: pushbyte 8
+    9: multiply
+    10: pushbyte 100
+    12: divide
+    13: pushbyte 8
+    15: add
+    16: setproperty val
+    19: returnvoid
+  fn onjogFuelChange (method 384):
+    0: getlocal_0
+    1: pushscope
+    2: pushnan
+    3: setlocal_2
+    4: getlex Math
+    7: pushbyte 8
+    9: getlex Math
+    12: pushbyte 16
+    14: getlocal_0
+    15: getproperty jogFuelArray
+    18: getlocal_1
+    19: getproperty <rt>
+    22: getproperty val
+    25: callproperty min 2
+    29: callproperty max 2
+    33: convert_d
+    34: setlocal_2
+    35: getlocal_0
+    36: getproperty jogFuelArray
+    39: getlocal_1
+    40: getproperty <rt>
+    43: getlocal_2
+    44: setproperty val
+    47: getlocal_0
+    48: getproperty gen
+    51: getlocal_1
+    52: getproperty <rt>
+    55: findpropstrict int
+    57: getlocal_2
+    58: pushbyte 8
+    60: subtract
+    61: pushbyte 100
+    63: multiply
+    64: pushbyte 8
+    66: divide
+    67: callproperty int 1
+    70: setproperty fuel
+    73: returnvoid
+  fn onjogFieldChange (method 385):
+    0: getlocal_0
+    1: pushscope
+    2: pushnan
+    3: setlocal_2
+    4: getlex Math
+    7: pushbyte 8
+    9: getlex Math
+    12: pushbyte 16
+    14: getlocal_0
+    15: getproperty jogFieldArray
+    18: getlocal_1
+    19: getproperty <rt>
+    22: getproperty val
+    25: callproperty min 2
+    29: callproperty max 2
+    33: convert_d
+    34: setlocal_2
+    35: getlocal_0
+    36: getproperty jogFieldArray
+    39: getlocal_1
+    40: getproperty <rt>
+    43: getlocal_2
+    44: setproperty val
+    47: getlocal_0
+    48: getproperty gen
+    51: getlocal_1
+    52: getproperty <rt>
+    55: findpropstrict int
+    57: getlocal_2
+    58: pushbyte 8
+    60: subtract
+    61: pushshort 200
+    64: multiply
+    65: pushbyte 8
+    67: divide
+    68: callproperty int 1
+    71: setproperty field
+    74: returnvoid
+  fn jogFuelset (method 386):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty jogFuelArray
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getlocal_0
+    11: getproperty gen
+    14: getlocal_1
+    15: getproperty <rt>
+    18: getproperty fuel
+    21: pushbyte 8
+    23: multiply
+    24: pushbyte 100
+    26: divide
+    27: pushbyte 8
+    29: add
+    30: setproperty val
+    33: returnvoid
+  fn jogFieldset (method 387):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty jogFieldArray
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getlocal_0
+    11: getproperty gen
+    14: getlocal_1
+    15: getproperty <rt>
+    18: getproperty field
+    21: pushbyte 8
+    23: multiply
+    24: pushshort 200
+    27: divide
+    28: pushbyte 8
+    30: add
+    31: setproperty val
+    34: returnvoid
+  fn mainRoutine (method 388):
+    0: getlocal_0
+    1: pushscope
+    2: pushundefined
+    3: coerce_a
+    4: setlocal_2
+    5: getlocal_0
+    6: getproperty simPaused
+    9: iftrue ->82
+    13: getlocal_0
+    14: callpropvoid calcOutputPowers 0
+    18: pushbyte 1
+    20: coerce_a
+    21: setlocal_2
+    22: jump ->55
+    26: label
+    27: getlocal_0
+    28: getlocal_2
+    29: callpropvoid doOutputArrows 1
+    33: getlocal_0
+    34: getlocal_2
+    35: callpropvoid doGenRotor 1
+    39: getlocal_0
+    40: getlocal_2
+    41: callpropvoid doFuelFieldText 1
+    45: getlocal_0
+    46: getlocal_2
+    47: callpropvoid calcMeterValues 1
+    51: getlocal_2
+    52: increment
+    53: coerce_a
+    54: setlocal_2
+    55: getlocal_2
+    56: pushbyte 2
+    58: ifle ->26
+    62: getlocal_0
+    63: callpropvoid checkReverseKW 0
+    67: getlocal_0
+    68: callpropvoid checkSynchronisation 0
+    72: getlocal_0
+    73: callpropvoid updateMeters 0
+    77: getlocal_0
+    78: callpropvoid updateText 0
+    82: returnvoid
+  fn __setProp_btnPause_Scene1_Layer1_0 (method 389):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnPause
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnPause
+    35: pushfalse
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnPause
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnPause
+    51: pushstring "Pause"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnPause
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnPause
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnPause
+    79: pushtrue
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnPause
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnPause
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnQuit_Scene1_Layer1_0 (method 390):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnQuit
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnQuit
+    35: pushfalse
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnQuit
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnQuit
+    51: pushstring "Quit"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnQuit
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnQuit
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnQuit
+    79: pushtrue
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnQuit
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnQuit
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnAuto_Scene1_Layer1_0 (method 391):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnAuto
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnAuto
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnAuto
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnAuto
+    51: pushstring "Auto"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnAuto
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnAuto
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnAuto
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnAuto
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnAuto
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnStart_Scene1_Layer1_0 (method 392):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnStart
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnStart
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnStart
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnStart
+    51: pushstring "Start"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnStart
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnStart
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnStart
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnStart
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnStart
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnStop_Scene1_Layer1_0 (method 393):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnStop
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnStop
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnStop
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnStop
+    51: pushstring "Stop"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnStop
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnStop
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnStop
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnStop
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnStop
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnCloseCB_Scene1_Layer1_0 (method 394):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnCloseCB
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnCloseCB
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnCloseCB
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnCloseCB
+    51: pushstring "Close CB"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnCloseCB
+    61: pushstring "bottom"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnCloseCB
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnCloseCB
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnCloseCB
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnCloseCB
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnOpenCB_Scene1_Layer1_0 (method 395):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnOpenCB
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnOpenCB
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnOpenCB
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnOpenCB
+    51: pushstring "Open CB"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnOpenCB
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnOpenCB
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnOpenCB
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnOpenCB
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnOpenCB
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnStart2_Scene1_Layer1_0 (method 396):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnStart2
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnStart2
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnStart2
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnStart2
+    51: pushstring "Start"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnStart2
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnStart2
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnStart2
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnStart2
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnStart2
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnStop2_Scene1_Layer1_0 (method 397):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnStop2
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnStop2
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnStop2
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnStop2
+    51: pushstring "Stop"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnStop2
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnStop2
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnStop2
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnStop2
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnStop2
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnCloseCB2_Scene1_Layer1_0 (method 398):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnCloseCB2
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnCloseCB2
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnCloseCB2
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnCloseCB2
+    51: pushstring "Close CB"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnCloseCB2
+    61: pushstring "bottom"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnCloseCB2
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnCloseCB2
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnCloseCB2
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnCloseCB2
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnOpenCB2_Scene1_Layer1_0 (method 399):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnOpenCB2
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnOpenCB2
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnOpenCB2
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnOpenCB2
+    51: pushstring "Open CB"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnOpenCB2
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnOpenCB2
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnOpenCB2
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnOpenCB2
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnOpenCB2
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_jogField2_Scene1_Layer1_0 (method 400):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty jogField2
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty jogField2
+    35: pushstring ""
+    37: setproperty clickSoundClass
+    40: getlocal_0
+    41: getproperty jogField2
+    44: pushstring "defJogBackground"
+    47: setproperty backgroundClassName
+    50: getlocal_0
+    51: getproperty jogField2
+    54: pushfalse
+    55: setproperty discreteSteps
+    58: getlocal_0
+    59: getproperty jogField2
+    62: pushtrue
+    63: setproperty enabled
+    66: getlocal_0
+    67: getproperty jogField2
+    70: pushstring "defJogIndicator"
+    73: setproperty indicatorClassName
+    76: getlocal_0
+    77: getproperty jogField2
+    80: pushbyte 12
+    82: setproperty numTicks
+    85: getlocal_0
+    86: getproperty jogField2
+    89: pushbyte 12
+    91: setproperty units
+    94: getlocal_0
+    95: getproperty jogField2
+    98: pushstring "onDisabled"
+    101: setproperty evtDisabled
+    104: getlocal_0
+    105: getproperty jogField2
+    108: pushstring "onValChg"
+    111: setproperty evtChg
+    114: getlocal_0
+    115: getproperty jogField2
+    118: pushtrue
+    119: setproperty showBkgnd
+    122: getlocal_0
+    123: getproperty jogField2
+    126: pushtrue
+    127: setproperty showTicks
+    130: getlocal_0
+    131: getproperty jogField2
+    134: pushfalse
+    135: setproperty snap2Int
+    138: getlocal_0
+    139: getproperty jogField2
+    142: pushbyte 8
+    144: setproperty val
+    147: getlocal_0
+    148: getproperty jogField2
+    151: pushbyte 0
+    153: setproperty tickLineColor
+    156: getlocal_0
+    157: getproperty jogField2
+    160: pushbyte 5
+    162: setproperty tickLineThickness
+    165: getlocal_0
+    166: getproperty jogField2
+    169: pushtrue
+    170: setproperty turnByDragging
+    173: getlocal_0
+    174: getproperty jogField2
+    177: pushtrue
+    178: setproperty showHand
+    181: getlocal_0
+    182: getproperty jogField2
+    185: pushfalse
+    186: setproperty useSound
+    189: getlocal_0
+    190: getproperty jogField2
+    193: pushtrue
+    194: setproperty visible
+    197: getlocal_0
+    198: getproperty jogField2
+    201: pushstring "componentInspectorSetting"
+    204: pushfalse
+    205: setproperty <rt>
+    208: jump ->226
+    212: getlocal_0
+    213: pushscope
+    214: newcatch 1
+    216: dup
+    217: setlocal_1
+    218: dup
+    219: pushscope
+    220: swap
+    221: setslot 1
+    223: popscope
+    224: kill 1
+    226: returnvoid
+  fn __setProp_jogFuel2_Scene1_Layer1_0 (method 401):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty jogFuel2
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty jogFuel2
+    35: pushstring ""
+    37: setproperty clickSoundClass
+    40: getlocal_0
+    41: getproperty jogFuel2
+    44: pushstring "defJogBackground"
+    47: setproperty backgroundClassName
+    50: getlocal_0
+    51: getproperty jogFuel2
+    54: pushfalse
+    55: setproperty discreteSteps
+    58: getlocal_0
+    59: getproperty jogFuel2
+    62: pushtrue
+    63: setproperty enabled
+    66: getlocal_0
+    67: getproperty jogFuel2
+    70: pushstring "defJogIndicator"
+    73: setproperty indicatorClassName
+    76: getlocal_0
+    77: getproperty jogFuel2
+    80: pushbyte 12
+    82: setproperty numTicks
+    85: getlocal_0
+    86: getproperty jogFuel2
+    89: pushbyte 12
+    91: setproperty units
+    94: getlocal_0
+    95: getproperty jogFuel2
+    98: pushstring "onDisabled"
+    101: setproperty evtDisabled
+    104: getlocal_0
+    105: getproperty jogFuel2
+    108: pushstring "onValChg"
+    111: setproperty evtChg
+    114: getlocal_0
+    115: getproperty jogFuel2
+    118: pushtrue
+    119: setproperty showBkgnd
+    122: getlocal_0
+    123: getproperty jogFuel2
+    126: pushtrue
+    127: setproperty showTicks
+    130: getlocal_0
+    131: getproperty jogFuel2
+    134: pushfalse
+    135: setproperty snap2Int
+    138: getlocal_0
+    139: getproperty jogFuel2
+    142: pushbyte 8
+    144: setproperty val
+    147: getlocal_0
+    148: getproperty jogFuel2
+    151: pushbyte 0
+    153: setproperty tickLineColor
+    156: getlocal_0
+    157: getproperty jogFuel2
+    160: pushbyte 5
+    162: setproperty tickLineThickness
+    165: getlocal_0
+    166: getproperty jogFuel2
+    169: pushtrue
+    170: setproperty turnByDragging
+    173: getlocal_0
+    174: getproperty jogFuel2
+    177: pushtrue
+    178: setproperty showHand
+    181: getlocal_0
+    182: getproperty jogFuel2
+    185: pushfalse
+    186: setproperty useSound
+    189: getlocal_0
+    190: getproperty jogFuel2
+    193: pushtrue
+    194: setproperty visible
+    197: getlocal_0
+    198: getproperty jogFuel2
+    201: pushstring "componentInspectorSetting"
+    204: pushfalse
+    205: setproperty <rt>
+    208: jump ->226
+    212: getlocal_0
+    213: pushscope
+    214: newcatch 1
+    216: dup
+    217: setlocal_1
+    218: dup
+    219: pushscope
+    220: swap
+    221: setslot 1
+    223: popscope
+    224: kill 1
+    226: returnvoid
+  fn __setProp_jogField_Scene1_Layer1_0 (method 402):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty jogField
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty jogField
+    35: pushstring ""
+    37: setproperty clickSoundClass
+    40: getlocal_0
+    41: getproperty jogField
+    44: pushstring "defJogBackground"
+    47: setproperty backgroundClassName
+    50: getlocal_0
+    51: getproperty jogField
+    54: pushfalse
+    55: setproperty discreteSteps
+    58: getlocal_0
+    59: getproperty jogField
+    62: pushtrue
+    63: setproperty enabled
+    66: getlocal_0
+    67: getproperty jogField
+    70: pushstring "defJogIndicator"
+    73: setproperty indicatorClassName
+    76: getlocal_0
+    77: getproperty jogField
+    80: pushbyte 12
+    82: setproperty numTicks
+    85: getlocal_0
+    86: getproperty jogField
+    89: pushbyte 12
+    91: setproperty units
+    94: getlocal_0
+    95: getproperty jogField
+    98: pushstring "onDisabled"
+    101: setproperty evtDisabled
+    104: getlocal_0
+    105: getproperty jogField
+    108: pushstring "onValChg"
+    111: setproperty evtChg
+    114: getlocal_0
+    115: getproperty jogField
+    118: pushtrue
+    119: setproperty showBkgnd
+    122: getlocal_0
+    123: getproperty jogField
+    126: pushtrue
+    127: setproperty showTicks
+    130: getlocal_0
+    131: getproperty jogField
+    134: pushfalse
+    135: setproperty snap2Int
+    138: getlocal_0
+    139: getproperty jogField
+    142: pushbyte 8
+    144: setproperty val
+    147: getlocal_0
+    148: getproperty jogField
+    151: pushbyte 0
+    153: setproperty tickLineColor
+    156: getlocal_0
+    157: getproperty jogField
+    160: pushbyte 5
+    162: setproperty tickLineThickness
+    165: getlocal_0
+    166: getproperty jogField
+    169: pushtrue
+    170: setproperty turnByDragging
+    173: getlocal_0
+    174: getproperty jogField
+    177: pushtrue
+    178: setproperty showHand
+    181: getlocal_0
+    182: getproperty jogField
+    185: pushfalse
+    186: setproperty useSound
+    189: getlocal_0
+    190: getproperty jogField
+    193: pushtrue
+    194: setproperty visible
+    197: getlocal_0
+    198: getproperty jogField
+    201: pushstring "componentInspectorSetting"
+    204: pushfalse
+    205: setproperty <rt>
+    208: jump ->226
+    212: getlocal_0
+    213: pushscope
+    214: newcatch 1
+    216: dup
+    217: setlocal_1
+    218: dup
+    219: pushscope
+    220: swap
+    221: setslot 1
+    223: popscope
+    224: kill 1
+    226: returnvoid
+  fn __setProp_jogFuel_Scene1_Layer1_0 (method 403):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty jogFuel
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty jogFuel
+    35: pushstring ""
+    37: setproperty clickSoundClass
+    40: getlocal_0
+    41: getproperty jogFuel
+    44: pushstring "defJogBackground"
+    47: setproperty backgroundClassName
+    50: getlocal_0
+    51: getproperty jogFuel
+    54: pushfalse
+    55: setproperty discreteSteps
+    58: getlocal_0
+    59: getproperty jogFuel
+    62: pushtrue
+    63: setproperty enabled
+    66: getlocal_0
+    67: getproperty jogFuel
+    70: pushstring "defJogIndicator"
+    73: setproperty indicatorClassName
+    76: getlocal_0
+    77: getproperty jogFuel
+    80: pushbyte 12
+    82: setproperty numTicks
+    85: getlocal_0
+    86: getproperty jogFuel
+    89: pushbyte 12
+    91: setproperty units
+    94: getlocal_0
+    95: getproperty jogFuel
+    98: pushstring "onDisabled"
+    101: setproperty evtDisabled
+    104: getlocal_0
+    105: getproperty jogFuel
+    108: pushstring "onValChg"
+    111: setproperty evtChg
+    114: getlocal_0
+    115: getproperty jogFuel
+    118: pushtrue
+    119: setproperty showBkgnd
+    122: getlocal_0
+    123: getproperty jogFuel
+    126: pushtrue
+    127: setproperty showTicks
+    130: getlocal_0
+    131: getproperty jogFuel
+    134: pushfalse
+    135: setproperty snap2Int
+    138: getlocal_0
+    139: getproperty jogFuel
+    142: pushbyte 8
+    144: setproperty val
+    147: getlocal_0
+    148: getproperty jogFuel
+    151: pushbyte 0
+    153: setproperty tickLineColor
+    156: getlocal_0
+    157: getproperty jogFuel
+    160: pushbyte 5
+    162: setproperty tickLineThickness
+    165: getlocal_0
+    166: getproperty jogFuel
+    169: pushtrue
+    170: setproperty turnByDragging
+    173: getlocal_0
+    174: getproperty jogFuel
+    177: pushtrue
+    178: setproperty showHand
+    181: getlocal_0
+    182: getproperty jogFuel
+    185: pushfalse
+    186: setproperty useSound
+    189: getlocal_0
+    190: getproperty jogFuel
+    193: pushtrue
+    194: setproperty visible
+    197: getlocal_0
+    198: getproperty jogFuel
+    201: pushstring "componentInspectorSetting"
+    204: pushfalse
+    205: setproperty <rt>
+    208: jump ->226
+    212: getlocal_0
+    213: pushscope
+    214: newcatch 1
+    216: dup
+    217: setlocal_1
+    218: dup
+    219: pushscope
+    220: swap
+    221: setslot 1
+    223: popscope
+    224: kill 1
+    226: returnvoid
+  fn __setProp_jogDemand_Scene1_Layer1_0 (method 404):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty jogDemand
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty jogDemand
+    35: pushstring ""
+    37: setproperty clickSoundClass
+    40: getlocal_0
+    41: getproperty jogDemand
+    44: pushstring "defJogBackground"
+    47: setproperty backgroundClassName
+    50: getlocal_0
+    51: getproperty jogDemand
+    54: pushfalse
+    55: setproperty discreteSteps
+    58: getlocal_0
+    59: getproperty jogDemand
+    62: pushtrue
+    63: setproperty enabled
+    66: getlocal_0
+    67: getproperty jogDemand
+    70: pushstring "defJogIndicator"
+    73: setproperty indicatorClassName
+    76: getlocal_0
+    77: getproperty jogDemand
+    80: pushbyte 12
+    82: setproperty numTicks
+    85: getlocal_0
+    86: getproperty jogDemand
+    89: pushbyte 12
+    91: setproperty units
+    94: getlocal_0
+    95: getproperty jogDemand
+    98: pushstring "onDisabled"
+    101: setproperty evtDisabled
+    104: getlocal_0
+    105: getproperty jogDemand
+    108: pushstring "onValChg"
+    111: setproperty evtChg
+    114: getlocal_0
+    115: getproperty jogDemand
+    118: pushtrue
+    119: setproperty showBkgnd
+    122: getlocal_0
+    123: getproperty jogDemand
+    126: pushtrue
+    127: setproperty showTicks
+    130: getlocal_0
+    131: getproperty jogDemand
+    134: pushfalse
+    135: setproperty snap2Int
+    138: getlocal_0
+    139: getproperty jogDemand
+    142: pushbyte 8
+    144: setproperty val
+    147: getlocal_0
+    148: getproperty jogDemand
+    151: pushbyte 0
+    153: setproperty tickLineColor
+    156: getlocal_0
+    157: getproperty jogDemand
+    160: pushbyte 5
+    162: setproperty tickLineThickness
+    165: getlocal_0
+    166: getproperty jogDemand
+    169: pushtrue
+    170: setproperty turnByDragging
+    173: getlocal_0
+    174: getproperty jogDemand
+    177: pushtrue
+    178: setproperty showHand
+    181: getlocal_0
+    182: getproperty jogDemand
+    185: pushfalse
+    186: setproperty useSound
+    189: getlocal_0
+    190: getproperty jogDemand
+    193: pushtrue
+    194: setproperty visible
+    197: getlocal_0
+    198: getproperty jogDemand
+    201: pushstring "componentInspectorSetting"
+    204: pushfalse
+    205: setproperty <rt>
+    208: jump ->226
+    212: getlocal_0
+    213: pushscope
+    214: newcatch 1
+    216: dup
+    217: setlocal_1
+    218: dup
+    219: pushscope
+    220: swap
+    221: setslot 1
+    223: popscope
+    224: kill 1
+    226: returnvoid
+  fn __setProp_btnAuto2_Scene1_Layer1_0 (method 405):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnAuto2
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnAuto2
+    35: pushtrue
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnAuto2
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnAuto2
+    51: pushstring "Auto"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnAuto2
+    61: pushstring "right"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnAuto2
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnAuto2
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnAuto2
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnAuto2
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid
+  fn __setProp_btnHelp_Scene1_Layer1_0 (method 406):
+    0: getlocal_0
+    1: pushscope
+    2: getlocal_0
+    3: getproperty btnHelp
+    6: pushstring "componentInspectorSetting"
+    9: pushtrue
+    10: setproperty <rt>
+    13: jump ->31
+    17: getlocal_0
+    18: pushscope
+    19: newcatch 0
+    21: dup
+    22: setlocal_1
+    23: dup
+    24: pushscope
+    25: swap
+    26: setslot 1
+    28: popscope
+    29: kill 1
+    31: getlocal_0
+    32: getproperty btnHelp
+    35: pushfalse
+    36: setproperty emphasized
+    39: getlocal_0
+    40: getproperty btnHelp
+    43: pushtrue
+    44: setproperty enabled
+    47: getlocal_0
+    48: getproperty btnHelp
+    51: pushstring "HELP"
+    54: setproperty label
+    57: getlocal_0
+    58: getproperty btnHelp
+    61: pushstring "bottom"
+    64: setproperty labelPlacement
+    67: getlocal_0
+    68: getproperty btnHelp
+    71: pushfalse
+    72: setproperty selected
+    75: getlocal_0
+    76: getproperty btnHelp
+    79: pushfalse
+    80: setproperty toggle
+    83: getlocal_0
+    84: getproperty btnHelp
+    87: pushtrue
+    88: setproperty visible
+    91: getlocal_0
+    92: getproperty btnHelp
+    95: pushstring "componentInspectorSetting"
+    98: pushfalse
+    99: setproperty <rt>
+    102: jump ->120
+    106: getlocal_0
+    107: pushscope
+    108: newcatch 1
+    110: dup
+    111: setlocal_1
+    112: dup
+    113: pushscope
+    114: swap
+    115: setslot 1
+    117: popscope
+    118: kill 1
+    120: returnvoid

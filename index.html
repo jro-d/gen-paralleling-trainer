@@ -1,0 +1,2076 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="theme-color" content="#1c2024" />
+<title>Generator Paralleling Trainer – 4 × DG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+/* ==========================================================================
+   Generator Paralleling Trainer – Standalone Marine Power System Simulator
+   Styled after ISA-101 high-performance HMI practice: neutral grey chrome,
+   color reserved for process states and alarms, tabular mono numbers,
+   1px borders, crisp SVG engineering components.
+   ========================================================================== */
+:root {
+  --font-sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+
+  --bg: #e9ebed; --panel: #f5f6f7; --surface: #ffffff; --surface-2: #f0f2f3;
+  --line: #dde0e3; --line-strong: #c4c9ce;
+  --text: #15181b; --text-2: #49515a; --text-3: #727a83;
+  --text-inv: #e9ecee; --text-inv-2: #a3abb3;
+  --chrome: #1c2024; --chrome-2: #262b30; --chrome-line: #353b41;
+
+  --accent: #1d5d96; --accent-hover: #174c7b; --accent-tint: #e5edf5; --focus: #1d5d96;
+  --energized: #c22b2b;
+  --ok: #2b7a3d; --ok-tint: #e6f1e8; --ok-line: #a9cfb2;
+  --warn: #a8640a; --warn-tint: #fbf0dc; --warn-line: #e5c48b;
+  --alarm: #b42323; --alarm-tint: #fbe8e8; --alarm-line: #e7a9a9;
+  --dead: #8c949b;
+  --v-hv: #c22b2b; --v-lv: #1d5d96;
+  --live: var(--v-hv);
+
+  --r-sm: 3px; --r: 5px; --r-lg: 8px;
+  --shadow-pop: 0 1px 2px rgba(15,20,25,.08), 0 4px 12px rgba(15,20,25,.08);
+  --shadow-float: 0 14px 40px rgba(10,14,18,.35), 0 2px 6px rgba(10,14,18,.12);
+
+  font: 400 13px/1.45 var(--font-sans);
+  color: var(--text); background: var(--bg);
+  font-synthesis: none; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+:root.lv { --live: var(--v-lv); }
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body { margin: 0; min-width: 320px; background: var(--bg); color: var(--text); overflow: hidden; }
+button { font: inherit; color: inherit; cursor: pointer; transition: background-color .12s ease, border-color .12s ease, color .12s ease; }
+button:disabled { cursor: not-allowed; opacity: .45; }
+button:focus-visible, [tabindex]:focus-visible, input:focus-visible { outline: 2px solid var(--focus); outline-offset: 1px; }
+h1, h2, h3, h4, p { margin-top: 0; }
+strong { font-weight: 600; }
+.hidden { display: none !important; }
+.num, .mono { font-family: var(--font-mono); font-variant-numeric: tabular-nums; }
+.eyebrow { font: 500 11px/1.3 var(--font-sans); color: var(--text-3); }
+
+.icon { width: 14px; height: 14px; flex: none; stroke: currentColor; stroke-width: 1.6; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.icon-lg { width: 18px; height: 18px; }
+
+/* ---- Buttons ----------------------------------------------------------- */
+.button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; min-height: 30px; padding: 5px 12px;
+  border-radius: var(--r); border: 1px solid var(--line-strong); background: var(--surface); color: var(--text);
+  font: 500 12.5px/1.2 var(--font-sans); white-space: nowrap; }
+.button:hover:not(:disabled) { background: var(--surface-2); border-color: var(--text-3); }
+.button-primary { background: var(--accent); border-color: var(--accent); color: #fff; }
+.button-primary:hover:not(:disabled) { background: var(--accent-hover); border-color: var(--accent-hover); }
+.button-ok { background: var(--ok-tint); border-color: var(--ok-line); color: var(--ok); }
+.button-ok:hover:not(:disabled) { background: var(--ok); border-color: var(--ok); color: #fff; }
+.button-danger { border-color: var(--alarm-line); color: var(--alarm); }
+.button-danger:hover:not(:disabled) { background: var(--alarm); border-color: var(--alarm); color: #fff; }
+.button-quiet { background: transparent; border-color: var(--chrome-line); color: var(--text-inv); }
+.button-quiet:hover:not(:disabled) { background: var(--chrome-2); border-color: #4a525a; }
+.button-sm { min-height: 26px; padding: 3px 9px; font-size: 12px; }
+
+.tabs { display: inline-flex; padding: 2px; gap: 2px; border: 1px solid var(--line-strong); border-radius: var(--r); background: var(--surface-2); }
+.tab { border: 0; border-radius: var(--r-sm); padding: 4px 10px; background: transparent; color: var(--text-2); font: 500 12px/1.3 var(--font-sans); }
+.tab:hover:not(:disabled) { color: var(--text); }
+.tab.active { background: var(--surface); color: var(--text); box-shadow: 0 0 0 1px var(--line-strong); }
+.tabs.on-dark { border-color: var(--chrome-line); background: var(--chrome-2); }
+.tabs.on-dark .tab { color: var(--text-inv-2); }
+.tabs.on-dark .tab:hover { color: var(--text-inv); }
+.tabs.on-dark .tab.active { background: #353b41; color: var(--text-inv); box-shadow: none; }
+
+/* ---- Badges ------------------------------------------------------------ */
+.badge { display: inline-flex; align-items: center; gap: 5px; height: 20px; padding: 0 8px; border-radius: 10px;
+  border: 1px solid var(--line-strong); background: var(--surface-2); color: var(--text-2); font: 600 10.5px/1 var(--font-mono); letter-spacing: .02em; white-space: nowrap; }
+.badge::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--dead); }
+.badge.b-run { background: var(--accent-tint); border-color: #b4cde3; color: var(--accent); } .badge.b-run::before { background: var(--accent); }
+.badge.b-armed { background: var(--warn-tint); border-color: var(--warn-line); color: var(--warn); } .badge.b-armed::before { background: var(--warn); animation: blink 1s steps(2) infinite; }
+.badge.b-load { background: var(--ok-tint); border-color: var(--ok-line); color: var(--ok); } .badge.b-load::before { background: var(--ok); }
+.badge.b-trip { background: var(--alarm-tint); border-color: var(--alarm-line); color: var(--alarm); } .badge.b-trip::before { background: var(--alarm); animation: blink 1s steps(2) infinite; }
+@keyframes blink { 50% { opacity: .15; } }
+
+/* ---- App Frame --------------------------------------------------------- */
+.app { height: 100vh; display: flex; flex-direction: column; min-height: 0; }
+.topbar { height: 48px; flex: none; padding: 0 12px; background: var(--chrome); border-bottom: 1px solid #000; color: var(--text-inv);
+  display: flex; align-items: center; gap: 14px; position: relative; z-index: 25; }
+.brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.brand-symbol { display: inline-flex; color: var(--text-inv-2); }
+.brand-symbol .icon { width: 20px; height: 20px; }
+.brand h1 { margin: 0; font: 600 14px/1.2 var(--font-sans); color: var(--text-inv); white-space: nowrap; }
+.brand h1 span { font-weight: 400; color: var(--text-inv-2); }
+.top-telemetry { display: flex; align-items: stretch; flex: 1; min-width: 0; height: 30px; overflow: hidden; border-left: 1px solid var(--chrome-line); }
+.telemetry-pill { display: flex; flex-direction: column; justify-content: center; gap: 1px; padding: 0 12px; border-right: 1px solid var(--chrome-line); min-width: 0; }
+.telemetry-pill span { font: 500 9.5px/1 var(--font-sans); color: var(--text-inv-2); text-transform: uppercase; letter-spacing: .06em; white-space: nowrap; }
+.telemetry-pill strong { font: 600 12.5px/1.1 var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text-inv); white-space: nowrap; }
+.telemetry-pill.is-alarm strong { color: #ff8b8b; } .telemetry-pill.is-warn strong { color: #f0b765; } .telemetry-pill.is-ok strong { color: #86d19a; }
+.top-actions { display: flex; align-items: center; gap: 8px; flex: none; }
+.top-actions .group-label { font: 500 10px/1 var(--font-sans); color: var(--text-inv-2); text-transform: uppercase; letter-spacing: .06em; margin-right: -2px; }
+
+.main { flex: 1; min-height: 0; display: grid; grid-template-columns: minmax(0, 1fr) 392px; gap: 10px; padding: 10px; overflow: hidden; }
+.gens-area { display: flex; flex-direction: column; min-height: 0; min-width: 0; gap: 8px; }
+.gens-grid { flex: 1; min-height: 0; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; overflow-y: auto; padding-bottom: 2px; }
+.side { display: flex; flex-direction: column; gap: 10px; min-height: 0; overflow-y: auto; padding-right: 2px; }
+
+/* ---- Panels ------------------------------------------------------------ */
+.panel { background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--r-lg); display: flex; flex-direction: column; min-height: 0; flex: none; }
+.panel-head { display: flex; align-items: center; justify-content: space-between; gap: 8px; padding: 8px 12px; border-bottom: 1px solid var(--line); background: var(--panel); border-radius: var(--r-lg) var(--r-lg) 0 0; }
+.panel-head h2 { margin: 0; font: 600 12.5px/1.2 var(--font-sans); display: flex; align-items: center; gap: 7px; }
+.panel-head h2 .icon { color: var(--text-3); }
+.panel-body { padding: 10px 12px; }
+
+/* ---- Generator Card ---------------------------------------------------- */
+.gen { background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--r-lg); display: flex; flex-direction: column; position: relative; min-height: 0; cursor: default; }
+.gen.selected { border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+.gen.is-trip { border-color: var(--alarm-line); }
+.gen-head { display: flex; align-items: center; justify-content: space-between; gap: 6px; padding: 7px 10px; border-bottom: 1px solid var(--line); background: var(--panel); border-radius: var(--r-lg) var(--r-lg) 0 0; }
+.gen-title { display: flex; align-items: center; gap: 7px; min-width: 0; }
+.gen-title .icon { color: var(--text-3); width: 16px; height: 16px; }
+.gen-title h2 { margin: 0; font: 600 13px/1.1 var(--font-sans); }
+.gen-title small { font: 400 10.5px/1 var(--font-mono); color: var(--text-3); }
+.gen-art { padding: 6px 8px 0; background: var(--surface); border-bottom: 1px solid var(--line); }
+.gen-art svg { display: block; width: 100%; height: auto; }
+.gen-meters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: var(--line); border-bottom: 1px solid var(--line); }
+.meter { background: var(--surface); padding: 5px 8px 6px; min-width: 0; }
+.meter .m-l { display: block; font: 500 9.5px/1 var(--font-sans); color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; }
+.meter strong { display: block; margin-top: 3px; font: 600 14px/1.1 var(--font-mono); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.meter strong small { font: 400 10px/1 var(--font-mono); color: var(--text-3); margin-left: 2px; }
+.meter .m-bar { display: block; height: 3px; margin-top: 5px; background: var(--surface-2); border-radius: 2px; overflow: hidden; }
+.meter .m-bar b { display: block; height: 100%; width: 0; background: var(--text-2); transition: width .2s linear; }
+.meter.warn strong { color: var(--warn); } .meter.warn .m-bar b { background: var(--warn); }
+.meter.alarm strong { color: var(--alarm); } .meter.alarm .m-bar b { background: var(--alarm); }
+.meter.ok strong { color: var(--ok); }
+.meter.dim strong { color: var(--text-3); }
+.gen-knobs { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; padding: 6px 6px 2px; }
+.knob-wrap { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.knob { width: 84px; height: 84px; border-radius: 50%; touch-action: none; cursor: grab; user-select: none; }
+.knob:active { cursor: grabbing; }
+.knob[aria-disabled="true"] { cursor: not-allowed; opacity: .45; }
+.knob svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.knob-label { display: flex; align-items: baseline; gap: 6px; margin-top: -6px; }
+.knob-label span { font: 500 10.5px/1 var(--font-sans); color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; }
+.knob-label strong { font: 600 12.5px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.gen-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 5px; padding: 6px 8px 8px; }
+.gen-buttons .button { min-height: 28px; padding: 3px 6px; font-size: 12px; }
+.gen-buttons .seg { grid-column: 1 / -1; display: grid; grid-template-columns: 1fr 1fr; }
+.gen-buttons .seg .tab { text-align: center; display: inline-flex; align-items: center; justify-content: center; gap: 5px; padding: 4px 6px; }
+.gen-buttons .seg .tab:disabled { opacity: .45; cursor: not-allowed; }
+.gen-alarm { margin: 0 8px 6px; min-height: 0; }
+.rp-box { display: flex; flex-direction: column; gap: 4px; padding: 6px 8px; border: 1px solid var(--alarm-line); border-radius: var(--r); background: var(--alarm-tint); color: var(--alarm); font: 600 11px/1.2 var(--font-sans); }
+.rp-box .rp-track { height: 4px; border-radius: 2px; background: rgba(180,35,35,.18); overflow: hidden; }
+.rp-box .rp-track b { display: block; height: 100%; width: 0; background: var(--alarm); }
+.rp-box.tripped { background: var(--alarm); color: #fff; border-color: var(--alarm); }
+.gen-bay { margin-top: auto; padding: 6px 8px 8px; background: var(--panel); border-top: 1px solid var(--line); border-radius: 0 0 var(--r-lg) var(--r-lg); }
+.gen-bay svg { display: block; width: 100%; height: auto; }
+
+/* ---- Dual-Busbar & Bus Tie Lineup -------------------------------------- */
+.switchboard-busbar {
+  flex: none;
+  background: var(--surface);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r-lg);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 14px;
+}
+.bus-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  min-width: 0;
+}
+.bus-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+.bus-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 22px;
+  padding: 0 8px;
+  border-radius: var(--r-sm);
+  background: var(--chrome);
+  color: var(--text-inv);
+  font: 600 10.5px/1 var(--font-mono);
+}
+.bus-badge span {
+  font-family: var(--font-sans);
+  color: var(--text-inv-2);
+  text-transform: uppercase;
+  font-size: 9.5px;
+  letter-spacing: .05em;
+}
+.bus-metrics-pill {
+  font: 600 11.5px/1 var(--font-mono);
+  color: var(--text-2);
+  display: flex;
+  gap: 8px;
+}
+.bus-bar-track {
+  position: relative;
+  height: 14px;
+  display: flex;
+  align-items: center;
+}
+.bus-bar-track::before {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 50%;
+  height: 8px;
+  margin-top: -4px;
+  border-radius: 2px;
+  background: var(--dead);
+  transition: background-color .2s;
+}
+.bus-section.live .bus-bar-track::before {
+  background: var(--live);
+  box-shadow: 0 0 8px rgba(194, 43, 43, 0.4);
+}
+.bus-feeders-tag {
+  font: 500 10px/1 var(--font-mono);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .05em;
+}
+
+/* Bus Tie Cubicle */
+.bus-tie-cubicle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  background: var(--panel);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+  min-width: 150px;
+}
+.tie-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.tie-title {
+  font: 600 10.5px/1 var(--font-mono);
+  color: var(--text);
+  letter-spacing: .05em;
+}
+.tie-ansi {
+  font: 500 9px/1 var(--font-mono);
+  color: var(--text-3);
+  background: var(--surface-2);
+  padding: 1px 4px;
+  border-radius: 2px;
+  border: 1px solid var(--line);
+}
+.tie-breaker-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  justify-content: center;
+}
+.tie-stub {
+  flex: 1;
+  height: 6px;
+  border-radius: 1px;
+  background: var(--dead);
+  transition: background-color .2s;
+}
+.tie-stub.live {
+  background: var(--live);
+}
+.tie-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 26px;
+  padding: 0 10px;
+  border-radius: var(--r-sm);
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  font: 600 11px/1 var(--font-mono);
+  color: var(--text);
+}
+.tie-btn:hover:not(:disabled) {
+  border-color: var(--text-3);
+}
+.tie-btn.closed {
+  background: var(--energized);
+  border-color: var(--energized);
+  color: #fff;
+}
+.tie-btn.open {
+  background: var(--ok-tint);
+  border-color: var(--ok-line);
+  color: var(--ok);
+}
+.tie-status-tag {
+  font: 500 9.5px/1 var(--font-sans);
+  color: var(--text-3);
+  text-transform: uppercase;
+  letter-spacing: .04em;
+}
+
+.busbar-load {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border: 1px solid var(--line-strong);
+  border-radius: var(--r);
+  background: var(--surface);
+  white-space: nowrap;
+}
+.busbar-load .icon { width: 20px; height: 20px; color: var(--text-2); }
+.busbar-load strong { font: 600 14px/1 var(--font-mono); display: block; }
+.busbar-load small { font: 500 10px/1.2 var(--font-sans); color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; }
+.busbar-load.alarm { border-color: var(--alarm-line); background: var(--alarm-tint); } .busbar-load.alarm strong { color: var(--alarm); }
+
+/* ---- Synchroscope Panel ------------------------------------------------ */
+.sync-body { display: grid; grid-template-columns: 218px minmax(0, 1fr); gap: 10px; align-items: start; }
+.syncscope { width: 100%; height: auto; display: block; }
+.sync-read { display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.chk { display: grid; grid-template-columns: 16px minmax(0, 1fr); gap: 2px 7px; padding: 6px 8px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface); align-items: center; }
+.chk .icon { grid-row: 1 / span 2; color: var(--dead); width: 15px; height: 15px; }
+.chk em { font: 500 10px/1 var(--font-sans); font-style: normal; color: var(--text-3); text-transform: uppercase; letter-spacing: .05em; }
+.chk strong { font: 600 12.5px/1.1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.chk.ok { background: var(--ok-tint); border-color: var(--ok-line); } .chk.ok .icon { color: var(--ok); }
+.chk.bad { background: var(--warn-tint); border-color: var(--warn-line); } .chk.bad .icon { color: var(--warn); }
+.sync-status { margin-top: 10px; display: flex; gap: 9px; align-items: flex-start; padding: 8px 10px; border: 1px solid var(--line); border-radius: var(--r); background: var(--surface-2); color: var(--text-2); font-size: 12px; line-height: 1.4; min-height: 52px; }
+.sync-status .icon { margin-top: 1px; width: 16px; height: 16px; }
+.sync-status.ok { background: var(--ok-tint); border-color: var(--ok-line); color: #1d5a2c; }
+.sync-status.warn { background: var(--warn-tint); border-color: var(--warn-line); color: #7d4906; }
+.sync-status.alarm { background: var(--alarm-tint); border-color: var(--alarm-line); color: var(--alarm); }
+.sync-actions { display: flex; gap: 6px; margin-top: 8px; }
+.sync-actions .button { flex: 1; }
+.sync-select .tab { display: inline-flex; align-items: center; gap: 6px; }
+.sync-select .tab i { width: 7px; height: 7px; border-radius: 50%; background: var(--dead); display: inline-block; }
+.sync-select .tab i.run { background: var(--accent); } .sync-select .tab i.armed { background: var(--warn); } .sync-select .tab i.load { background: var(--ok); } .sync-select .tab i.trip { background: var(--alarm); }
+
+/* ---- Instruments ------------------------------------------------------- */
+.instr { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 4px; }
+.gauge { text-align: center; min-width: 0; }
+.gauge svg { width: 100%; height: auto; display: block; }
+.gauge-val { font: 600 11.5px/1 var(--font-mono); font-variant-numeric: tabular-nums; margin-top: -2px; }
+.gauge-val small { font: 400 9.5px/1 var(--font-mono); color: var(--text-3); margin-left: 1px; }
+
+/* ---- Load Panel -------------------------------------------------------- */
+.demand-row { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; }
+.demand-row strong { font: 600 22px/1 var(--font-mono); font-variant-numeric: tabular-nums; }
+.demand-row strong small { font: 400 12px/1 var(--font-mono); color: var(--text-3); margin-left: 3px; }
+.demand-row .sub { font: 500 11px/1.2 var(--font-mono); color: var(--text-2); text-align: right; }
+input[type=range].slider { -webkit-appearance: none; appearance: none; width: 100%; height: 22px; background: transparent; margin: 8px 0 2px; cursor: pointer; }
+input[type=range].slider::-webkit-slider-runnable-track { height: 6px; border-radius: 3px; background: linear-gradient(to right, var(--accent) var(--fill, 0%), var(--line-strong) var(--fill, 0%)); }
+input[type=range].slider::-moz-range-track { height: 6px; border-radius: 3px; background: var(--line-strong); }
+input[type=range].slider::-moz-range-progress { height: 6px; border-radius: 3px; background: var(--accent); }
+input[type=range].slider::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; margin-top: -5px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-radius: 50%; background: var(--surface); border: 2px solid var(--accent); }
+.presets { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 6px; }
+.share { display: flex; flex-direction: column; gap: 5px; margin-top: 12px; }
+.share-row { display: grid; grid-template-columns: 38px minmax(0, 1fr) 66px; gap: 8px; align-items: center; font: 500 11px/1 var(--font-mono); }
+.share-row .nm { color: var(--text-2); font-family: var(--font-sans); font-weight: 600; }
+.share-track { position: relative; height: 10px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 2px; overflow: hidden; }
+.share-track b { position: absolute; left: 0; top: 0; bottom: 0; width: 0; background: var(--text-2); transition: width .2s linear; }
+.share-track b.neg { background: var(--alarm); }
+.share-track i { position: absolute; top: -1px; bottom: -1px; width: 1px; background: var(--line-strong); }
+.share-row .val { text-align: right; color: var(--text); }
+.share-row.off .nm, .share-row.off .val { color: var(--text-3); }
+.balance { display: flex; justify-content: space-between; margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--line); font: 500 11px/1.3 var(--font-sans); color: var(--text-2); }
+.balance strong { font-family: var(--font-mono); font-variant-numeric: tabular-nums; color: var(--text); }
+.balance .bad strong { color: var(--alarm); }
+
+/* ---- Event Log --------------------------------------------------------- */
+.log-panel { flex: 1 1 140px; min-height: 120px; }
+.log { list-style: none; margin: 0; padding: 0; overflow-y: auto; flex: 1; min-height: 0; font-size: 12px; }
+.log li { display: grid; grid-template-columns: 44px 14px minmax(0, 1fr); gap: 7px; padding: 5px 12px; border-bottom: 1px solid var(--line); align-items: start; }
+.log li:last-child { border-bottom: 0; }
+.log time { font: 500 10.5px/1.5 var(--font-mono); color: var(--text-3); }
+.log .icon { width: 13px; height: 13px; margin-top: 2px; color: var(--text-3); }
+.log li.ok .icon { color: var(--ok); } .log li.warn .icon { color: var(--warn); } .log li.alarm .icon { color: var(--alarm); } .log li.info .icon { color: var(--accent); }
+.log li.alarm span { color: var(--alarm); }
+
+/* ---- Status Bar / Toasts ----------------------------------------------- */
+.statusbar { height: 28px; flex: none; background: var(--chrome); border-top: 1px solid #000; color: var(--text-inv-2); display: flex; align-items: center; gap: 18px; padding: 0 12px; font: 400 11px/1 var(--font-sans); white-space: nowrap; overflow: hidden; }
+.statusbar b { color: var(--text-inv); font: 500 11px/1 var(--font-mono); }
+.statusbar .sp { flex: 1; }
+.toasts { position: fixed; left: 50%; bottom: 44px; transform: translateX(-50%); display: flex; flex-direction: column; gap: 6px; z-index: 60; pointer-events: none; }
+.toast { pointer-events: auto; display: flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: var(--r); background: var(--chrome); color: var(--text-inv); box-shadow: var(--shadow-pop); font-size: 12.5px; animation: toast-in .18s ease-out; border-left: 3px solid var(--text-inv-2); }
+.toast.warn { border-left-color: #f0b765; } .toast.alarm { border-left-color: #ff8b8b; } .toast.ok { border-left-color: #86d19a; }
+@keyframes toast-in { from { opacity: 0; transform: translateY(6px); } }
+
+/* ---- Floating Interactive Tutorial Window ----------------------------- */
+.help-float {
+  position: fixed;
+  top: 58px;
+  right: 18px;
+  width: 480px;
+  max-width: calc(100vw - 36px);
+  max-height: calc(100vh - 90px);
+  background: var(--surface);
+  border: 1px solid var(--chrome-line);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-float);
+  display: flex;
+  flex-direction: column;
+  z-index: 85;
+  transition: width .18s ease;
+  overflow: hidden;
+}
+.help-float.wide { width: 720px; }
+.help-float.minimized { max-height: 40px; }
+.help-float.minimized .help-float-tabs,
+.help-float.minimized .help-float-body { display: none !important; }
+.help-float-head {
+  padding: 8px 12px;
+  background: var(--chrome);
+  color: var(--text-inv);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: grab;
+  user-select: none;
+}
+.help-float-head:active { cursor: grabbing; }
+.help-float-title { display: flex; align-items: center; gap: 8px; }
+.help-float-title h2 { margin: 0; font: 600 13px/1.2 var(--font-sans); color: var(--text-inv); }
+.help-float-ctrls { display: flex; align-items: center; gap: 4px; }
+.help-btn {
+  background: transparent;
+  border: 0;
+  color: var(--text-inv-2);
+  padding: 4px 6px;
+  border-radius: var(--r-sm);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.help-btn:hover { background: var(--chrome-2); color: var(--text-inv); }
+.help-float-tabs {
+  display: flex;
+  gap: 2px;
+  padding: 5px 8px;
+  background: var(--surface-2);
+  border-bottom: 1px solid var(--line);
+}
+.help-tab {
+  padding: 5px 12px;
+  font: 500 11.5px/1.2 var(--font-sans);
+  border: 0;
+  background: transparent;
+  color: var(--text-2);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+}
+.help-tab:hover { color: var(--text); }
+.help-tab.active {
+  background: var(--surface);
+  color: var(--accent);
+  font-weight: 600;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+}
+.help-float-body {
+  padding: 14px 16px;
+  overflow-y: auto;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--text);
+  flex: 1;
+}
+.help-float-body h3 {
+  font: 600 12px/1.3 var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--text-3);
+  margin: 14px 0 6px;
+}
+.help-float-body h3:first-child { margin-top: 0; }
+.help-float-body ol { margin: 0 0 10px 0; padding-left: 20px; }
+.help-float-body li { margin-bottom: 5px; }
+.help-float-body p { margin-bottom: 8px; }
+.help-float-body table { width: 100%; border-collapse: collapse; font-size: 11.5px; margin-top: 6px; }
+.help-float-body th, .help-float-body td { text-align: left; padding: 4px 6px; border-bottom: 1px solid var(--line); vertical-align: top; }
+.help-float-body th { color: var(--text-3); font-weight: 500; font-size: 10.5px; }
+.help-float-body td:first-child { font-family: var(--font-mono); white-space: nowrap; }
+.help-float-body code { font: 500 11.5px var(--font-mono); background: var(--surface-2); padding: 1px 4px; border-radius: 3px; }
+.help-callout {
+  margin-top: 10px;
+  padding: 8px 10px;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-tint);
+  border-radius: 0 var(--r-sm) var(--r-sm) 0;
+  font-size: 11.5px;
+}
+
+/* ---- Generator Artwork Dynamic Animations ------------------------------ */
+.spin { transform-box: view-box; }
+.run .spin { animation: spin var(--dur, .6s) linear infinite; }
+.run .piston { animation: piston calc(var(--dur, .6s) * 1) ease-in-out infinite alternate; }
+.run .piston:nth-child(2n) { animation-delay: calc(var(--dur, .6s) * -.5); }
+.run .piston:nth-child(3n) { animation-delay: calc(var(--dur, .6s) * -.25); }
+.run .puff { animation: puff 1.4s ease-out infinite; }
+.run .puff:nth-child(2) { animation-delay: -.45s; }
+.run .puff:nth-child(3) { animation-delay: -.9s; }
+.puff { opacity: 0; transform-box: fill-box; transform-origin: center; }
+.loaded .puff { fill: #333a40 !important; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes piston { from { transform: translateY(0); } to { transform: translateY(6px); } }
+@keyframes puff { 0% { opacity: .7; transform: translate(0, 0) scale(.5); } 100% { opacity: 0; transform: translate(8px, -20px) scale(1.6); } }
+@media (prefers-reduced-motion: reduce) { .run .spin, .run .piston, .run .puff, .badge::before { animation: none !important; } }
+
+/* ---- Responsive -------------------------------------------------------- */
+@media (max-width: 1500px) { .top-actions .group-label { display: none; } .telemetry-pill { padding: 0 9px; } }
+@media (max-width: 1280px) {
+  .main { grid-template-columns: minmax(0, 1fr) 350px; }
+  .gens-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .sync-body { grid-template-columns: 1fr; } .syncscope { max-width: 240px; margin: 0 auto; }
+}
+@media (max-width: 960px) {
+  body { overflow: auto; } .app { height: auto; min-height: 100vh; }
+  .main { grid-template-columns: 1fr; overflow: visible; } .side { overflow: visible; }
+  .top-telemetry { display: none; } .topbar { flex-wrap: wrap; height: auto; padding: 8px 12px; }
+  .switchboard-busbar { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-gen" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M6.8 12.4c1.6-3.6 3.6-3.6 5.2 0s3.6 3.6 5.2 0"/></symbol>
+    <symbol id="i-engine" viewBox="0 0 24 24"><path d="M3 9h3l1-2h7l1 2h2v3h2v5h-2v1H8l-2-2H3z"/><path d="M9 4v3M13 4v3"/></symbol>
+    <symbol id="i-power" viewBox="0 0 24 24"><path d="M12 3v8"/><path d="M7.2 6.6a7.5 7.5 0 1 0 9.6 0"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 24 24"><rect x="6" y="6" width="12" height="12" rx="1.5"/></symbol>
+    <symbol id="i-cb-close" viewBox="0 0 24 24"><path d="M12 2v5"/><rect x="7" y="7" width="10" height="10" rx="1"/><path d="M9.6 9.6l4.8 4.8M14.4 9.6l-4.8 4.8"/><path d="M12 17v5"/></symbol>
+    <symbol id="i-cb-open" viewBox="0 0 24 24"><path d="M12 2v6"/><path d="M12 22v-6"/><path d="M12 16l5.5-8"/><path d="M9 8h6"/></symbol>
+    <symbol id="i-sync" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 12l4-5"/><path d="M12 3v2M21 12h-2M12 21v-2M3 12h2"/></symbol>
+    <symbol id="i-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12"/></symbol>
+    <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5l11 7-11 7z"/></symbol>
+    <symbol id="i-reset" viewBox="0 0 24 24"><path d="M4 12a8 8 0 1 0 2.5-5.8"/><path d="M4 4v5h5"/></symbol>
+    <symbol id="i-help" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.6 2.6 0 1 1 3.6 2.4c-.7.4-1.1 1-1.1 1.8"/><path d="M12 17v.01"/></symbol>
+    <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 3l10 18H2z"/><path d="M12 10v5M12 18v.01"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 9l6 6M15 9l-6 6"/></symbol>
+    <symbol id="i-info" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.01"/></symbol>
+    <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 2L5 14h6l-1 8 8-12h-6z"/></symbol>
+    <symbol id="i-hand" viewBox="0 0 24 24"><path d="M4 8h10M18 8h2M4 16h2M10 16h10"/><circle cx="16" cy="8" r="2"/><circle cx="8" cy="16" r="2"/></symbol>
+    <symbol id="i-auto" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-4M4 13a8 8 0 0 0 14 4"/><path d="M6 3v4h4M18 21v-4h-4"/></symbol>
+    <symbol id="i-bus" viewBox="0 0 24 24"><path d="M3 12h18"/><path d="M7 12V5M12 12V5M17 12V5M7 12v7M17 12v7"/></symbol>
+    <symbol id="i-load" viewBox="0 0 24 24"><path d="M3 21V11l6 4v-4l6 4V5h6v16z"/><path d="M7 21v-3M12 21v-3M17 21v-3"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></symbol>
+    <symbol id="i-list" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></symbol>
+    <symbol id="i-gauge" viewBox="0 0 24 24"><path d="M4 18a8 8 0 1 1 16 0"/><path d="M12 18l4-6"/></symbol>
+    <symbol id="i-close" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+    <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
+    <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
+    <symbol id="i-tie" viewBox="0 0 24 24"><rect x="3" y="8" width="6" height="8" rx="1"/><rect x="15" y="8" width="6" height="8" rx="1"/><path d="M9 12h6"/></symbol>
+  </defs>
+</svg>
+
+<div class="app" id="app">
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-symbol"><svg class="icon"><use href="#i-sync"/></svg></span>
+      <h1>Generator Paralleling Trainer <span>4 × DG · Marine Switchboard</span></h1>
+    </div>
+    <div class="top-telemetry" id="topTele"></div>
+    <div class="top-actions">
+      <span class="group-label">Profile</span>
+      <div class="tabs on-dark" id="profileTabs" role="group" aria-label="Plant profile"></div>
+      <span class="group-label">Slip rate</span>
+      <div class="tabs on-dark" id="slipTabs" role="group" aria-label="Synchroscope slip rate"></div>
+      <button class="button button-quiet" id="btnPause" type="button"><svg class="icon"><use href="#i-pause"/></svg><span>Pause</span></button>
+      <button class="button button-quiet" id="btnReset" type="button"><svg class="icon"><use href="#i-reset"/></svg><span>Reset</span></button>
+      <button class="button button-primary" id="btnHelp" type="button"><svg class="icon"><use href="#i-help"/></svg><span>Tutorial Guide</span></button>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="gens-area" aria-label="Generator sets">
+      <div class="gens-grid" id="gens"></div>
+
+      <!-- Marine Switchboard Dual-Busbar & Bus Tie Section -->
+      <div class="switchboard-busbar" id="busbarContainer">
+        <!-- BUS SECTION A -->
+        <div class="bus-section" id="busSecA">
+          <div class="bus-header">
+            <div class="bus-badge"><span>Bus A</span> <b id="busTagVA">—</b></div>
+            <div class="bus-metrics-pill"><span id="busTagFA">— Hz</span></div>
+          </div>
+          <div class="bus-bar-track"></div>
+          <div class="bus-feeders-tag">Section A · DG 1 &amp; DG 2 Incomers</div>
+        </div>
+
+        <!-- BUS TIE BREAKER CUBICLE -->
+        <div class="bus-tie-cubicle" id="busTieCubicle">
+          <div class="tie-header">
+            <span class="tie-title">BUS TIE · BT-1</span>
+            <span class="tie-ansi">ANSI 52BT · 25</span>
+          </div>
+          <div class="tie-breaker-row">
+            <div class="tie-stub left" id="tieStubA"></div>
+            <button class="tie-btn closed" id="btnToggleTie" type="button" title="Click to open or close Bus Tie Breaker">
+              <svg class="icon"><use href="#i-cb-close" id="tieIcon"/></svg>
+              <span id="tieStateText">CLOSED</span>
+            </button>
+            <div class="tie-stub right" id="tieStubB"></div>
+          </div>
+          <span class="tie-status-tag" id="tieStatusTag">Tied (Unified Bus)</span>
+        </div>
+
+        <!-- BUS SECTION B -->
+        <div class="bus-section" id="busSecB">
+          <div class="bus-header">
+            <div class="bus-badge"><span>Bus B</span> <b id="busTagVB">—</b></div>
+            <div class="bus-metrics-pill"><span id="busTagFB">— Hz</span></div>
+          </div>
+          <div class="bus-bar-track"></div>
+          <div class="bus-feeders-tag">Section B · DG 3 &amp; DG 4 Incomers</div>
+        </div>
+
+        <!-- SHIP LOAD READOUT -->
+        <div class="busbar-load" id="busLoad">
+          <svg class="icon"><use href="#i-load"/></svg>
+          <div><strong id="busLoadKW">0 kW</strong><small>Ship Total Demand</small></div>
+        </div>
+      </div>
+    </section>
+
+    <aside class="side" aria-label="Synchronising and load">
+      <section class="panel" id="syncPanel">
+        <div class="panel-head">
+          <h2><svg class="icon"><use href="#i-sync"/></svg>Synchronising</h2>
+          <div class="tabs sync-select" id="syncSelect" role="group" aria-label="Incoming unit"></div>
+        </div>
+        <div class="panel-body">
+          <div class="sync-body">
+            <div id="scopeHost"></div>
+            <div class="sync-read" id="syncRead">
+              <div class="chk" id="chkF"><svg class="icon"><use href="#i-x"/></svg><em>Δ Frequency</em><strong>—</strong></div>
+              <div class="chk" id="chkV"><svg class="icon"><use href="#i-x"/></svg><em>Δ Voltage</em><strong>—</strong></div>
+              <div class="chk" id="chkP"><svg class="icon"><use href="#i-x"/></svg><em>Phase angle</em><strong>—</strong></div>
+            </div>
+          </div>
+          <div class="sync-status" id="syncStatus"><svg class="icon"><use href="#i-info"/></svg><span id="syncMsg"></span></div>
+          <div class="sync-actions">
+            <button class="button button-primary" id="syncClose" type="button"><svg class="icon"><use href="#i-cb-close"/></svg><span>Close CB</span></button>
+            <button class="button" id="syncOpen" type="button"><svg class="icon"><use href="#i-cb-open"/></svg><span>Open CB</span></button>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="instrPanel">
+        <div class="panel-head"><h2><svg class="icon"><use href="#i-gauge"/></svg>Instruments <span class="eyebrow" id="instrFor"></span></h2></div>
+        <div class="panel-body"><div class="instr" id="instr"></div></div>
+      </section>
+
+      <section class="panel" id="loadPanel">
+        <div class="panel-head"><h2><svg class="icon"><use href="#i-load"/></svg>Load demand</h2><span class="eyebrow" id="loadPf"></span></div>
+        <div class="panel-body">
+          <div class="demand-row"><strong id="demandKW">0<small>kW</small></strong><span class="sub" id="demandKVAr">0 kVAr</span></div>
+          <input class="slider" id="demandSlider" type="range" min="0" max="100" step="1" value="0" aria-label="Load demand" />
+          <div class="presets" id="presets"></div>
+          <div class="share" id="share"></div>
+          <div class="balance" id="balance"></div>
+        </div>
+      </section>
+
+      <section class="panel log-panel">
+        <div class="panel-head"><h2><svg class="icon"><use href="#i-list"/></svg>Event log</h2><button class="button button-sm" id="logClear" type="button">Clear</button></div>
+        <ul class="log" id="log" aria-live="polite"></ul>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="statusbar">
+    <span>Model: <b>Generator_Synchronisation v7.1</b> (S. Zaitschenko 2014) · REA Reconstructed with 4×DG + Bus Tie</span>
+    <span class="sp"></span>
+    <span>Sim time <b id="simTime">00:00</b></span>
+    <span>Tick <b>24 Hz</b></span>
+    <span id="simState"><b>RUNNING</b></span>
+  </footer>
+</div>
+
+<div class="toasts" id="toasts"></div>
+
+<!-- Floating Draggable Interactive Tutorial Window -->
+<div class="help-float hidden" id="helpFloat" aria-labelledby="helpTitle">
+  <div class="help-float-head" id="helpDragHandle">
+    <div class="help-float-title">
+      <svg class="icon"><use href="#i-help"/></svg>
+      <h2 id="helpTitle">Paralleling Trainer – Student Guide</h2>
+    </div>
+    <div class="help-float-ctrls">
+      <button class="help-btn" id="helpMinimize" title="Minimize/Collapse" type="button">
+        <svg class="icon"><use href="#i-minus"/></svg>
+      </button>
+      <button class="help-btn" id="helpExpand" title="Expand / Shrink width" type="button">
+        <svg class="icon"><use href="#i-expand"/></svg>
+      </button>
+      <button class="help-btn" id="helpCloseBtn" title="Close guide" type="button">
+        <svg class="icon"><use href="#i-close"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="help-float-tabs">
+    <button class="help-tab active" data-htab="tutorial" type="button">Step-by-Step Training</button>
+    <button class="help-tab" data-htab="switchboard" type="button">Switchboard &amp; Bus Tie</button>
+    <button class="help-tab" data-htab="model" type="button">REA Model &amp; Math</button>
+  </div>
+  <div class="help-float-body" id="helpBody">
+    <div class="htab-pane" id="pane-tutorial">
+      <h3>Phase 1: Black Start &amp; Dead Bus Closing</h3>
+      <ol>
+        <li>Click <strong>Start</strong> on <strong>DG 1</strong>. The diesel engine fires up at 10% fuel and 20% field (nominal 60.00 Hz / 6.60 kV).</li>
+        <li>Notice the <strong>Bus A &amp; Bus B</strong> indicators at the bottom are <code>DEAD</code> (grey).</li>
+        <li>Click <strong>Close CB</strong> on DG 1. Because the busbar is completely dead, the breaker closes instantly with no synchroscope check required (Dead Bus Incomer Permissive).</li>
+        <li>The busbar turns <strong style="color:var(--energized)">ENERGIZED RED</strong>.</li>
+        <li>Move the <strong>Load demand</strong> slider up to 1,500 kW. Notice DG 1 speed droops slightly. Raise <strong>Fuel</strong> on DG 1 to recover 60.00 Hz, or simply press <strong>Auto</strong>!</li>
+      </ol>
+
+      <h3>Phase 2: Synchronizing Incoming Unit (DG 2)</h3>
+      <ol>
+        <li>Click <strong>Start</strong> on <strong>DG 2</strong>. Select <strong>DG 2</strong> in the top of the Synchronising panel.</li>
+        <li>Look at the <strong>Synchroscope</strong>: The needle is rotating!
+          <ul>
+            <li>If turning <strong>counter-clockwise</strong> (<em>Slow</em> direction), DG 2 is running slower than the bus.</li>
+            <li>Use the <strong>Fuel knob</strong> (governor) to raise DG 2 speed until the needle turns slowly <strong>clockwise</strong> (<em>Fast</em> direction, ~1 turn every 4–5 seconds).</li>
+          </ul>
+        </li>
+        <li>Trim the <strong>Field knob</strong> (AVR) until the voltage matches the bus within ±4.8%.</li>
+        <li>When both <strong>Δ Frequency</strong> and <strong>Δ Voltage</strong> show green checkmarks, click <strong>Close CB</strong>.</li>
+        <li>The breaker is now <strong>ARMED</strong>. The check-sync relay automatically closes the breaker at exact 12 o'clock (phase angle ≤ ±2°)!</li>
+      </ol>
+
+      <h3>Phase 3: Load Sharing &amp; Reverse Power (ANSI 32R)</h3>
+      <ol>
+        <li>Immediately after paralleling, DG 2 is carrying ~0 kW while DG 1 carries the ship load.</li>
+        <li>To share load manually, increase <strong>Fuel</strong> on DG 2. You will see kW transfer from DG 1 to DG 2!</li>
+        <li><strong>Warning – Reverse Power Trip:</strong> If you drop Fuel too low on a closed generator, active power drops below <code>-4%</code>. An alarm sounds with a 10-second countdown! If not corrected, the breaker trips to protect the prime mover.</li>
+        <li>Click <strong>Auto</strong> on all running generators for automatic isochronous equal load sharing.</li>
+      </ol>
+
+      <div class="help-callout">
+        <strong>💡 Pro-Tip:</strong> You can drag this guide window anywhere on your screen by its top header, or click <strong>—</strong> to minimize it while operating the knobs!
+      </div>
+    </div>
+
+    <div class="htab-pane hidden" id="pane-switchboard">
+      <h3>Marine Switchboard Architecture</h3>
+      <p>Modern commercial vessels and electric propulsion ships use split medium-voltage switchboards (IEC 60092 / SOLAS):</p>
+      <ul>
+        <li><strong>BUS SECTION A (Port Switchboard):</strong> Fed by DG 1 and DG 2.</li>
+        <li><strong>BUS SECTION B (Starboard Switchboard):</strong> Fed by DG 3 and DG 4.</li>
+        <li><strong>BUS TIE (BT-1 / ANSI 52BT):</strong> Center Vacuum Circuit Breaker linking Section A and Section B.</li>
+      </ul>
+
+      <h3>Split-Bus vs. Tied-Bus Operation</h3>
+      <ol>
+        <li>Click the center <strong>[ BUS TIE: CLOSED ]</strong> button to open the tie breaker.</li>
+        <li>The switchboard is now in <strong>Split Bus Mode</strong> (redundant DP mode):
+          <ul>
+            <li>Bus A and Bus B are electrically isolated.</li>
+            <li>DG 1 &amp; DG 2 supply Port Bus A.</li>
+            <li>DG 3 &amp; DG 4 supply Starboard Bus B.</li>
+          </ul>
+        </li>
+        <li>To close the Bus Tie when both sections are energized, the two independent buses must be in synchronism! If not, the tie breaker interlock inhibits closure.</li>
+      </ol>
+
+      <h3>Breaker Cubicle (Drawout VCB)</h3>
+      <p>Each generator bay features an authentic medium-voltage vacuum circuit breaker (VCB) cradle with upper/lower isolating disconnect bushings, 3× Current Transformers, Earth Switch (ES), and multifunction protection relay (ANSI 25 Sync, 32R Reverse Power, 50/51 Overcurrent, 27/59 Voltage).</p>
+    </div>
+
+    <div class="htab-pane hidden" id="pane-model">
+      <h3>Reverse-Engineered Mathematical Model (AS3 Bytecode)</h3>
+      <table>
+        <tr><th>Parameter</th><th>Model Formula</th><th>Tolerance</th></tr>
+        <tr><td>Governor Droop</td><td><code>f = 60 · (1 + 0.1 · (fuelKW - useKW - demKW) / ratedKW)</code></td><td>±10% nominal droop</td></tr>
+        <tr><td>AVR Excitation</td><td><code>V = 6600 · (1 + 0.18 · (fieldKVAr - useKVAr - demKVAr) / ratedKVAr)</code></td><td>Max 1.15 pu</td></tr>
+        <tr><td>Permissive Δf</td><td><code>|f_gen - f_bus| ≤ 1.20 Hz (±2.0%)</code></td><td>Must be green to arm</td></tr>
+        <tr><td>Permissive ΔV</td><td><code>|V_gen - V_bus| ≤ 318 V (±4.8%)</code></td><td>Must be green to arm</td></tr>
+        <tr><td>Check-Sync Relay</td><td><code>|Δθ| ≤ 2.0° at 12 o'clock</code></td><td>ANSI 25 Auto-Close</td></tr>
+        <tr><td>Reverse Power</td><td><code>P_out &lt; -4% Rated KW for 10.0 s</code></td><td>ANSI 32R Breaker Trip</td></tr>
+        <tr><td>Active Load Sharing</td><td><code>P_i = P_demand / n + (P_fuel,i - mean(P_fuel))</code></td><td>Equal sharing in Auto</td></tr>
+      </table>
+      <div class="help-callout">
+        Extracted and reconstructed with <strong>REA (Reverse Engineer Anything)</strong> from <em>Generator_Synchronisation v7.1</em> (S. Zaitschenko 2014).
+      </div>
+    </div>
+  </div>
+</div>
+
+<script id="sim-model">
+/* ==========================================================================
+   Simulation model – recovered from Generator_Synchronisation v7.1 (AS3).
+   Extended with 4×DG, Dual-Section Busbars (Bus A & Bus B), and Bus Tie BT-1.
+   Pure logic, no DOM dependencies.
+   ========================================================================== */
+const Sim = (() => {
+  'use strict';
+  const TICK = 1 / 24;
+  const N = 4;
+  const STATE = { STOPPED: 0, RUNNING: 1, ARMED: 2, MANUAL: 3, AUTO: 4 };
+  const clamp = (v, a, b) => Math.min(Math.max(v, a), b);
+  const fold = (a) => ((((a % 360) + 540) % 360) - 180);
+
+  const PROFILES = {
+    marine: { id: 'marine', label: 'Marine 6.6 kV', long: '6.6 kV · 60 Hz · 3 500 kW per DG', ratedKW: 3500, vNom: 6600, fNom: 60, lv: false },
+    flash:  { id: 'flash',  label: 'Original 415 V', long: '415 V · 50 Hz · 500 kW per DG (Flash original)', ratedKW: 500, vNom: 415, fNom: 50, lv: true },
+  };
+  const SLIPS = {
+    orig:  { id: 'orig',  label: '×1',  long: 'Original (4.8 °/s per Hz)', mult: 1 },
+    train: { id: 'train', label: '×20', long: 'Training', mult: 20 },
+    real:  { id: 'real',  label: '×75', long: 'Realistic (360 °/s per Hz)', mult: 75 },
+  };
+
+  function derive(pr) {
+    const p = Object.assign({}, pr);
+    p.ratedKVAr = 0.6 * p.ratedKW;
+    p.useKW = 0.1 * p.ratedKW;
+    p.useKVAr = 0.1 * p.ratedKVAr;
+    p.minFuel = 10; p.minField = 20;
+    p.droopF = 0.1;
+    p.vSens = 0.25 * 300 / 415;
+    p.vMaxPu = 480 / 415;
+    p.tolF = 0.02 * p.fNom;
+    p.tolV = (20 / 415) * p.vNom;
+    p.tolAngle = 2;
+    p.rpTrigger = -0.04 * p.ratedKW;
+    p.rpDelay = 10;
+    p.loadTan = 0.5;
+    p.maxDemandKW = N * p.ratedKW;
+    p.scaleKW = p.ratedKW; p.scaleKVAr = 0.5 * p.ratedKW; p.scaleV = p.vNom * 500 / 415;
+    p.hzMin = p.fNom * 0.96; p.hzMax = p.fNom * 1.04;
+    return p;
+  }
+
+  function newGen(i) {
+    return {
+      i, name: 'DG ' + (i + 1),
+      busId: i < 2 ? 'busA' : 'busB',
+      state: 0, fuel: 0, field: 0, fuelKW: 0, fieldKVAr: 0,
+      demKW: 0, demKVAr: 0, outKW: 0, outKVAr: 0, hz: 0, volts: 0, pf: 1, phase: 0,
+      rpActive: false, rpTimer: 0, rpTripped: false
+    };
+  }
+
+  function create(profileId = 'marine', slipId = 'train', opts = {}) {
+    const p = derive(PROFILES[profileId]);
+    const sim = {
+      t: 0, p, profileId, slipId, mult: SLIPS[slipId].mult, paused: false,
+      demandKW: 0,
+      busTie: true, // Default: Tie closed (normal paralleling)
+      gens: Array.from({ length: N }, (_, i) => newGen(i)),
+      bus: { live: false, hz: 0, volts: 0, phase: 0 },
+      busA: { live: false, hz: 0, volts: 0, phase: 0 },
+      busB: { live: false, hz: 0, volts: 0, phase: 0 },
+      totalOut: 0, totalOutKVAr: 0, capKW: 0, reserveKW: 0, unservedKW: 0, overload: false,
+      log: [], seq: 0, rand: opts.rand || Math.random,
+    };
+    log(sim, 'info', 'Trainer ready – ' + PROFILES[profileId].long + '. Start a generator to begin.');
+    return sim;
+  }
+
+  function log(sim, lvl, msg) {
+    sim.log.push({ id: ++sim.seq, t: sim.t, lvl, msg });
+    if (sim.log.length > 200) sim.log.shift();
+  }
+
+  /* ---- Per-Frame Power & Busbar Solution --------------------------------- */
+  function solve(sim) {
+    const p = sim.p, G = sim.gens, D = sim.demandKW, Q = D * p.loadTan;
+    const reqFuel = (x) => clamp((x + p.useKW) * 100 / p.ratedKW, 0, 100);
+    const reqField = (x) => clamp((x + p.useKVAr) * 200 / p.ratedKVAr, 0, 200);
+    const calc = (g) => {
+      g.fuelKW = Math.min(g.fuel * p.ratedKW / 100, p.ratedKW);
+      g.fieldKVAr = Math.min(g.field * p.ratedKVAr / 200, p.ratedKVAr);
+    };
+
+    for (const g of G) {
+      if (g.state === STATE.STOPPED) {
+        g.fuelKW = g.fieldKVAr = g.demKW = g.demKVAr = g.outKW = g.outKVAr = 0;
+        g.hz = g.volts = 0; g.pf = 1; continue;
+      }
+      calc(g); g.demKW = g.demKVAr = g.outKW = g.outKVAr = 0;
+    }
+
+    const solveGroup = (L, grpD, grpQ) => {
+      const n = L.length;
+      if (n === 0) return;
+      if (n === 1) {
+        const g = L[0];
+        g.demKW = grpD; g.demKVAr = grpQ;
+        if (g.state === STATE.AUTO) { g.fuel = reqFuel(grpD); g.field = reqField(grpQ); calc(g); }
+        g.outKW = Math.max(Math.min(g.fuelKW - p.useKW, grpD), 0);
+        g.outKVAr = Math.max(Math.min(g.fieldKVAr - p.useKVAr, grpQ), 0);
+      } else {
+        const A = L.filter((g) => g.state === STATE.AUTO), M = L.filter((g) => g.state === STATE.MANUAL);
+        if (M.length === 0) {
+          for (const g of A) {
+            g.fuel = reqFuel(grpD / n); g.field = reqField(grpQ / n); calc(g);
+            g.demKW = grpD / n; g.demKVAr = grpQ / n;
+            g.outKW = Math.max(Math.min(g.fuelKW - p.useKW, grpD / n), 0);
+            g.outKVAr = Math.max(Math.min(g.fieldKVAr - p.useKVAr, grpQ / n), 0);
+          }
+        } else {
+          if (A.length) {
+            const sumM = M.reduce((s, g) => s + g.fuelKW - p.useKW, 0);
+            const sumMQ = M.reduce((s, g) => s + g.fieldKVAr - p.useKVAr, 0);
+            for (const g of A) {
+              g.fuel = Math.max(reqFuel((grpD - sumM) / A.length), p.minFuel);
+              g.field = Math.max(reqField((grpQ - sumMQ) / A.length), p.minField);
+              calc(g);
+            }
+          }
+          const fMean = L.reduce((s, g) => s + g.fuelKW, 0) / n;
+          const qMean = L.reduce((s, g) => s + g.fieldKVAr, 0) / n;
+          for (const g of L) {
+            g.demKW = g.outKW = grpD / n + (g.fuelKW - fMean);
+            g.demKVAr = g.outKVAr = grpQ / n + (g.fieldKVAr - qMean);
+          }
+        }
+      }
+    };
+
+    const allLoaded = G.filter((g) => g.state >= STATE.MANUAL);
+    if (sim.busTie) {
+      solveGroup(allLoaded, D, Q);
+    } else {
+      const loadA = G.slice(0, 2).filter((g) => g.state >= STATE.MANUAL);
+      const loadB = G.slice(2, 4).filter((g) => g.state >= STATE.MANUAL);
+      solveGroup(loadA, D / 2, Q / 2);
+      solveGroup(loadB, D / 2, Q / 2);
+    }
+
+    for (const g of G) {
+      if (g.state === STATE.STOPPED) continue;
+      const exK = g.fuelKW - p.useKW - g.demKW;
+      g.hz = clamp(p.fNom * (1 + p.droopF * exK / p.ratedKW), 0, 1.3 * p.fNom);
+      const exQ = g.fieldKVAr - p.useKVAr - g.demKVAr;
+      g.volts = clamp(p.vNom * (1 + p.vSens * exQ / p.ratedKVAr), 0, p.vMaxPu * p.vNom);
+      const mag = Math.hypot(g.outKW, g.outKVAr);
+      g.pf = mag < 1e-9 ? 1 : (g.outKW < 0 ? -1 : 1) * Math.abs(g.outKW) / mag;
+    }
+
+    // Solve Bus Sections A & B
+    const loadA = G.slice(0, 2).filter((g) => g.state >= STATE.MANUAL);
+    const loadB = G.slice(2, 4).filter((g) => g.state >= STATE.MANUAL);
+
+    if (sim.busTie) {
+      const nTot = allLoaded.length;
+      if (nTot > 0) {
+        const meanHz = allLoaded.reduce((s, g) => s + g.hz, 0) / nTot;
+        const meanV = allLoaded.reduce((s, g) => s + g.volts, 0) / nTot;
+        sim.bus.live = sim.busA.live = sim.busB.live = true;
+        sim.bus.hz = sim.busA.hz = sim.busB.hz = meanHz;
+        sim.bus.volts = sim.busA.volts = sim.busB.volts = meanV;
+      } else {
+        sim.bus.live = sim.busA.live = sim.busB.live = false;
+        sim.bus.hz = sim.busA.hz = sim.busB.hz = 0;
+        sim.bus.volts = sim.busA.volts = sim.busB.volts = 0;
+      }
+    } else {
+      if (loadA.length) {
+        sim.busA.live = true;
+        sim.busA.hz = loadA.reduce((s, g) => s + g.hz, 0) / loadA.length;
+        sim.busA.volts = loadA.reduce((s, g) => s + g.volts, 0) / loadA.length;
+      } else {
+        sim.busA.live = false; sim.busA.hz = 0; sim.busA.volts = 0;
+      }
+      if (loadB.length) {
+        sim.busB.live = true;
+        sim.busB.hz = loadB.reduce((s, g) => s + g.hz, 0) / loadB.length;
+        sim.busB.volts = loadB.reduce((s, g) => s + g.volts, 0) / loadB.length;
+      } else {
+        sim.busB.live = false; sim.busB.hz = 0; sim.busB.volts = 0;
+      }
+      sim.bus.live = sim.busA.live || sim.busB.live;
+      sim.bus.hz = sim.busA.live ? sim.busA.hz : sim.busB.hz;
+      sim.bus.volts = sim.busA.live ? sim.busA.volts : sim.busB.volts;
+    }
+
+    sim.totalOut = allLoaded.reduce((s, g) => s + g.outKW, 0);
+    sim.totalOutKVAr = allLoaded.reduce((s, g) => s + g.outKVAr, 0);
+    sim.capKW = allLoaded.length * (p.ratedKW - p.useKW);
+    sim.reserveKW = sim.capKW - D;
+    sim.overload = allLoaded.length > 0 && D > sim.capKW + 1e-6;
+    sim.unservedKW = allLoaded.length ? Math.max(D - sim.totalOut, 0) : D;
+  }
+
+  /* ---- Synchronising Checks ---------------------------------------------- */
+  function targetBus(sim, g) {
+    if (sim.busTie) return sim.bus;
+    return g.busId === 'busA' ? sim.busA : sim.busB;
+  }
+
+  function permissive(sim, g) {
+    const p = sim.p, tb = targetBus(sim, g);
+    const refHz = tb.live ? tb.hz : p.fNom, refV = tb.live ? tb.volts : p.vNom;
+    const dF = g.hz - refHz, dV = g.volts - refV;
+    const fOK = g.state > 0 && Math.abs(dF) <= p.tolF + 1e-9;
+    const vOK = g.state > 0 && Math.abs(dV) <= p.tolV + 1e-9;
+    return { dF, dV, fOK, vOK, ok: fOK && vOK, refHz, refV, tb };
+  }
+
+  const dPhi = (sim, g) => {
+    const tb = targetBus(sim, g);
+    return (tb.live && g.state > 0 && g.state < 3 ? fold(g.phase - tb.phase) : null);
+  };
+
+  /* ---- Operator Actions -------------------------------------------------- */
+  function start(sim, i) {
+    const g = sim.gens[i];
+    if (g.state !== STATE.STOPPED) return false;
+    g.state = STATE.RUNNING; g.field = sim.p.minField; g.fuel = sim.p.minFuel;
+    g.rpTripped = false; g.rpActive = false; g.rpTimer = 0; g.phase = sim.rand() * 360;
+    solve(sim); log(sim, 'info', g.name + ' started – running unloaded at nominal speed, GCB open.');
+    return true;
+  }
+
+  function stop(sim, i) {
+    const g = sim.gens[i];
+    if (g.state === STATE.STOPPED) return false;
+    const wasLoaded = g.state >= STATE.MANUAL;
+    g.state = STATE.STOPPED; g.rpActive = false; g.rpTimer = 0;
+    solve(sim); log(sim, wasLoaded ? 'warn' : 'info', g.name + (wasLoaded ? ' stopped while on load – GCB tripped open!' : ' stopped.'));
+    cancelOrphanSync(sim);
+    return true;
+  }
+
+  function closeCB(sim, i) {
+    const g = sim.gens[i];
+    if (g.state === STATE.STOPPED) return { ok: false, reason: g.name + ' is stopped. Start engine first.' };
+    if (g.state >= STATE.ARMED) return { ok: false, reason: g.name + ' GCB is already ' + (g.state === STATE.ARMED ? 'armed to close.' : 'closed.') };
+    const pm = permissive(sim, g);
+    if (!pm.ok) {
+      const why = !pm.fOK && !pm.vOK ? 'frequency & voltage' : !pm.fOK ? 'frequency' : 'voltage';
+      const msg = 'Close GCB inhibited – ' + g.name + ' ' + why + ' outside tolerance window.';
+      log(sim, 'warn', msg); return { ok: false, reason: msg };
+    }
+    const tb = pm.tb;
+    if (!tb.live) {
+      g.state = STATE.MANUAL; tb.phase = g.phase; solve(sim);
+      log(sim, 'ok', g.name + ' closed onto dead bus – ' + (sim.busTie ? 'Main Switchboard' : g.busId.toUpperCase()) + ' energized.');
+      return { ok: true, closed: true };
+    }
+    g.state = STATE.ARMED; solve(sim);
+    log(sim, 'info', g.name + ' check-sync relay armed – GCB will auto-close at 12 o\'clock (±2°).');
+    return { ok: true, closed: false };
+  }
+
+  function openCB(sim, i) {
+    const g = sim.gens[i];
+    if (g.state < STATE.ARMED) return false;
+    const was = g.state;
+    g.state = STATE.RUNNING; g.rpActive = false; g.rpTimer = 0;
+    solve(sim);
+    log(sim, 'info', g.name + (was === STATE.ARMED ? ' sync relay disarmed.' : ' GCB opened – unloaded.'));
+    cancelOrphanSync(sim);
+    return true;
+  }
+
+  function toggleAuto(sim, i) {
+    const g = sim.gens[i];
+    if (g.state === STATE.MANUAL) { g.state = STATE.AUTO; log(sim, 'info', g.name + ' governor/AVR set to AUTO sharing.'); }
+    else if (g.state === STATE.AUTO) { g.state = STATE.MANUAL; log(sim, 'info', g.name + ' governor/AVR set to MANUAL.'); }
+    else return false;
+    solve(sim); return true;
+  }
+
+  function toggleBusTie(sim) {
+    if (sim.busTie) {
+      sim.busTie = false;
+      solve(sim);
+      log(sim, 'warn', 'Bus Tie BT-1 OPENED – switchboard operating in SPLIT BUS mode (Bus A & Bus B isolated).');
+      return { ok: true, tied: false };
+    } else {
+      if (sim.busA.live && sim.busB.live) {
+        const dF = Math.abs(sim.busA.hz - sim.busB.hz);
+        const dV = Math.abs(sim.busA.volts - sim.busB.volts);
+        if (dF > 0.25 || dV > 0.05 * sim.p.vNom) {
+          const msg = `Bus Tie Close Inhibited: Bus A & Bus B not synchronized (Δf=${dF.toFixed(2)} Hz, ΔV=${Math.round(dV)} V)!`;
+          log(sim, 'alarm', msg);
+          return { ok: false, reason: msg };
+        }
+      }
+      sim.busTie = true;
+      solve(sim);
+      log(sim, 'ok', 'Bus Tie BT-1 CLOSED in synchronism – Bus A and Bus B tied into unified bus.');
+      return { ok: true, tied: true };
+    }
+  }
+
+  const canTrim = (g) => g.state === STATE.RUNNING || g.state === STATE.ARMED || g.state === STATE.MANUAL;
+  function setFuel(sim, i, v) { const g = sim.gens[i]; if (!canTrim(g)) return false; g.fuel = clamp(Math.round(v), 0, 100); solve(sim); return true; }
+  function setField(sim, i, v) { const g = sim.gens[i]; if (!canTrim(g)) return false; g.field = clamp(Math.round(v), 0, 200); solve(sim); return true; }
+  function setDemand(sim, kW) { sim.demandKW = clamp(kW, 0, sim.p.maxDemandKW); solve(sim); }
+  function setSlip(sim, id) { sim.slipId = id; sim.mult = SLIPS[id].mult; }
+
+  function cancelOrphanSync(sim) {
+    for (const g of sim.gens) {
+      const tb = targetBus(sim, g);
+      if (!tb.live && g.state === STATE.ARMED) {
+        g.state = STATE.RUNNING;
+        log(sim, 'warn', g.name + ' sync cancelled – target busbar is de-energized.');
+      }
+    }
+  }
+
+  /* ---- Time Step (24 Hz) ------------------------------------------------ */
+  function tick(sim, dt = TICK) {
+    if (sim.paused) return;
+    sim.t += dt;
+    solve(sim);
+    const p = sim.p, perHz = 4.8 * sim.mult;
+
+    if (sim.busA.live) sim.busA.phase = (sim.busA.phase + (sim.busA.hz - p.fNom) * perHz * dt) % 360;
+    if (sim.busB.live) sim.busB.phase = (sim.busB.phase + (sim.busB.hz - p.fNom) * perHz * dt) % 360;
+    if (sim.bus.live) sim.bus.phase = sim.busA.live ? sim.busA.phase : sim.busB.phase;
+
+    for (const g of sim.gens) {
+      const tb = targetBus(sim, g);
+      if (g.state === STATE.RUNNING || g.state === STATE.ARMED) {
+        g.phase = (g.phase + (g.hz - p.fNom) * perHz * dt) % 360;
+      } else if (g.state >= STATE.MANUAL) {
+        g.phase = tb.phase;
+      }
+    }
+
+    // Check-Sync Relays Auto-Closing
+    for (const g of sim.gens) {
+      if (g.state !== STATE.ARMED) continue;
+      const d = dPhi(sim, g), pm = permissive(sim, g);
+      if (d !== null && Math.abs(d) <= p.tolAngle && pm.ok) {
+        g.state = STATE.MANUAL;
+        const tb = targetBus(sim, g);
+        g.phase = tb.phase;
+        log(sim, 'ok', g.name + ' GCB CLOSED in synchronism (Δφ ' + d.toFixed(1) + '°). Raise Fuel to take load.');
+      }
+    }
+
+    solve(sim);
+
+    // Reverse Power Protection (ANSI 32R)
+    for (const g of sim.gens) {
+      if (g.state >= STATE.MANUAL && g.outKW < p.rpTrigger) {
+        if (!g.rpActive) {
+          g.rpActive = true;
+          log(sim, 'alarm', g.name + ' REVERSE POWER DETECTED (ANSI 32R) – Tripping in ' + p.rpDelay + ' s!');
+        }
+        g.rpTimer += dt;
+        if (g.rpTimer >= p.rpDelay) {
+          g.state = STATE.STOPPED; g.rpTripped = true; g.rpActive = false; g.rpTimer = 0;
+          solve(sim);
+          log(sim, 'alarm', g.name + ' TRIPPED ON REVERSE POWER (ANSI 32R) – GCB opened, engine emergency stopped!');
+          cancelOrphanSync(sim);
+        }
+      } else if (g.rpActive || g.rpTimer) {
+        if (g.rpActive) log(sim, 'info', g.name + ' reverse power cleared – generator returned to positive active power.');
+        g.rpActive = false; g.rpTimer = 0;
+      }
+    }
+  }
+
+  return { TICK, N, STATE, PROFILES, SLIPS, create, tick, solve, log, start, stop, closeCB, openCB, toggleAuto,
+    toggleBusTie, setFuel, setField, setDemand, setSlip, permissive, dPhi, targetBus, fold, clamp };
+})();
+</script>
+
+<script id="ui">
+(() => {
+'use strict';
+const { STATE, N } = Sim;
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+const nf0 = new Intl.NumberFormat('en-US', { maximumFractionDigits: 0 });
+const clamp = Sim.clamp;
+const rad = (d) => (d * Math.PI) / 180;
+const pt = (cx, cy, r, a) => [cx + r * Math.sin(rad(a)), cy - r * Math.cos(rad(a))];
+const arcPath = (cx, cy, r, a0, a1) => {
+  const [x0, y0] = pt(cx, cy, r, a0), [x1, y1] = pt(cx, cy, r, a1);
+  return `M${x0.toFixed(2)} ${y0.toFixed(2)}A${r} ${r} 0 ${a1 - a0 > 180 ? 1 : 0} 1 ${x1.toFixed(2)} ${y1.toFixed(2)}`;
+};
+const setT = (el, v) => { if (el && el.textContent !== v) el.textContent = v; };
+const setCls = (el, cls, on) => { if (el) el.classList.toggle(cls, !!on); };
+const icon = (id, cls = '') => `<svg class="icon ${cls}"><use href="#${id}"/></svg>`;
+
+let sim = Sim.create('marine', 'train');
+let sel = 0;
+let lastLogId = -1;
+const cache = {};
+
+/* ========================================================================
+   High-Fidelity Marine Diesel Generator SVG Artwork
+   ======================================================================== */
+function genSVG(i) {
+  const cyl = Array.from({ length: 6 }, (_, k) => k);
+  return `
+<svg viewBox="0 0 280 134" role="img" aria-label="DG ${i + 1} marine medium-speed diesel generator set" data-k="art">
+  <!-- Skid Bedplate & Resilient Vibration Isolation Mounts -->
+  <rect x="6" y="118" width="268" height="9" rx="1.5" fill="#49515a" stroke="#1c2024" stroke-width="1.2"/>
+  <rect x="12" y="112" width="256" height="6" fill="#dde0e3" stroke="#a3abb3" stroke-width="0.8"/>
+  <!-- 5 Vibration Isolator Spring Dampers under Bedplate -->
+  ${[20, 72, 124, 180, 238].map(x => `
+    <g transform="translate(${x}, 127)">
+      <rect x="-7" y="0" width="14" height="6" rx="1" fill="#262b30"/>
+      <path d="M-5 1h10M-5 3h10M-5 5h10" stroke="#ffc700" stroke-width="0.9"/>
+      <circle cx="-5" cy="3" r="1" fill="#e9ecee"/>
+      <circle cx="5" cy="3" r="1" fill="#e9ecee"/>
+    </g>
+  `).join('')}
+  
+  <!-- Lube Oil Wet Sump Pan -->
+  <path d="M18 96 L134 96 L130 112 L22 112 Z" fill="#c4c9ce" stroke="#727a83" stroke-width="1"/>
+  <rect x="26" y="102" width="100" height="7" rx="1" fill="#b0b7be"/>
+  <!-- Oil Level Sight Glass -->
+  <rect x="118" y="99" width="5" height="10" rx="1" fill="#ffc700" stroke="#49515a" stroke-width="0.7"/>
+
+  <!-- Engine Crankcase & Cylinder Block -->
+  <rect x="14" y="52" width="122" height="44" rx="2" fill="#f0f2f3" stroke="#353b41" stroke-width="1.5"/>
+  <!-- Crankcase Inspection Doors with Explosion Relief Bicera Valves -->
+  ${cyl.map(k => `
+    <g transform="translate(${20 + k * 19}, 58)">
+      <rect x="0" y="0" width="15" height="26" rx="2" fill="#e1e4e7" stroke="#727a83" stroke-width="1"/>
+      <rect x="1.5" y="2" width="12" height="22" rx="1" fill="#ffffff" stroke="#c4c9ce" stroke-width="0.6"/>
+      <!-- Bicera Explosion Relief Valve Disc -->
+      <circle cx="7.5" cy="7" r="4.2" fill="#b0b7be" stroke="#49515a" stroke-width="0.8"/>
+      <circle cx="7.5" cy="7" r="1.5" fill="#c22b2b"/>
+      <!-- Door clamping dog & handle -->
+      <rect x="4.5" y="16" width="6" height="2.5" rx="0.5" fill="#49515a"/>
+      <!-- Piston stroke indicator inside cutaway -->
+      <rect class="piston" x="5" y="7" width="5" height="12" rx="1" fill="#353b41"/>
+    </g>
+  `).join('')}
+
+  <!-- 6 Individual Cylinder Heads & Rocker Covers -->
+  <g stroke="#353b41" stroke-width="1.2" fill="#dde0e3">
+    ${cyl.map(k => `
+      <rect x="${18.5 + k * 19}" y="38" width="18" height="14" rx="1.5"/>
+      <!-- Rocker Cover Top -->
+      <rect x="${20 + k * 19}" y="33" width="15" height="5" rx="1" fill="#c4c9ce"/>
+      <!-- Indicator Decompression Cock -->
+      <circle cx="${27.5 + k * 19}" cy="32" r="1.2" fill="#ffc700"/>
+    `).join('')}
+  </g>
+
+  <!-- SOLAS High-Pressure Sheathed Fuel Injection Lines & Common Rail -->
+  <path d="M22 47 H134" stroke="#ff8b8b" stroke-width="1.8" fill="none"/>
+  ${cyl.map(k => `
+    <path d="M${27.5 + k * 19} 47 V38" stroke="#c22b2b" stroke-width="1.4" fill="none"/>
+  `).join('')}
+
+  <!-- Heavy Exhaust Manifold with Insulated Thermal Lagging Blanket -->
+  <rect x="22" y="24" width="102" height="9" rx="2" fill="#8c949b" stroke="#353b41" stroke-width="1.2"/>
+  <path d="M28 24v-3M56 24v-3M84 24v-3M112 24v-3" stroke="#49515a" stroke-width="1"/>
+  <!-- Expansion Bellows -->
+  <g stroke="#49515a" stroke-width="0.9" fill="none">
+    <path d="M124 24v9M127 24v9M130 24v9M133 24v9"/>
+  </g>
+
+  <!-- Turbocharger (Free End, Left) -->
+  <!-- Turbine Casing with Stainless Steel Heat Shield -->
+  <rect x="6" y="14" width="22" height="20" rx="3" fill="#49515a" stroke="#1c2024" stroke-width="1.3"/>
+  <circle cx="17" cy="24" r="7" fill="#262b30" stroke="#727a83" stroke-width="1"/>
+  <g class="spin" style="transform-origin: 17px 24px" stroke="#e9ecee" stroke-width="1.2">
+    <path d="M17 19v10M12 24h10M13.5 20.5l7 7M20.5 20.5l-7 7"/>
+  </g>
+  <!-- Exhaust Stack with Dynamic Smoke Plume -->
+  <path d="M17 14 V4 H25 V14" fill="#353b41" stroke="#1c2024" stroke-width="1.2"/>
+  <g fill="#727a83">
+    <circle class="puff" cx="21" cy="2" r="3.5"/>
+    <circle class="puff" cx="21" cy="2" r="4.2"/>
+    <circle class="puff" cx="21" cy="2" r="5.0"/>
+  </g>
+  <!-- Air Intake Silencer Drum with Filter Slots -->
+  <rect x="6" y="34" width="12" height="16" rx="2" fill="#b0b7be" stroke="#353b41" stroke-width="1"/>
+  <path d="M8 37h8M8 41h8M8 45h8" stroke="#49515a" stroke-width="0.8"/>
+  <!-- Charge Air Intercooler (Underneath Turbo) -->
+  <rect x="6" y="52" width="10" height="22" rx="1.5" fill="#a3abb3" stroke="#49515a" stroke-width="1"/>
+  <path d="M7 56h8M7 62h8M7 68h8" stroke="#262b30" stroke-width="0.8"/>
+
+  <!-- Engine Nameplate / Designation -->
+  <rect x="18" y="87" width="56" height="8" rx="1" fill="#1c2024"/>
+  <text x="22" y="93.5" font-family="IBM Plex Mono, monospace" font-size="5.5" font-weight="600" fill="#e9ecee" letter-spacing=".5">DIESEL 4-STROKE</text>
+
+  <!-- Flywheel, Torsional Coupling & Turning Barring Gear -->
+  <rect x="136" y="68" width="22" height="14" fill="#c4c9ce" stroke="#49515a" stroke-width="1.2"/>
+  <circle cx="147" cy="75" r="22" fill="#ffffff" stroke="#353b41" stroke-width="1.6"/>
+  <circle cx="147" cy="75" r="18" fill="#f0f2f3" stroke="#c4c9ce" stroke-width="1"/>
+  <!-- Barring Ring Gear Teeth -->
+  <g class="spin" style="transform-origin: 147px 75px" stroke="#49515a" stroke-width="1.3">
+    <path d="M147 54v42M126 75h42M132 60l30 30M162 60l-30 30"/>
+    <circle cx="147" cy="75" r="7" fill="#727a83"/>
+  </g>
+  <circle cx="147" cy="75" r="3" fill="#1c2024"/>
+
+  <!-- Alternator (Drive End, Right) -->
+  <!-- Heavy Synchronous Stator Frame -->
+  <rect x="160" y="46" width="104" height="58" rx="8" fill="#f0f2f3" stroke="#353b41" stroke-width="1.6"/>
+  <!-- Stator Cooling Ventilation Louvers -->
+  <g stroke="#b0b7be" stroke-width="1.4">
+    ${[172, 180, 188, 196, 232, 240, 248].map(x => `<path d="M${x} 52V98"/>`).join('')}
+  </g>
+  <!-- Non-Drive End Bearing Bracket & Lube Sight Glass -->
+  <rect x="264" y="56" width="8" height="38" rx="2" fill="#c4c9ce" stroke="#353b41" stroke-width="1.3"/>
+  <circle cx="268" cy="75" r="2" fill="#ffc700" stroke="#1c2024" stroke-width="0.6"/>
+
+  <!-- Terminal Box with High-Voltage Conduit (Top) -->
+  <rect x="202" y="24" width="36" height="22" rx="2" fill="#dde0e3" stroke="#353b41" stroke-width="1.4"/>
+  <!-- High Voltage Warning Triangle -->
+  <path d="M216 30 L224 30 L220 37 Z" fill="#ffc700" stroke="#1c2024" stroke-width="0.8"/>
+  <path d="M220 32v2M220 35v.5" stroke="#1c2024" stroke-width="0.8"/>
+  <text x="205" y="43" font-family="IBM Plex Mono, monospace" font-size="5" font-weight="600" fill="#49515a">6.6kV HV</text>
+
+  <!-- 4-Pole Salient Rotor / Magnetic Field Coil Inside Alternator -->
+  <circle cx="214" cy="75" r="18" fill="#1c2024" stroke="#353b41" stroke-width="1.4"/>
+  <g class="spin" style="transform-origin: 214px 75px">
+    <!-- 4 Salient Field Poles -->
+    <rect x="211" y="59" width="6" height="12" rx="1" fill="#c22b2b"/>
+    <rect x="211" y="79" width="6" height="12" rx="1" fill="#c22b2b"/>
+    <rect x="198" y="72" width="12" height="6" rx="1" fill="#1d5d96"/>
+    <rect x="218" y="72" width="12" height="6" rx="1" fill="#1d5d96"/>
+    <circle cx="214" cy="75" r="5" fill="#49515a"/>
+    <circle cx="214" cy="75" r="1.5" fill="#e9ecee"/>
+  </g>
+  <circle cx="214" cy="75" r="18" fill="none" stroke="#ffc700" stroke-width="1.2" stroke-dasharray="3 2" data-k="rotorRing"/>
+
+  <!-- Alternator Nameplate -->
+  <rect x="170" y="103" width="70" height="7" rx="1" fill="#ffffff" stroke="#c4c9ce" stroke-width="0.8"/>
+  <text x="174" y="108.5" font-family="IBM Plex Mono, monospace" font-size="5.5" font-weight="600" fill="#353b41" letter-spacing=".5">SYNCHRONOUS ALT</text>
+
+  <!-- Outgoing Armored High-Voltage Cable Line to Breaker Bay -->
+  <path d="M220 24 V10 H266 V134" fill="none" stroke-width="2.5" stroke-linejoin="round" data-k="cable" stroke="#8c949b"/>
+  <!-- Status LED on Alternator End Shield -->
+  <circle cx="258" cy="54" r="3.2" fill="#8c949b" stroke="#1c2024" stroke-width="0.9" data-k="led"/>
+</svg>`;
+}
+
+/* ========================================================================
+   Detailed Marine Circuit Breaker Bay SVG (Drawout VCB Cradle)
+   ======================================================================== */
+function baySVG(i) {
+  return `
+<svg viewBox="0 0 280 128" aria-hidden="true" data-k="bay">
+  <!-- Switchgear Cubicle Framework -->
+  <rect x="4" y="2" width="272" height="124" rx="3" fill="#ffffff" stroke="#c4c9ce" stroke-width="1.2"/>
+  <rect x="8" y="6" width="264" height="20" rx="1.5" fill="#f0f2f3" stroke="#dde0e3" stroke-width="0.8"/>
+  
+  <!-- Cubicle Header & ANSI Protection Relay Display -->
+  <text x="14" y="18" font-family="IBM Plex Mono, monospace" font-size="8.5" font-weight="600" fill="#15181b">BAY DG ${i + 1} VCB</text>
+  <text x="110" y="14" font-family="IBM Plex Mono, monospace" font-size="6" fill="#727a83">PROTECTION RELAY</text>
+  <g transform="translate(110, 16)">
+    <rect x="0" y="0" width="18" height="7" rx="1" fill="#1c2024"/>
+    <text x="9" y="5.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="4.5" fill="#e9ecee">25</text>
+    <rect x="21" y="0" width="18" height="7" rx="1" fill="#1c2024"/>
+    <text x="30" y="5.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="4.5" fill="#e9ecee">32R</text>
+    <rect x="42" y="0" width="22" height="7" rx="1" fill="#1c2024"/>
+    <text x="53" y="5.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="4.5" fill="#e9ecee">50/51</text>
+    <rect x="67" y="0" width="22" height="7" rx="1" fill="#1c2024"/>
+    <text x="78" y="5.5" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="4.5" fill="#e9ecee">27/59</text>
+  </g>
+
+  <!-- Left: Drawout Cradle Guide Rails & Interlocks -->
+  <g transform="translate(14, 34)">
+    <!-- Truck Position -->
+    <rect x="0" y="0" width="80" height="24" rx="2" fill="#f5f6f7" stroke="#dde0e3" stroke-width="1"/>
+    <text x="6" y="11" font-family="IBM Plex Sans, sans-serif" font-size="6.5" font-weight="600" fill="#727a83">VCB TRUCK</text>
+    <text x="6" y="20" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" fill="#2b7a3d">● RACKED IN</text>
+
+    <!-- Spring Charged Status -->
+    <rect x="0" y="28" width="80" height="24" rx="2" fill="#f5f6f7" stroke="#dde0e3" stroke-width="1"/>
+    <text x="6" y="39" font-family="IBM Plex Sans, sans-serif" font-size="6.5" font-weight="600" fill="#727a83">MECHANISM</text>
+    <text x="6" y="48" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" fill="#1d5d96">CHARGED ⚡</text>
+
+    <!-- Earth Switch Status -->
+    <rect x="0" y="56" width="80" height="24" rx="2" fill="#f5f6f7" stroke="#dde0e3" stroke-width="1"/>
+    <text x="6" y="67" font-family="IBM Plex Sans, sans-serif" font-size="6.5" font-weight="600" fill="#727a83">EARTH SWITCH</text>
+    <text x="6" y="76" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" fill="#49515a">○ ES OPEN</text>
+  </g>
+
+  <!-- Center: Current & Voltage Instrument Transformers -->
+  <g transform="translate(112, 34)">
+    <rect x="0" y="0" width="84" height="80" rx="2" fill="#ffffff" stroke="#dde0e3" stroke-width="1"/>
+    <!-- 3x Current Transformers CT -->
+    <circle cx="22" cy="22" r="8" fill="none" stroke="#49515a" stroke-width="1.3"/>
+    <circle cx="34" cy="22" r="8" fill="none" stroke="#49515a" stroke-width="1.3"/>
+    <text x="48" y="24" font-family="IBM Plex Mono, monospace" font-size="7" fill="#49515a">3× CT</text>
+    <text x="22" y="38" font-family="IBM Plex Mono, monospace" font-size="6" fill="#727a83">400/1A Cl 0.2S</text>
+
+    <!-- Potential Transformer PT / VT -->
+    <path d="M22 52 v14 M34 52 v14" stroke="#49515a" stroke-width="1.2"/>
+    <circle cx="22" cy="58" r="4.5" fill="none" stroke="#49515a" stroke-width="1"/>
+    <circle cx="34" cy="58" r="4.5" fill="none" stroke="#49515a" stroke-width="1"/>
+    <text x="48" y="60" font-family="IBM Plex Mono, monospace" font-size="7" fill="#49515a">1× PT</text>
+    <text x="22" y="74" font-family="IBM Plex Mono, monospace" font-size="6" fill="#727a83">6.6kV / 110V</text>
+  </g>
+
+  <!-- Right: Vacuum Interrupter Breaker & Disconnect Tulips -->
+  <!-- Top Incoming Feeder Bushing -->
+  <path d="M246 0 V24" fill="none" stroke-width="2.6" data-k="bayTop" stroke="#8c949b"/>
+  <!-- Upper Isolating Tulip Cluster -->
+  <path d="M241 24h10 M241 26h10" stroke="#49515a" stroke-width="1.2"/>
+
+  <!-- Drawout Vacuum Circuit Breaker Cradle Box -->
+  <rect x="231" y="28" width="30" height="52" rx="3" data-k="cbBox" fill="#ffffff" stroke="#49515a" stroke-width="1.8"/>
+  <!-- ANSI Standard Circuit Breaker Cross Mark (When Closed) -->
+  <path d="M236 34 l20 40 M256 34 l-20 40" stroke-width="2.6" data-k="cbX" stroke="#ffffff" stroke-linecap="round"/>
+
+  <!-- Lower Isolating Tulip Cluster -->
+  <path d="M241 80h10 M241 82h10" stroke="#49515a" stroke-width="1.2"/>
+  <!-- Bottom Outgoing Bus Drop -->
+  <path d="M246 82 V128" fill="none" stroke-width="2.6" data-k="bayBot" stroke="#8c949b"/>
+
+  <!-- Operational Breaker Flag Text -->
+  <g transform="translate(246, 100)">
+    <text x="0" y="0" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="8" font-weight="600" data-k="cbText" fill="#49515a">OPEN</text>
+    <text x="0" y="10" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="6" fill="#727a83">ANSI 52G</text>
+  </g>
+</svg>`;
+}
+
+function knobSVG(max, labels) {
+  const ticks = Array.from({ length: 11 }, (_, k) => {
+    const a = -135 + k * 27, [x0, y0] = pt(42, 42, 34, a), [x1, y1] = pt(42, 42, k % 5 === 0 ? 28.5 : 30.5, a);
+    return `<path d="M${x0.toFixed(1)} ${y0.toFixed(1)}L${x1.toFixed(1)} ${y1.toFixed(1)}" stroke="#727a83" stroke-width="${k % 5 === 0 ? 1.5 : 1}"/>`;
+  }).join('');
+  return `
+<svg viewBox="0 0 84 84" aria-hidden="true">
+  <path d="${arcPath(42, 42, 37.5, -135, 135)}" fill="none" stroke="#dde0e3" stroke-width="3" stroke-linecap="round" pathLength="100"/>
+  <path d="${arcPath(42, 42, 37.5, -135, 135)}" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100" data-k="arc"/>
+  ${ticks}
+  <circle cx="42" cy="42" r="23" fill="#262b30" stroke="#1c2024" stroke-width="1.5"/>
+  <circle cx="42" cy="42" r="19" fill="none" stroke="#3a4148" stroke-width="3" stroke-dasharray="1.6 2.2"/>
+  <g data-k="ptr"><path d="M42 42V25" stroke="#e9ecee" stroke-width="3" stroke-linecap="round"/></g>
+  <circle cx="42" cy="42" r="4" fill="#1c2024"/>
+  <text x="9" y="81" font-family="IBM Plex Mono, monospace" font-size="7" fill="#727a83" text-anchor="middle">${labels[0]}</text>
+  <text x="75" y="81" font-family="IBM Plex Mono, monospace" font-size="7" fill="#727a83" text-anchor="middle">${labels[2]}</text>
+  <text x="42" y="9" font-family="IBM Plex Mono, monospace" font-size="7" fill="#727a83" text-anchor="middle">${labels[1]}</text>
+</svg>`;
+}
+
+function genCard(i) {
+  const n = i + 1;
+  return `
+<article class="gen" id="gen${i}" data-i="${i}">
+  <header class="gen-head">
+    <div class="gen-title">${icon('i-gen')}<h2>DG ${n}</h2><small data-k="rating"></small></div>
+    <span class="badge" data-k="badge">STOPPED</span>
+  </header>
+  <div class="gen-art">${genSVG(i)}</div>
+  <div class="gen-meters">
+    <div class="meter" data-m="kw"><span class="m-l">Active · kW</span><strong data-k="kw">—</strong><i class="m-bar"><b></b></i></div>
+    <div class="meter" data-m="kvar"><span class="m-l">Reactive · kVAr</span><strong data-k="kvar">—</strong><i class="m-bar"><b></b></i></div>
+    <div class="meter" data-m="pf"><span class="m-l">cos φ</span><strong data-k="pf">—</strong><i class="m-bar"><b></b></i></div>
+    <div class="meter" data-m="hz"><span class="m-l">Frequency · Hz</span><strong data-k="hz">—</strong><i class="m-bar"><b></b></i></div>
+    <div class="meter" data-m="v"><span class="m-l">Voltage</span><strong data-k="v">—</strong><i class="m-bar"><b></b></i></div>
+    <div class="meter" data-m="load"><span class="m-l">Load</span><strong data-k="load">—</strong><i class="m-bar"><b></b></i></div>
+  </div>
+  <div class="gen-knobs">
+    <div class="knob-wrap">
+      <div class="knob" role="slider" tabindex="0" data-knob="fuel" aria-label="DG ${n} fuel (governor)" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">${knobSVG(100, ['0', '50', '100'])}</div>
+      <div class="knob-label"><span>Fuel</span><strong data-k="fuelV">0 %</strong></div>
+    </div>
+    <div class="knob-wrap">
+      <div class="knob" role="slider" tabindex="0" data-knob="field" aria-label="DG ${n} excitation (AVR)" aria-valuemin="0" aria-valuemax="200" aria-valuenow="0">${knobSVG(200, ['0', '100', '200'])}</div>
+      <div class="knob-label"><span>Field</span><strong data-k="fieldV">0 %</strong></div>
+    </div>
+  </div>
+  <div class="gen-alarm" data-k="alarm"></div>
+  <div class="gen-buttons">
+    <button class="button button-ok" type="button" data-act="start">${icon('i-power')}Start</button>
+    <button class="button button-danger" type="button" data-act="stop">${icon('i-stop')}Stop</button>
+    <button class="button" type="button" data-act="close">${icon('i-cb-close')}Close CB</button>
+    <button class="button" type="button" data-act="open">${icon('i-cb-open')}Open CB</button>
+    <div class="tabs seg" role="group" aria-label="DG ${n} mode">
+      <button class="tab" type="button" data-act="man">${icon('i-hand')}Man</button>
+      <button class="tab" type="button" data-act="auto">${icon('i-auto')}Auto</button>
+    </div>
+  </div>
+  <div class="gen-bay">${baySVG(i)}</div>
+</article>`;
+}
+
+/* ---- Gauges ------------------------------------------------------------ */
+function buildGauge(def) {
+  const cx = 50, cy = 50;
+  const ang = def.angle;
+  let s = `<svg viewBox="0 0 100 92" role="img" aria-label="${def.label}"><circle cx="50" cy="50" r="47" fill="#fff" stroke="#c4c9ce" stroke-width="1.2"/><circle cx="50" cy="50" r="43.5" fill="none" stroke="#dde0e3" stroke-width=".6"/>`;
+  for (const z of def.zones) s += `<path d="${arcPath(cx, cy, 39.5, z.a0, z.a1)}" fill="none" stroke="${z.c}" stroke-width="4" opacity="${z.o ?? 1}"/>`;
+  for (const t of def.ticks) {
+    const a = ang(t.v), [x0, y0] = pt(cx, cy, 43, a), [x1, y1] = pt(cx, cy, t.major ? 36.5 : 39.5, a);
+    s += `<path d="M${x0.toFixed(1)} ${y0.toFixed(1)}L${x1.toFixed(1)} ${y1.toFixed(1)}" stroke="#49515a" stroke-width="${t.major ? 1.3 : .7}"/>`;
+    if (t.label != null) { const [lx, ly] = pt(cx, cy, 29.5, a); s += `<text x="${lx.toFixed(1)}" y="${(ly + 2.4).toFixed(1)}" font-family="IBM Plex Mono, monospace" font-size="7" fill="#49515a" text-anchor="middle">${t.label}</text>`; }
+  }
+  s += `<text x="50" y="68" font-family="IBM Plex Sans, sans-serif" font-size="7.5" font-weight="600" fill="#727a83" text-anchor="middle">${def.unit}</text>`;
+  s += `<g data-k="needle"><path d="M48.6 56L50 11L51.4 56Z" fill="#b42323"/></g><circle cx="50" cy="50" r="4.2" fill="#1c2024"/><circle cx="50" cy="50" r="1.4" fill="#a3abb3"/></svg>`;
+  return s;
+}
+const lin = (min, max, sweep = 240, lo = -130) => (v) => clamp(-sweep / 2 + ((v - min) / (max - min)) * sweep, lo, sweep / 2 + 6);
+function gaugeDefs(p) {
+  const kfmt = (v) => (v >= 1000 ? (v / 1000).toFixed(v % 1000 ? 1 : 0) + 'k' : String(Math.round(v)));
+  const mk = (min, max, steps, every, fmt) => Array.from({ length: steps + 1 }, (_, k) => {
+    const v = min + ((max - min) * k) / steps; return { v, major: k % every === 0, label: k % every === 0 ? fmt(v) : null };
+  });
+  const hzA = lin(p.hzMin, p.hzMax), vMax = p.vNom > 1000 ? 8000 : 500, vA = lin(0, vMax);
+  const kwA = lin(0, p.scaleKW), kvA = lin(0, p.scaleKVAr);
+  const pfA = (v) => -(1 - clamp(Math.abs(v), 0, 1)) * 120;
+  const pfTicks = [0, .25, .5, .75, 1, .75, .5, .25, 0].map((m, k) => ({ v: m, a: -120 + k * 30, major: k % 2 === 0, label: k % 2 === 0 ? (m === 1 ? '1' : m === 0 ? '0' : '.5') : null }));
+  const G = '#2b7a3d', A = '#a8640a', R = '#b42323';
+  return [
+    { id: 'hz', label: 'Frequency', unit: 'Hz', angle: hzA, ticks: mk(p.hzMin, p.hzMax, 8, 2, (v) => v.toFixed(v === Math.round(v) ? 0 : 1)),
+      zones: [{ a0: hzA(p.fNom - p.tolF), a1: hzA(p.fNom + p.tolF), c: G, o: .85 }], read: (g) => g.hz, show: (g) => g.hz.toFixed(2), unitS: 'Hz' },
+    { id: 'v', label: 'Voltage', unit: p.vNom > 1000 ? 'kV' : 'V', angle: vA, ticks: mk(0, vMax, 10, 2, (v) => (p.vNom > 1000 ? String(v / 1000) : String(v))),
+      zones: [{ a0: vA(p.vNom - p.tolV), a1: vA(p.vNom + p.tolV), c: G, o: .85 }], read: (g) => g.volts, show: (g) => (p.vNom > 1000 ? (g.volts / 1000).toFixed(2) : g.volts.toFixed(0)), unitS: p.vNom > 1000 ? 'kV' : 'V' },
+    { id: 'kw', label: 'Active power', unit: 'kW', angle: kwA, ticks: mk(0, p.scaleKW, 10, 2, kfmt),
+      zones: [{ a0: kwA(0.8 * p.scaleKW), a1: kwA(0.9 * p.scaleKW), c: A, o: .9 }, { a0: kwA(0.9 * p.scaleKW), a1: kwA(p.scaleKW), c: R, o: .9 }], read: (g) => g.outKW, show: (g) => nf0.format(g.outKW), unitS: 'kW' },
+    { id: 'kvar', label: 'Reactive power', unit: 'kVAr', angle: kvA, ticks: mk(0, p.scaleKVAr, 10, 2, kfmt),
+      zones: [], read: (g) => g.outKVAr, show: (g) => nf0.format(g.outKVAr), unitS: 'kVAr' },
+    { id: 'pf', label: 'Power factor', unit: 'cos φ', angle: pfA, ticks: pfTicks.map((t) => ({ ...t, v: t.v })), pfMode: true,
+      zones: [], read: (g) => g.pf, show: (g) => Math.abs(g.pf).toFixed(2), unitS: '' },
+  ];
+}
+function buildPf(def) {
+  const cx = 50, cy = 50;
+  let s = `<svg viewBox="0 0 100 92" role="img" aria-label="Power factor"><circle cx="50" cy="50" r="47" fill="#fff" stroke="#c4c9ce" stroke-width="1.2"/><circle cx="50" cy="50" r="43.5" fill="none" stroke="#dde0e3" stroke-width=".6"/>`;
+  s += `<path d="${arcPath(cx, cy, 39.5, -30, 30)}" fill="none" stroke="#2b7a3d" stroke-width="4" opacity=".85"/>`;
+  for (const t of def.ticks) {
+    const [x0, y0] = pt(cx, cy, 43, t.a), [x1, y1] = pt(cx, cy, t.major ? 36.5 : 39.5, t.a);
+    s += `<path d="M${x0.toFixed(1)} ${y0.toFixed(1)}L${x1.toFixed(1)} ${y1.toFixed(1)}" stroke="#49515a" stroke-width="${t.major ? 1.3 : .7}"/>`;
+    if (t.label != null) { const [lx, ly] = pt(cx, cy, 29.5, t.a); s += `<text x="${lx.toFixed(1)}" y="${(ly + 2.4).toFixed(1)}" font-family="IBM Plex Mono, monospace" font-size="7" fill="#49515a" text-anchor="middle">${t.label}</text>`; }
+  }
+  s += `<text x="38" y="68" font-family="IBM Plex Sans, sans-serif" font-size="6" fill="#727a83" text-anchor="middle">LAG</text><text x="62" y="68" font-family="IBM Plex Sans, sans-serif" font-size="6" fill="#727a83" text-anchor="middle">LEAD</text>`;
+  s += `<text x="50" y="76" font-family="IBM Plex Sans, sans-serif" font-size="7.5" font-weight="600" fill="#727a83" text-anchor="middle">cos φ</text>`;
+  s += `<g data-k="needle"><path d="M48.6 56L50 11L51.4 56Z" fill="#b42323"/></g><circle cx="50" cy="50" r="4.2" fill="#1c2024"/><circle cx="50" cy="50" r="1.4" fill="#a3abb3"/></svg>`;
+  return s;
+}
+
+/* ---- Synchroscope Dial ------------------------------------------------- */
+function scopeSVG() {
+  let ticks = '';
+  for (let a = 0; a < 360; a += 5) {
+    const major = a % 30 === 0, mid = a % 10 === 0;
+    const [x0, y0] = pt(100, 100, 83, a), [x1, y1] = pt(100, 100, major ? 73 : mid ? 77 : 79.5, a);
+    ticks += `<path d="M${x0.toFixed(1)} ${y0.toFixed(1)}L${x1.toFixed(1)} ${y1.toFixed(1)}" stroke="${major ? '#15181b' : '#727a83'}" stroke-width="${major ? 1.6 : 1}"/>`;
+  }
+  return `
+<svg class="syncscope" viewBox="0 0 200 200" role="img" aria-label="Synchroscope" id="scope">
+  <circle cx="100" cy="100" r="97" fill="#262b30" stroke="#1c2024" stroke-width="2"/>
+  <circle cx="100" cy="100" r="90" fill="#fff" stroke="#c4c9ce" stroke-width="1.2"/>
+  ${ticks}
+  <path d="${arcPath(100, 100, 66, -12, 12)}" fill="none" stroke="#2b7a3d" stroke-width="3" opacity=".3"/>
+  <path d="${arcPath(100, 100, 66, -2, 2)}" fill="none" stroke="#2b7a3d" stroke-width="5"/>
+  <path d="M100 8v10" stroke="#2b7a3d" stroke-width="3"/>
+  <text x="100" y="38" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" font-weight="600" fill="#2b7a3d" letter-spacing="1">SYNC</text>
+  <g font-family="IBM Plex Sans, sans-serif" font-size="8" font-weight="600" fill="#49515a" letter-spacing=".8">
+    <text x="62" y="130" text-anchor="middle">SLOW</text><text x="138" y="130" text-anchor="middle">FAST</text>
+  </g>
+  <path d="M42 120a28 28 0 0 1 8-19" fill="none" stroke="#49515a" stroke-width="1.3" marker-end="url(#ah)"/>
+  <path d="M158 120a28 28 0 0 0-8-19" fill="none" stroke="#49515a" stroke-width="1.3" marker-end="url(#ah)"/>
+  <defs><marker id="ah" viewBox="0 0 6 6" refX="3" refY="3" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M0 0L6 3L0 6z" fill="#49515a"/></marker></defs>
+  <g id="lamps">${[0, 1, 2].map((k) => `<circle cx="${82 + k * 18}" cy="152" r="4.6" fill="#fbf0dc" stroke="#a8640a" stroke-width="1" data-lamp="${k}"/>`).join('')}</g>
+  <text x="100" y="170" text-anchor="middle" font-family="IBM Plex Sans, sans-serif" font-size="6.5" fill="#727a83" letter-spacing=".8">SYNC LAMPS</text>
+  <g id="needle"><path d="M97.4 112L100 18L102.6 112Z" fill="#15181b" id="needleBody"/><rect x="97.6" y="112" width="4.8" height="14" rx="1" fill="#15181b"/></g>
+  <circle cx="100" cy="100" r="7" fill="#262b30"/><circle cx="100" cy="100" r="2.4" fill="#a3abb3"/>
+  <g id="scopeMask" opacity="0"><rect x="45" y="86" width="110" height="28" rx="4" fill="#fff" fill-opacity=".92" stroke="#c4c9ce"/><text id="scopeMsg" x="100" y="104" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600" fill="#49515a"></text></g>
+</svg>`;
+}
+
+/* ========================================================================
+   Build DOM
+   ======================================================================== */
+const gensEl = $('#gens');
+gensEl.innerHTML = Array.from({ length: N }, (_, i) => genCard(i)).join('');
+$('#scopeHost').innerHTML = scopeSVG();
+cache.cards = $$('.gen', gensEl).map((el) => {
+  const o = { el, k: {} };
+  $$('[data-k]', el).forEach((n) => { o.k[n.dataset.k] = n; });
+  o.m = {}; $$('[data-m]', el).forEach((n) => { o.m[n.dataset.m] = { el: n, v: $('strong', n), b: $('.m-bar b', n) }; });
+  o.knob = {}; $$('[data-knob]', el).forEach((n) => { o.knob[n.dataset.knob] = { el: n, arc: $('[data-k=arc]', n), ptr: $('[data-k=ptr]', n) }; });
+  o.btn = {}; $$('[data-act]', el).forEach((n) => { o.btn[n.dataset.act] = n; });
+  return o;
+});
+
+/* ---- Top Telemetry & Tabs ---------------------------------------------- */
+$('#topTele').innerHTML = ['bus:Bus', 'freq:Frequency', 'volt:Voltage', 'load:Load', 'online:Units on bus', 'res:Reserve']
+  .map((s) => { const [k, l] = s.split(':'); return `<div class="telemetry-pill" data-t="${k}"><span>${l}</span><strong>—</strong></div>`; }).join('');
+const tele = {}; $$('#topTele [data-t]').forEach((n) => { tele[n.dataset.t] = { el: n, v: $('strong', n) }; });
+
+function buildTabs() {
+  $('#profileTabs').innerHTML = Object.values(Sim.PROFILES).map((p) => `<button class="tab${p.id === sim.profileId ? ' active' : ''}" type="button" data-profile="${p.id}" title="${p.long}">${p.label}</button>`).join('');
+  $('#slipTabs').innerHTML = Object.values(Sim.SLIPS).map((s) => `<button class="tab${s.id === sim.slipId ? ' active' : ''}" type="button" data-slip="${s.id}" title="${s.long}">${s.label}</button>`).join('');
+}
+function buildSyncSelect() {
+  $('#syncSelect').innerHTML = Array.from({ length: N }, (_, i) => `<button class="tab${i === sel ? ' active' : ''}" type="button" data-sel="${i}"><i></i>DG ${i + 1}</button>`).join('');
+}
+
+/* ---- Instruments ------------------------------------------------------- */
+function buildInstruments() {
+  const defs = gaugeDefs(sim.p);
+  cache.gauges = defs.map((d) => {
+    const wrap = document.createElement('div'); wrap.className = 'gauge';
+    wrap.innerHTML = (d.pfMode ? buildPf({ ...d, ticks: d.ticks }) : buildGauge(d)) + `<div class="gauge-val">—<small>${d.unitS}</small></div>`;
+    return { def: d, wrap, needle: $('[data-k=needle]', wrap), val: $('.gauge-val', wrap), cur: -120, tgt: -120 };
+  });
+  const host = $('#instr'); host.innerHTML = ''; cache.gauges.forEach((g) => host.appendChild(g.wrap));
+}
+
+/* ---- Load Panel -------------------------------------------------------- */
+function buildLoadPanel() {
+  const p = sim.p, sl = $('#demandSlider');
+  sl.max = String(p.maxDemandKW); sl.step = String(p.ratedKW / 50); sl.value = String(sim.demandKW);
+  const use = p.ratedKW - p.useKW;
+  $('#presets').innerHTML = [['0', 0], ['½ DG', .5], ['1 DG', 1], ['2 DG', 2], ['3 DG', 3]]
+    .map(([l, k]) => `<button class="button button-sm" type="button" data-preset="${k * use}">${l}</button>`).join('');
+  $('#loadPf').textContent = 'Load PF ' + (1 / Math.hypot(1, p.loadTan)).toFixed(3) + ' lagging';
+  $('#share').innerHTML = Array.from({ length: N }, (_, i) => `<div class="share-row off" data-share="${i}"><span class="nm">DG ${i + 1}</span><span class="share-track"><b></b><i style="left:${(use / p.ratedKW) * 100}%"></i></span><span class="val">—</span></div>`).join('');
+  $$('#share [data-share]').forEach((n) => { cache.share = cache.share || []; cache.share[+n.dataset.share] = { row: n, bar: $('b', n), val: $('.val', n) }; });
+}
+
+/* ========================================================================
+   Floating Tutorial Window Controls (Draggable & Non-Modal)
+   ======================================================================== */
+const helpFloat = $('#helpFloat');
+const dragHandle = $('#helpDragHandle');
+let isDraggingHelp = false;
+let dragStartX = 0, dragStartY = 0, initialLeft = 0, initialTop = 0;
+
+dragHandle.addEventListener('pointerdown', (e) => {
+  if (e.target.closest('.help-btn')) return;
+  isDraggingHelp = true;
+  dragHandle.setPointerCapture(e.pointerId);
+  const rect = helpFloat.getBoundingClientRect();
+  dragStartX = e.clientX;
+  dragStartY = e.clientY;
+  initialLeft = rect.left;
+  initialTop = rect.top;
+  e.preventDefault();
+});
+
+dragHandle.addEventListener('pointermove', (e) => {
+  if (!isDraggingHelp) return;
+  const dx = e.clientX - dragStartX;
+  const dy = e.clientY - dragStartY;
+  let newLeft = initialLeft + dx;
+  let newTop = initialTop + dy;
+  const maxLeft = window.innerWidth - helpFloat.offsetWidth - 10;
+  const maxTop = window.innerHeight - 50;
+  newLeft = clamp(newLeft, 10, maxLeft);
+  newTop = clamp(newTop, 40, maxTop);
+  helpFloat.style.left = newLeft + 'px';
+  helpFloat.style.top = newTop + 'px';
+  helpFloat.style.right = 'auto';
+});
+
+const endDrag = (e) => {
+  if (!isDraggingHelp) return;
+  isDraggingHelp = false;
+  try { dragHandle.releasePointerCapture(e.pointerId); } catch (_) {}
+};
+dragHandle.addEventListener('pointerup', endDrag);
+dragHandle.addEventListener('pointercancel', endDrag);
+
+$('#btnHelp').addEventListener('click', () => {
+  helpFloat.classList.toggle('hidden');
+});
+$('#helpCloseBtn').addEventListener('click', () => {
+  helpFloat.classList.add('hidden');
+});
+$('#helpMinimize').addEventListener('click', () => {
+  helpFloat.classList.toggle('minimized');
+});
+$('#helpExpand').addEventListener('click', () => {
+  helpFloat.classList.toggle('wide');
+});
+
+// Tutorial Tabs
+$$('.help-tab', helpFloat).forEach((tab) => {
+  tab.addEventListener('click', () => {
+    $$('.help-tab', helpFloat).forEach((t) => t.classList.remove('active'));
+    tab.classList.add('active');
+    const target = tab.dataset.htab;
+    $$('.htab-pane', helpFloat).forEach((p) => p.classList.add('hidden'));
+    const pane = $(`#pane-${target}`, helpFloat);
+    if (pane) pane.classList.remove('hidden');
+  });
+});
+
+/* ========================================================================
+   Controls & Operator Actions
+   ======================================================================== */
+const toastHost = $('#toasts');
+function toast(msg, lvl = 'info') {
+  const t = document.createElement('div'); t.className = 'toast ' + lvl;
+  t.innerHTML = icon(lvl === 'alarm' ? 'i-alert' : lvl === 'ok' ? 'i-check' : lvl === 'warn' ? 'i-alert' : 'i-info') + `<span></span>`;
+  $('span', t).textContent = msg; toastHost.appendChild(t);
+  setTimeout(() => t.remove(), 3200);
+  while (toastHost.children.length > 3) toastHost.firstChild.remove();
+}
+
+function act(i, a) {
+  sel = i; buildSyncSelect();
+  if (a === 'start') Sim.start(sim, i);
+  else if (a === 'stop') Sim.stop(sim, i);
+  else if (a === 'close') { const r = Sim.closeCB(sim, i); if (!r.ok) toast(r.reason, 'warn'); }
+  else if (a === 'open') Sim.openCB(sim, i);
+  else if (a === 'auto') { if (sim.gens[i].state === STATE.MANUAL) Sim.toggleAuto(sim, i); }
+  else if (a === 'man') { if (sim.gens[i].state === STATE.AUTO) Sim.toggleAuto(sim, i); }
+}
+
+gensEl.addEventListener('click', (e) => {
+  const b = e.target.closest('[data-act]');
+  const c = e.target.closest('.gen'); if (!c) return;
+  const i = +c.dataset.i;
+  if (b && !b.disabled) act(i, b.dataset.act);
+  else if (sel !== i) { sel = i; buildSyncSelect(); }
+});
+
+$('#btnToggleTie').addEventListener('click', () => {
+  const res = Sim.toggleBusTie(sim);
+  if (!res.ok) toast(res.reason, 'alarm');
+});
+
+$('#syncSelect').addEventListener('click', (e) => { const b = e.target.closest('[data-sel]'); if (b) { sel = +b.dataset.sel; buildSyncSelect(); } });
+$('#syncClose').addEventListener('click', () => act(sel, 'close'));
+$('#syncOpen').addEventListener('click', () => act(sel, 'open'));
+$('#profileTabs').addEventListener('click', (e) => { const b = e.target.closest('[data-profile]'); if (b && b.dataset.profile !== sim.profileId) reset(b.dataset.profile, sim.slipId); });
+$('#slipTabs').addEventListener('click', (e) => { const b = e.target.closest('[data-slip]'); if (b) { Sim.setSlip(sim, b.dataset.slip); buildTabs(); } });
+$('#btnPause').addEventListener('click', () => { sim.paused = !sim.paused; });
+$('#btnReset').addEventListener('click', () => reset(sim.profileId, sim.slipId));
+$('#logClear').addEventListener('click', () => { sim.log.length = 0; lastLogId = -2; });
+$('#demandSlider').addEventListener('input', (e) => Sim.setDemand(sim, +e.target.value));
+$('#presets').addEventListener('click', (e) => { const b = e.target.closest('[data-preset]'); if (b) Sim.setDemand(sim, +b.dataset.preset); });
+
+let seenToast = 0;
+function reset(profileId, slipId) {
+  sim = Sim.create(profileId, slipId); sel = 0; lastLogId = -1; seenToast = 0;
+  document.documentElement.classList.toggle('lv', Sim.PROFILES[profileId].lv);
+  buildTabs(); buildSyncSelect(); buildInstruments(); buildLoadPanel();
+  cache.cards.forEach((c) => {
+    setT(c.k.rating, nf0.format(sim.p.ratedKW) + ' kW');
+    setT($('.m-l', c.m.kw.el), 'Active · kW'); setT($('.m-l', c.m.kvar.el), 'Reactive · kVAr');
+    setT($('.m-l', c.m.hz.el), 'Frequency · Hz'); setT($('.m-l', c.m.v.el), 'Voltage · ' + unitV());
+  });
+  cache.scopeAng = 0;
+}
+
+/* ---- Rotary Knobs Interaction ------------------------------------------ */
+function bindKnobs() {
+  $$('.knob', gensEl).forEach((k) => {
+    const i = +k.closest('.gen').dataset.i, kind = k.dataset.knob, max = kind === 'fuel' ? 100 : 200;
+    const set = (v) => { const ok = kind === 'fuel' ? Sim.setFuel(sim, i, v) : Sim.setField(sim, i, v); if (ok) { sel = i; } return ok; };
+    const get = () => sim.gens[i][kind];
+    let drag = false;
+    const fromEvent = (e) => {
+      const r = k.getBoundingClientRect(), dx = e.clientX - (r.left + r.width / 2), dy = e.clientY - (r.top + r.height / 2);
+      let a = (Math.atan2(dx, -dy) * 180) / Math.PI;
+      if (Math.abs(a) > 135) a = get() / max < 0.5 ? -135 : 135;
+      set(((a + 135) / 270) * max);
+    };
+    k.addEventListener('pointerdown', (e) => { if (k.getAttribute('aria-disabled') === 'true') return; drag = true; k.setPointerCapture(e.pointerId); k.focus(); fromEvent(e); e.preventDefault(); });
+    k.addEventListener('pointermove', (e) => { if (drag) fromEvent(e); });
+    const end = (e) => { drag = false; try { k.releasePointerCapture(e.pointerId); } catch (_) { } };
+    k.addEventListener('pointerup', end); k.addEventListener('pointercancel', end);
+    k.addEventListener('wheel', (e) => { if (k.getAttribute('aria-disabled') === 'true') return; e.preventDefault(); set(get() + (e.deltaY < 0 ? 1 : -1) * (e.shiftKey ? 5 : 1)); }, { passive: false });
+    k.addEventListener('keydown', (e) => {
+      const st = e.shiftKey ? 10 : 1; let v = null;
+      if (e.key === 'ArrowUp' || e.key === 'ArrowRight') v = get() + st; else if (e.key === 'ArrowDown' || e.key === 'ArrowLeft') v = get() - st;
+      else if (e.key === 'PageUp') v = get() + 10; else if (e.key === 'PageDown') v = get() - 10; else if (e.key === 'Home') v = 0; else if (e.key === 'End') v = max;
+      if (v !== null) { e.preventDefault(); set(v); }
+    });
+  });
+}
+
+/* ========================================================================
+   Render Loop & Visual Updates
+   ======================================================================== */
+const STATE_UI = [
+  { t: 'STOPPED', c: '' }, { t: 'RUNNING', c: 'b-run' }, { t: 'SYNC ARMED', c: 'b-armed' }, { t: 'ON LOAD · MAN', c: 'b-load' }, { t: 'ON LOAD · AUTO', c: 'b-load' },
+];
+const sgn = (v, d) => (v >= 0 ? '+' : '−') + Math.abs(v).toFixed(d);
+const fmtV = (v) => (sim.p.vNom > 1000 ? (v / 1000).toFixed(2) : nf0.format(v));
+const unitV = () => (sim.p.vNom > 1000 ? 'kV' : 'V');
+
+function renderCard(i) {
+  const g = sim.gens[i], c = cache.cards[i], p = sim.p, st = g.state, on = st > 0;
+  const stu = g.rpTripped && st === 0 ? { t: 'RP TRIP (ANSI 32R)', c: 'b-trip' } : STATE_UI[st];
+  setT(c.k.badge, stu.t); c.k.badge.className = 'badge ' + stu.c;
+  setCls(c.el, 'selected', i === sel); setCls(c.el, 'is-trip', g.rpTripped && st === 0);
+  setCls(c.k.art, 'run', on); setCls(c.k.art, 'loaded', st >= 3);
+  if (on) c.k.art.style.setProperty('--dur', (0.55 * p.fNom / Math.max(g.hz, 1)).toFixed(3) + 's');
+  c.k.cable.setAttribute('stroke', on ? 'var(--live)' : '#8c949b');
+  c.k.led.setAttribute('fill', g.rpTripped && !on ? 'var(--alarm)' : st >= 3 ? 'var(--ok)' : st === 2 ? 'var(--warn)' : on ? 'var(--accent)' : '#8c949b');
+
+  // Breaker Bay / VCB Truck Status
+  const closed = st >= 3;
+  const targetBus = Sim.targetBus(sim, g);
+  c.k.bayTop.setAttribute('stroke', on ? 'var(--live)' : '#8c949b');
+  c.k.bayBot.setAttribute('stroke', closed && targetBus.live ? 'var(--live)' : '#8c949b');
+  c.k.cbBox.setAttribute('fill', closed ? 'var(--live)' : '#ffffff');
+  c.k.cbBox.setAttribute('stroke', st === 2 ? 'var(--warn)' : closed ? 'var(--live)' : '#49515a');
+  c.k.cbBox.setAttribute('stroke-dasharray', st === 2 ? '4 2' : '');
+  c.k.cbX.setAttribute('opacity', closed ? 1 : 0);
+  setT(c.k.cbText, closed ? 'CLOSED' : st === 2 ? 'ARMED' : 'OPEN');
+  c.k.cbText.setAttribute('fill', closed ? 'var(--energized)' : st === 2 ? 'var(--warn)' : '#49515a');
+
+  // Meters
+  const M = c.m, dim = !on;
+  const setM = (key, text, frac, cls) => {
+    const m = M[key]; setT(m.v, text);
+    m.b.style.width = (clamp(frac, 0, 1) * 100).toFixed(1) + '%';
+    m.el.className = 'meter' + (cls ? ' ' + cls : '') + (dim ? ' dim' : '');
+  };
+  if (!on) {
+    for (const k of ['kw', 'kvar', 'pf', 'hz', 'v', 'load']) setM(k, '—', 0, '');
+  } else {
+    const loaded = st >= 3;
+    setM('kw', loaded ? nf0.format(g.outKW) : '0', Math.abs(g.outKW) / p.ratedKW, g.outKW < p.rpTrigger ? 'alarm' : g.outKW > 0.9 * p.ratedKW ? 'warn' : loaded ? 'ok' : '');
+    setM('kvar', loaded ? nf0.format(g.outKVAr) : '0', g.outKVAr / p.ratedKVAr, '');
+    setM('pf', loaded ? Math.abs(g.pf).toFixed(2) : '—', loaded ? Math.abs(g.pf) : 0, '');
+    const fe = Math.abs(g.hz - p.fNom) > p.tolF; setM('hz', g.hz.toFixed(2), (g.hz - p.hzMin) / (p.hzMax - p.hzMin), fe ? 'warn' : '');
+    const ve = Math.abs(g.volts - p.vNom) > p.tolV; setM('v', fmtV(g.volts), g.volts / (p.vMaxPu * p.vNom), ve ? 'warn' : '');
+    const lp = loaded ? g.outKW / (p.ratedKW - p.useKW) : 0; setM('load', loaded ? Math.round(lp * 100) + '%' : '0%', lp, lp > 1 ? 'alarm' : lp > 0.9 ? 'warn' : '');
+  }
+
+  // Rotary Knobs
+  for (const kind of ['fuel', 'field']) {
+    const kn = c.knob[kind], max = kind === 'fuel' ? 100 : 200, v = g[kind];
+    const lock = st === 0 || st === 4;
+    kn.el.setAttribute('aria-disabled', String(lock)); kn.el.setAttribute('aria-valuenow', String(Math.round(v)));
+    kn.el.tabIndex = lock ? -1 : 0;
+    const f = clamp(v / max, 0, 1);
+    kn.ptr.setAttribute('transform', `rotate(${(-135 + f * 270).toFixed(1)} 42 42)`);
+    kn.arc.setAttribute('stroke-dasharray', `${(f * 100).toFixed(1)} 100`);
+    setT(c.k[kind === 'fuel' ? 'fuelV' : 'fieldV'], Math.round(v) + ' %');
+  }
+
+  // Buttons
+  c.btn.start.disabled = st !== 0; c.btn.stop.disabled = st === 0;
+  c.btn.close.disabled = st !== 1; c.btn.open.disabled = st < 2;
+  c.btn.man.disabled = st < 3; c.btn.auto.disabled = st < 3;
+  setCls(c.btn.man, 'active', st === 3 || st < 3); setCls(c.btn.auto, 'active', st === 4);
+
+  // Reverse Power Alert Box
+  let html = '';
+  if (g.rpActive) {
+    const left = Math.max(0, p.rpDelay - g.rpTimer);
+    html = `<div class="rp-box">${icon('i-alert')}<span>REVERSE POWER (ANSI 32R) – Trip in ${left.toFixed(1)} s</span><div class="rp-track"><b style="width:${(g.rpTimer / p.rpDelay * 100).toFixed(0)}%"></b></div></div>`;
+  } else if (g.rpTripped && st === 0) {
+    html = `<div class="rp-box tripped">${icon('i-alert')}<span>TRIPPED (ANSI 32R) – Reverse Power Protection</span></div>`;
+  }
+  if (c.alarmHtml !== html) { c.alarmHtml = html; c.k.alarm.innerHTML = html; c.k.alarm.style.margin = html ? '6px 8px 0' : '0'; }
+}
+
+const curAng = (cur, tgt, dt, k = 12) => cur + (tgt - cur) * (1 - Math.exp(-dt * k));
+function renderSync(dt) {
+  const g = sim.gens[sel], p = sim.p, st = g.state;
+  const pm = Sim.permissive(sim, g), d = Sim.dPhi(sim, g);
+  const tb = pm.tb;
+
+  $$('#syncSelect .tab', document).forEach((b, i) => {
+    const s = sim.gens[i], dot = $('i', b);
+    dot.className = s.rpTripped && s.state === 0 ? 'trip' : s.state >= 3 ? 'load' : s.state === 2 ? 'armed' : s.state === 1 ? 'run' : '';
+  });
+
+  const chk = (id, ok, text, label, show) => {
+    const el = $(id); el.className = 'chk' + (show ? (ok ? ' ok' : ' bad') : '');
+    setT($('strong', el), show ? text : '—'); setT($('em', el), label);
+    $('use', el).setAttribute('href', show ? (ok ? '#i-check' : '#i-x') : '#i-x');
+  };
+  const live = st === 1 || st === 2;
+  chk('#chkF', pm.fOK, sgn(pm.dF, 2) + ' Hz', `Δ Frequency · ±${p.tolF.toFixed(2)} Hz`, live);
+  chk('#chkV', pm.vOK, sgn((pm.dV / pm.refV) * 100, 1) + ' %', `Δ Voltage · ±${((p.tolV / p.vNom) * 100).toFixed(1)} %`, live);
+  const phOK = d !== null && Math.abs(d) <= p.tolAngle;
+  chk('#chkP', phOK, d === null ? '—' : sgn(d, 1) + '°', `Phase angle · ±${p.tolAngle.toFixed(1)}°`, live && d !== null);
+
+  const mask = $('#scopeMask'), msg = $('#scopeMsg');
+  let m = '';
+  if (st === 0) m = 'STOPPED';
+  else if (st >= 3) m = 'ON BUS';
+  else if (!tb.live) m = 'DEAD BUS';
+  mask.style.opacity = m ? 1 : 0; setT(msg, m);
+
+  const tgt = d === null ? 0 : d;
+  let diff = Sim.fold(tgt - cache.scopeAng); cache.scopeAng += diff * (1 - Math.exp(-dt * 14));
+  $('#needle').setAttribute('transform', `rotate(${cache.scopeAng.toFixed(2)} 100 100)`);
+  $('#needleBody').setAttribute('fill', st === 2 ? 'var(--warn)' : phOK && pm.ok && live ? 'var(--ok)' : '#15181b');
+  $$('#lamps circle').forEach((c, k) => {
+    const a = d === null ? 0 : rad((cache.scopeAng) + (k - 1) * 120);
+    c.setAttribute('fill-opacity', (m ? 0.15 : 0.15 + 0.85 * (1 - Math.cos(a)) / 2).toFixed(2));
+  });
+
+  let cls = '', ic = 'i-info', txt = '';
+  const dfAbs = Math.abs(pm.dF).toFixed(2);
+  const busLabel = sim.busTie ? 'Main Switchboard' : g.busId.toUpperCase();
+
+  if (st === 0) txt = `${g.name} is stopped. Click Start to run up diesel engine.`;
+  else if (st === 1 && !tb.live) {
+    if (pm.ok) { cls = 'ok'; ic = 'i-check'; txt = `${busLabel} is DEAD. Voltage & Frequency are healthy – click Close CB to energise busbar.`; }
+    else { cls = 'warn'; ic = 'i-alert'; txt = `Dead bus incomer. ${!pm.fOK ? `Frequency ${pm.dF > 0 ? 'high' : 'low'} – trim Fuel.` : ''} ${!pm.vOK ? `Voltage ${pm.dV > 0 ? 'high' : 'low'} – trim Field.` : ''}`; }
+  } else if (st === 1) {
+    if (!pm.fOK) { cls = 'warn'; ic = 'i-alert'; txt = `Frequency ${pm.dF > 0 ? 'fast' : 'slow'} by ${dfAbs} Hz. Adjust Fuel on ${g.name}.`; }
+    else if (!pm.vOK) { cls = 'warn'; ic = 'i-alert'; txt = `Voltage ${pm.dV > 0 ? 'high' : 'low'} – adjust Excitation on ${g.name}.`; }
+    else if (Math.abs(pm.dF) < 0.005) { cls = 'warn'; ic = 'i-info'; txt = `Needle stationary at ${sgn(d, 0)}°. Raise Fuel slightly so it creeps slowly clockwise.`; }
+    else if (pm.dF < 0) { cls = ''; ic = 'i-info'; txt = `Incoming is slow – needle rotating counter-clockwise. Raise Fuel slightly.`; }
+    else { cls = 'ok'; ic = 'i-check'; txt = `Tolerance window healthy! Click Close CB to arm check-sync relay (auto-closes at 12 o'clock).`; }
+  } else if (st === 2) {
+    cls = pm.ok ? 'warn' : 'alarm'; ic = pm.ok ? 'i-clock' : 'i-alert';
+    txt = pm.ok ? `Check-sync relay ARMED. Awaiting top dead center crossing (±${p.tolAngle}°)...` : `Relay ARMED but Δf / ΔV drifted outside window – will not close until corrected.`;
+  } else if (st === 3) {
+    cls = g.outKW < p.rpTrigger ? 'alarm' : 'ok'; ic = g.outKW < p.rpTrigger ? 'i-alert' : 'i-check';
+    txt = g.outKW < p.rpTrigger ? `${g.name} is motoring (negative kW)! Raise Fuel before ANSI 32R reverse power trip.` : `${g.name} connected to ${busLabel} (MANUAL). Adjust Fuel to pick up kW, or set AUTO.`;
+  } else {
+    cls = 'ok'; ic = 'i-check'; txt = `${g.name} connected to ${busLabel} (AUTO) – sharing active and reactive load automatically.`;
+  }
+
+  const box = $('#syncStatus'); box.className = 'sync-status ' + cls;
+  $('use', box).setAttribute('href', '#' + ic); setT($('#syncMsg'), txt);
+  $('#syncClose').disabled = st !== 1; $('#syncOpen').disabled = st < 2;
+  $('#syncClose span').textContent = st === 1 && !tb.live ? 'Close CB (Dead Bus)' : st === 1 ? 'Arm Sync · Close CB' : 'Close CB';
+}
+
+function renderInstruments(dt) {
+  const g = sim.gens[sel], on = g.state > 0;
+  setT($('#instrFor'), '· ' + g.name);
+  cache.gauges.forEach((ga) => {
+    const d = ga.def; let tgt = -120;
+    if (on) { tgt = d.angle(d.read(g)); }
+    ga.cur = curAng(ga.cur, tgt, dt, 9);
+    ga.needle.setAttribute('transform', `rotate(${ga.cur.toFixed(2)} 50 50)`);
+    const v = on ? d.show(g) : '—';
+    const html = v + `<small>${d.unitS}</small>`;
+    if (ga.html !== html) { ga.html = html; ga.val.innerHTML = html; }
+  });
+}
+
+function renderLoad() {
+  const p = sim.p, b = sim.bus;
+  const sl = $('#demandSlider');
+  if (document.activeElement !== sl) sl.value = String(sim.demandKW);
+  sl.style.setProperty('--fill', (sim.demandKW / p.maxDemandKW * 100).toFixed(1) + '%');
+  $('#demandKW').innerHTML = nf0.format(sim.demandKW) + '<small>kW</small>';
+  setT($('#demandKVAr'), nf0.format(sim.demandKW * p.loadTan) + ' kVAr');
+  sim.gens.forEach((g, i) => {
+    const s = cache.share[i], loaded = g.state >= 3;
+    s.row.classList.toggle('off', !loaded);
+    s.bar.style.width = (clamp(Math.abs(g.outKW) / p.ratedKW, 0, 1) * 100).toFixed(1) + '%';
+    s.bar.classList.toggle('neg', g.outKW < 0);
+    setT(s.val, loaded ? nf0.format(g.outKW) + ' kW' : g.state > 0 ? 'open' : 'off');
+  });
+  const un = sim.unservedKW > 1;
+  $('#balance').innerHTML = `<span>Supplied <strong>${nf0.format(sim.totalOut)} kW</strong></span>` +
+    (un ? `<span class="bad">Unserved <strong>${nf0.format(sim.unservedKW)} kW</strong></span>` : `<span>Reserve <strong>${b.live ? nf0.format(sim.reserveKW) : '—'} kW</strong></span>`);
+}
+
+function renderSwitchboard() {
+  const p = sim.p;
+  // Bus Section A
+  setCls($('#busSecA'), 'live', sim.busA.live);
+  setT($('#busTagVA'), sim.busA.live ? fmtV(sim.busA.volts) + ' ' + unitV() : 'DEAD');
+  setT($('#busTagFA'), sim.busA.live ? sim.busA.hz.toFixed(2) + ' Hz' : '0.00 Hz');
+
+  // Bus Section B
+  setCls($('#busSecB'), 'live', sim.busB.live);
+  setT($('#busTagVB'), sim.busB.live ? fmtV(sim.busB.volts) + ' ' + unitV() : 'DEAD');
+  setT($('#busTagFB'), sim.busB.live ? sim.busB.hz.toFixed(2) + ' Hz' : '0.00 Hz');
+
+  // Bus Tie Breaker BT-1
+  const tieBtn = $('#btnToggleTie');
+  setCls(tieBtn, 'closed', sim.busTie);
+  setCls(tieBtn, 'open', !sim.busTie);
+  setT($('#tieStateText'), sim.busTie ? 'CLOSED' : 'OPEN');
+  $('#tieIcon').setAttribute('href', sim.busTie ? '#i-cb-close' : '#i-cb-open');
+  setCls($('#tieStubA'), 'live', sim.busA.live);
+  setCls($('#tieStubB'), 'live', sim.busB.live);
+  setT($('#tieStatusTag'), sim.busTie ? 'Tied (Unified Bus)' : 'Split Bus Mode (Isolated)');
+
+  // Ship Load
+  setT($('#busLoadKW'), nf0.format(sim.demandKW) + ' kW');
+  setCls($('#busLoad'), 'alarm', sim.overload || (!sim.bus.live && sim.demandKW > 0));
+}
+
+function renderTop() {
+  const p = sim.p, b = sim.bus, n = sim.gens.filter((g) => g.state >= 3).length;
+  setT(tele.bus.v, b.live ? (sim.busTie ? 'TIED · LIVE' : 'SPLIT · LIVE') : 'DEAD');
+  tele.bus.el.className = 'telemetry-pill ' + (b.live ? 'is-ok' : 'is-alarm');
+  setT(tele.freq.v, b.live ? b.hz.toFixed(2) + ' Hz' : '— Hz');
+  tele.freq.el.className = 'telemetry-pill ' + (b.live && Math.abs(b.hz - p.fNom) > p.tolF ? 'is-warn' : '');
+  setT(tele.volt.v, b.live ? fmtV(b.volts) + ' ' + unitV() : '— ' + unitV());
+  tele.volt.el.className = 'telemetry-pill ' + (b.live && Math.abs(b.volts - p.vNom) > p.tolV ? 'is-warn' : '');
+  setT(tele.load.v, nf0.format(sim.demandKW) + ' kW');
+  setT(tele.online.v, n + ' / ' + N);
+  setT(tele.res.v, b.live ? nf0.format(sim.reserveKW) + ' kW' : '—');
+  tele.res.el.className = 'telemetry-pill ' + (b.live && sim.reserveKW < 0 ? 'is-alarm' : b.live && sim.reserveKW < 0.1 * p.ratedKW ? 'is-warn' : '');
+
+  const mm = Math.floor(sim.t / 60), ss = Math.floor(sim.t % 60);
+  setT($('#simTime'), String(mm).padStart(2, '0') + ':' + String(ss).padStart(2, '0'));
+  setT($('#simState b'), sim.paused ? 'PAUSED' : 'RUNNING');
+  setT($('#btnPause span'), sim.paused ? 'Resume' : 'Pause');
+  $('#btnPause use').setAttribute('href', sim.paused ? '#i-play' : '#i-pause');
+}
+
+function renderLog() {
+  const last = sim.log.length ? sim.log[sim.log.length - 1].id : 0;
+  if (last === lastLogId) return; lastLogId = last;
+  const ic = { ok: 'i-check', warn: 'i-alert', alarm: 'i-alert', info: 'i-info' };
+  $('#log').innerHTML = sim.log.slice(-60).reverse().map((e) => {
+    const mm = String(Math.floor(e.t / 60)).padStart(2, '0'), ss = String(Math.floor(e.t % 60)).padStart(2, '0');
+    return `<li class="${e.lvl}"><time>${mm}:${ss}</time>${icon(ic[e.lvl])}<span></span></li>`;
+  }).join('');
+  $$('#log li span').forEach((s, k) => { s.textContent = sim.log.slice(-60).reverse()[k].msg; });
+}
+
+function render(dt) {
+  for (let i = 0; i < N; i++) renderCard(i);
+  renderSync(dt);
+  renderInstruments(dt);
+  renderLoad();
+  renderSwitchboard();
+  renderTop();
+  renderLog();
+}
+
+/* ========================================================================
+   Main Loop
+   ======================================================================== */
+let acc = 0, last = performance.now();
+function frame(now) {
+  const dt = Math.min(0.25, (now - last) / 1000); last = now;
+  if (!sim.paused) {
+    acc += dt; let n = 0;
+    while (acc >= Sim.TICK && n++ < 12) {
+      Sim.tick(sim, Sim.TICK);
+      acc -= Sim.TICK;
+    }
+  }
+  render(dt);
+  requestAnimationFrame(frame);
+}
+
+reset('marine', 'train');
+bindKnobs();
+Sim.solve(sim);
+
+setInterval(() => {
+  for (const e of sim.log) {
+    if (e.id > seenToast) {
+      seenToast = e.id;
+      if (e.lvl === 'alarm' && e.t > 0) toast(e.msg, 'alarm');
+    }
+  }
+}, 250);
+
+requestAnimationFrame(frame);
+window.__trainer = { get sim() { return sim; }, Sim, act, reset };
+})();
+</script>
+</body>
+</html>

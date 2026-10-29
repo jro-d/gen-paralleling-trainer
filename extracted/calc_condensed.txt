@@ -1,0 +1,671 @@
+﻿    2: pushbyte 1
+    5: setlocal_1
+    6: jump ->113
+    12: getproperty gen
+    15: getlocal_1
+    16: getproperty <rt>
+    19: pushbyte 0
+    21: setproperty demandKW
+    25: getproperty gen
+    28: getlocal_1
+    29: getproperty <rt>
+    32: pushbyte 0
+    34: setproperty demandKVAr
+    38: getproperty gen
+    41: getlocal_1
+    42: getproperty <rt>
+    45: pushbyte 0
+    47: setproperty outputKW
+    51: getproperty gen
+    54: getlocal_1
+    55: getproperty <rt>
+    58: pushbyte 0
+    60: setproperty outputKVAr
+    64: getproperty gen
+    67: getlocal_1
+    68: getproperty <rt>
+    72: getlocal_1
+    73: callproperty genCalcOutputKW 1
+    77: setproperty fuelKW
+    81: getproperty gen
+    84: getlocal_1
+    85: getproperty <rt>
+    88: getlex Math
+    92: getlocal_1
+    93: callproperty genCalcOutputKVAr 1
+    98: getproperty genUseKVAr
+    101: negate
+    102: callproperty max 2
+    106: setproperty fieldKVAr
+    109: getlocal_1
+    110: increment
+    112: setlocal_1
+    113: getlocal_1
+    114: pushbyte 2
+    116: ifle ->10
+    121: getproperty gen
+    124: pushbyte 1
+    126: getproperty <rt>
+    129: getproperty state
+    132: pushbyte 10
+    135: getproperty gen
+    138: pushbyte 2
+    140: getproperty <rt>
+    143: getproperty state
+    146: multiply
+    147: add
+    149: setlocal_2
+    150: jump ->1760
+    156: getproperty gen
+    159: pushbyte 1
+    161: getproperty <rt>
+    165: getproperty demandLoadKW
+    168: setproperty demandKW
+    172: getproperty gen
+    175: pushbyte 1
+    177: getproperty <rt>
+    181: getproperty demandLoadKVAr
+    184: setproperty demandKVAr
+    188: getproperty gen
+    191: pushbyte 1
+    193: getproperty <rt>
+    196: getlex Math
+    199: getlex Math
+    203: getproperty gen
+    206: pushbyte 1
+    208: getproperty <rt>
+    211: getproperty fuelKW
+    215: getproperty genUseKW
+    218: subtract
+    220: getproperty gen
+    223: pushbyte 1
+    225: getproperty <rt>
+    228: getproperty demandKW
+    231: callproperty min 2
+    235: pushbyte 0
+    237: callproperty max 2
+    241: setproperty outputKW
+    245: getproperty gen
+    248: pushbyte 1
+    250: getproperty <rt>
+    253: getlex Math
+    256: getlex Math
+    260: getproperty gen
+    263: pushbyte 1
+    265: getproperty <rt>
+    268: getproperty fieldKVAr
+    272: getproperty genUseKVAr
+    275: subtract
+    277: getproperty gen
+    280: pushbyte 1
+    282: getproperty <rt>
+    285: getproperty demandKVAr
+    288: callproperty min 2
+    292: pushbyte 0
+    294: callproperty max 2
+    298: setproperty outputKVAr
+    301: jump ->2040
+    307: getproperty gen
+    310: pushbyte 1
+    312: getproperty <rt>
+    316: getproperty demandLoadKW
+    319: setproperty demandKW
+    323: getproperty gen
+    326: pushbyte 1
+    328: getproperty <rt>
+    332: getproperty demandLoadKVAr
+    335: setproperty demandKVAr
+    339: getproperty gen
+    342: pushbyte 1
+    344: getproperty <rt>
+    349: getproperty gen
+    352: pushbyte 1
+    354: getproperty <rt>
+    357: getproperty demandKW
+    360: callproperty genCalcRequiredFuel 1
+    364: setproperty fuel
+    368: pushbyte 1
+    370: callpropvoid jogFuelset 1
+    375: getproperty gen
+    378: pushbyte 1
+    380: getproperty <rt>
+    385: getproperty gen
+    388: pushbyte 1
+    390: getproperty <rt>
+    393: getproperty demandKVAr
+    396: callproperty genCalcRequiredField 1
+    400: setproperty field
+    404: pushbyte 1
+    406: callpropvoid jogFieldset 1
+    411: getproperty gen
+    414: pushbyte 1
+    416: getproperty <rt>
+    420: pushbyte 1
+    422: callproperty genCalcOutputKW 1
+    426: setproperty fuelKW
+    430: getproperty gen
+    433: pushbyte 1
+    435: getproperty <rt>
+    439: pushbyte 1
+    441: callproperty genCalcOutputKVAr 1
+    445: setproperty fieldKVAr
+    449: getproperty gen
+    452: pushbyte 1
+    454: getproperty <rt>
+    457: getlex Math
+    460: getlex Math
+    464: getproperty gen
+    467: pushbyte 1
+    469: getproperty <rt>
+    472: getproperty fuelKW
+    476: getproperty genUseKW
+    479: subtract
+    481: getproperty gen
+    484: pushbyte 1
+    486: getproperty <rt>
+    489: getproperty demandKW
+    492: callproperty min 2
+    496: pushbyte 0
+    498: callproperty max 2
+    502: setproperty outputKW
+    506: getproperty gen
+    509: pushbyte 1
+    511: getproperty <rt>
+    514: getlex Math
+    517: getlex Math
+    521: getproperty gen
+    524: pushbyte 1
+    526: getproperty <rt>
+    529: getproperty fieldKVAr
+    533: getproperty genUseKVAr
+    536: subtract
+    538: getproperty gen
+    541: pushbyte 1
+    543: getproperty <rt>
+    546: getproperty demandKVAr
+    549: callproperty min 2
+    553: pushbyte 0
+    555: callproperty max 2
+    559: setproperty outputKVAr
+    562: jump ->2040
+    568: getproperty gen
+    571: pushbyte 2
+    573: getproperty <rt>
+    577: getproperty demandLoadKW
+    580: setproperty demandKW
+    584: getproperty gen
+    587: pushbyte 2
+    589: getproperty <rt>
+    593: getproperty demandLoadKVAr
+    596: setproperty demandKVAr
+    600: getproperty gen
+    603: pushbyte 2
+    605: getproperty <rt>
+    608: getlex Math
+    611: getlex Math
+    615: getproperty gen
+    618: pushbyte 2
+    620: getproperty <rt>
+    623: getproperty fuelKW
+    627: getproperty genUseKW
+    630: subtract
+    632: getproperty gen
+    635: pushbyte 2
+    637: getproperty <rt>
+    640: getproperty demandKW
+    643: callproperty min 2
+    647: pushbyte 0
+    649: callproperty max 2
+    653: setproperty outputKW
+    657: getproperty gen
+    660: pushbyte 2
+    662: getproperty <rt>
+    665: getlex Math
+    668: getlex Math
+    672: getproperty gen
+    675: pushbyte 2
+    677: getproperty <rt>
+    680: getproperty fieldKVAr
+    684: getproperty genUseKVAr
+    687: subtract
+    689: getproperty gen
+    692: pushbyte 2
+    694: getproperty <rt>
+    697: getproperty demandKVAr
+    700: callproperty min 2
+    704: pushbyte 0
+    706: callproperty max 2
+    710: setproperty outputKVAr
+    713: jump ->2040
+    719: getproperty gen
+    722: pushbyte 2
+    724: getproperty <rt>
+    728: getproperty demandLoadKW
+    731: setproperty demandKW
+    735: getproperty gen
+    738: pushbyte 2
+    740: getproperty <rt>
+    744: getproperty demandLoadKVAr
+    747: setproperty demandKVAr
+    751: getproperty gen
+    754: pushbyte 2
+    756: getproperty <rt>
+    761: getproperty gen
+    764: pushbyte 2
+    766: getproperty <rt>
+    769: getproperty demandKW
+    772: callproperty genCalcRequiredFuel 1
+    776: setproperty fuel
+    780: pushbyte 2
+    782: callpropvoid jogFuelset 1
+    787: getproperty gen
+    790: pushbyte 2
+    792: getproperty <rt>
+    797: getproperty gen
+    800: pushbyte 2
+    802: getproperty <rt>
+    805: getproperty demandKVAr
+    808: callproperty genCalcRequiredField 1
+    812: setproperty field
+    816: pushbyte 2
+    818: callpropvoid jogFieldset 1
+    823: getproperty gen
+    826: pushbyte 2
+    828: getproperty <rt>
+    832: pushbyte 2
+    834: callproperty genCalcOutputKW 1
+    838: setproperty fuelKW
+    842: getproperty gen
+    845: pushbyte 2
+    847: getproperty <rt>
+    851: pushbyte 2
+    853: callproperty genCalcOutputKVAr 1
+    857: setproperty fieldKVAr
+    861: getproperty gen
+    864: pushbyte 2
+    866: getproperty <rt>
+    869: getlex Math
+    872: getlex Math
+    876: getproperty gen
+    879: pushbyte 2
+    881: getproperty <rt>
+    884: getproperty fuelKW
+    888: getproperty genUseKW
+    891: subtract
+    893: getproperty gen
+    896: pushbyte 2
+    898: getproperty <rt>
+    901: getproperty demandKW
+    904: callproperty min 2
+    908: pushbyte 0
+    910: callproperty max 2
+    914: setproperty outputKW
+    918: getproperty gen
+    921: pushbyte 2
+    923: getproperty <rt>
+    926: getlex Math
+    929: getlex Math
+    933: getproperty gen
+    936: pushbyte 2
+    938: getproperty <rt>
+    941: getproperty fieldKVAr
+    945: getproperty genUseKVAr
+    948: subtract
+    950: getproperty gen
+    953: pushbyte 2
+    955: getproperty <rt>
+    958: getproperty demandKVAr
+    961: callproperty min 2
+    965: pushbyte 0
+    967: callproperty max 2
+    971: setproperty outputKVAr
+    974: jump ->2040
+    981: getproperty gen
+    984: pushbyte 1
+    986: getproperty <rt>
+    989: getproperty fuelKW
+    993: getproperty gen
+    996: pushbyte 2
+    998: getproperty <rt>
+    1001: getproperty fuelKW
+    1004: subtract
+    1005: initproperty diffKW
+    1010: getproperty gen
+    1013: pushbyte 1
+    1015: getproperty <rt>
+    1018: getproperty fieldKVAr
+    1022: getproperty gen
+    1025: pushbyte 2
+    1027: getproperty <rt>
+    1030: getproperty fieldKVAr
+    1033: subtract
+    1034: initproperty diffKVAr
+    1038: callpropvoid updateOuputsBothLoaded 0
+    1042: jump ->2040
+    1048: getproperty gen
+    1051: pushbyte 1
+    1053: getproperty <rt>
+    1056: getlex Math
+    1061: getproperty demandLoadKW
+    1065: getproperty gen
+    1068: pushbyte 2
+    1070: getproperty <rt>
+    1073: getproperty fuelKW
+    1077: getproperty genUseKW
+    1080: subtract
+    1081: subtract
+    1082: callproperty genCalcRequiredFuel 1
+    1087: getproperty minFuel
+    1090: callproperty max 2
+    1094: setproperty fuel
+    1098: getproperty gen
+    1101: pushbyte 1
+    1103: getproperty <rt>
+    1107: pushbyte 1
+    1109: callproperty genCalcOutputKW 1
+    1113: setproperty fuelKW
+    1117: pushbyte 1
+    1119: callpropvoid jogFuelset 1
+    1125: getproperty gen
+    1128: pushbyte 1
+    1130: getproperty <rt>
+    1133: getproperty fuelKW
+    1137: getproperty gen
+    1140: pushbyte 2
+    1142: getproperty <rt>
+    1145: getproperty fuelKW
+    1148: subtract
+    1149: initproperty diffKW
+    1153: getproperty gen
+    1156: pushbyte 1
+    1158: getproperty <rt>
+    1161: getlex Math
+    1166: getproperty demandLoadKVAr
+    1170: getproperty gen
+    1173: pushbyte 2
+    1175: getproperty <rt>
+    1178: getproperty fieldKVAr
+    1182: getproperty genUseKVAr
+    1185: subtract
+    1186: subtract
+    1187: callproperty genCalcRequiredField 1
+    1192: getproperty minField
+    1195: callproperty max 2
+    1199: setproperty field
+    1203: getproperty gen
+    1206: pushbyte 1
+    1208: getproperty <rt>
+    1212: pushbyte 1
+    1214: callproperty genCalcOutputKVAr 1
+    1218: setproperty fieldKVAr
+    1222: pushbyte 1
+    1224: callpropvoid jogFieldset 1
+    1230: getproperty gen
+    1233: pushbyte 1
+    1235: getproperty <rt>
+    1238: getproperty fieldKVAr
+    1242: getproperty gen
+    1245: pushbyte 2
+    1247: getproperty <rt>
+    1250: getproperty fieldKVAr
+    1253: subtract
+    1254: initproperty diffKVAr
+    1258: callpropvoid updateOuputsBothLoaded 0
+    1262: jump ->2040
+    1268: getproperty gen
+    1271: pushbyte 2
+    1273: getproperty <rt>
+    1276: getlex Math
+    1281: getproperty demandLoadKW
+    1285: getproperty gen
+    1288: pushbyte 1
+    1290: getproperty <rt>
+    1293: getproperty fuelKW
+    1297: getproperty genUseKW
+    1300: subtract
+    1301: subtract
+    1302: callproperty genCalcRequiredFuel 1
+    1307: getproperty minFuel
+    1310: callproperty max 2
+    1314: setproperty fuel
+    1318: getproperty gen
+    1321: pushbyte 2
+    1323: getproperty <rt>
+    1327: pushbyte 2
+    1329: callproperty genCalcOutputKW 1
+    1333: setproperty fuelKW
+    1337: pushbyte 2
+    1339: callpropvoid jogFuelset 1
+    1345: getproperty gen
+    1348: pushbyte 1
+    1350: getproperty <rt>
+    1353: getproperty fuelKW
+    1357: getproperty gen
+    1360: pushbyte 2
+    1362: getproperty <rt>
+    1365: getproperty fuelKW
+    1368: subtract
+    1369: initproperty diffKW
+    1373: getproperty gen
+    1376: pushbyte 2
+    1378: getproperty <rt>
+    1381: getlex Math
+    1386: getproperty demandLoadKVAr
+    1390: getproperty gen
+    1393: pushbyte 1
+    1395: getproperty <rt>
+    1398: getproperty fieldKVAr
+    1402: getproperty genUseKVAr
+    1405: subtract
+    1406: subtract
+    1407: callproperty genCalcRequiredField 1
+    1412: getproperty minField
+    1415: callproperty max 2
+    1419: setproperty field
+    1423: getproperty gen
+    1426: pushbyte 2
+    1428: getproperty <rt>
+    1432: pushbyte 2
+    1434: callproperty genCalcOutputKVAr 1
+    1438: setproperty fieldKVAr
+    1442: pushbyte 2
+    1444: callpropvoid jogFieldset 1
+    1450: getproperty gen
+    1453: pushbyte 1
+    1455: getproperty <rt>
+    1458: getproperty fieldKVAr
+    1462: getproperty gen
+    1465: pushbyte 2
+    1467: getproperty <rt>
+    1470: getproperty fieldKVAr
+    1473: subtract
+    1474: initproperty diffKVAr
+    1478: callpropvoid updateOuputsBothLoaded 0
+    1482: jump ->2040
+    1487: pushbyte 1
+    1490: setlocal_1
+    1491: jump ->1744
+    1497: getproperty gen
+    1500: getlocal_1
+    1501: getproperty <rt>
+    1505: getproperty demandLoadKW
+    1508: pushbyte 2
+    1510: divide
+    1511: setproperty demandKW
+    1515: getproperty gen
+    1518: getlocal_1
+    1519: getproperty <rt>
+    1524: getproperty gen
+    1527: getlocal_1
+    1528: getproperty <rt>
+    1531: getproperty demandKW
+    1534: callproperty genCalcRequiredFuel 1
+    1538: setproperty fuel
+    1542: getlocal_1
+    1543: callpropvoid jogFuelset 1
+    1548: getproperty gen
+    1551: getlocal_1
+    1552: getproperty <rt>
+    1556: getlocal_1
+    1557: callproperty genCalcOutputKW 1
+    1561: setproperty fuelKW
+    1565: getproperty gen
+    1568: getlocal_1
+    1569: getproperty <rt>
+    1572: getlex Math
+    1575: getlex Math
+    1579: getproperty gen
+    1582: getlocal_1
+    1583: getproperty <rt>
+    1586: getproperty fuelKW
+    1590: getproperty genUseKW
+    1593: subtract
+    1595: getproperty gen
+    1598: getlocal_1
+    1599: getproperty <rt>
+    1602: getproperty demandKW
+    1605: callproperty min 2
+    1609: pushbyte 0
+    1611: callproperty max 2
+    1615: setproperty outputKW
+    1619: getproperty gen
+    1622: getlocal_1
+    1623: getproperty <rt>
+    1627: getproperty demandLoadKVAr
+    1630: pushbyte 2
+    1632: divide
+    1633: setproperty demandKVAr
+    1637: getproperty gen
+    1640: getlocal_1
+    1641: getproperty <rt>
+    1646: getproperty gen
+    1649: getlocal_1
+    1650: getproperty <rt>
+    1653: getproperty demandKVAr
+    1656: callproperty genCalcRequiredField 1
+    1660: setproperty field
+    1664: getlocal_1
+    1665: callpropvoid jogFieldset 1
+    1670: getproperty gen
+    1673: getlocal_1
+    1674: getproperty <rt>
+    1678: getlocal_1
+    1679: callproperty genCalcOutputKVAr 1
+    1683: setproperty fieldKVAr
+    1687: getproperty gen
+    1690: getlocal_1
+    1691: getproperty <rt>
+    1694: getlex Math
+    1697: getlex Math
+    1701: getproperty gen
+    1704: getlocal_1
+    1705: getproperty <rt>
+    1708: getproperty fieldKVAr
+    1712: getproperty genUseKVAr
+    1715: subtract
+    1717: getproperty gen
+    1720: getlocal_1
+    1721: getproperty <rt>
+    1724: getproperty demandKVAr
+    1727: callproperty min 2
+    1731: pushbyte 0
+    1733: callproperty max 2
+    1737: setproperty outputKVAr
+    1740: getlocal_1
+    1741: increment
+    1743: setlocal_1
+    1744: getlocal_1
+    1745: pushbyte 2
+    1747: ifle ->1495
+    1751: jump ->2040
+    1756: jump ->2040
+    1760: getlocal_2
+    1761: setlocal_3
+    1762: pushbyte 3
+    1764: getlocal_3
+    1765: ifstrictne ->1775
+    1769: pushbyte 0
+    1771: jump ->1982
+    1775: pushbyte 13
+    1777: getlocal_3
+    1778: ifstrictne ->1788
+    1782: pushbyte 1
+    1784: jump ->1982
+    1788: pushbyte 23
+    1790: getlocal_3
+    1791: ifstrictne ->1801
+    1795: pushbyte 2
+    1797: jump ->1982
+    1801: pushbyte 4
+    1803: getlocal_3
+    1804: ifstrictne ->1814
+    1808: pushbyte 3
+    1810: jump ->1982
+    1814: pushbyte 14
+    1816: getlocal_3
+    1817: ifstrictne ->1827
+    1821: pushbyte 4
+    1823: jump ->1982
+    1827: pushbyte 24
+    1829: getlocal_3
+    1830: ifstrictne ->1840
+    1834: pushbyte 5
+    1836: jump ->1982
+    1840: pushbyte 30
+    1842: getlocal_3
+    1843: ifstrictne ->1853
+    1847: pushbyte 6
+    1849: jump ->1982
+    1853: pushbyte 31
+    1855: getlocal_3
+    1856: ifstrictne ->1866
+    1860: pushbyte 7
+    1862: jump ->1982
+    1866: pushbyte 32
+    1868: getlocal_3
+    1869: ifstrictne ->1879
+    1873: pushbyte 8
+    1875: jump ->1982
+    1879: pushbyte 40
+    1881: getlocal_3
+    1882: ifstrictne ->1892
+    1886: pushbyte 9
+    1888: jump ->1982
+    1892: pushbyte 41
+    1894: getlocal_3
+    1895: ifstrictne ->1905
+    1899: pushbyte 10
+    1901: jump ->1982
+    1905: pushbyte 42
+    1907: getlocal_3
+    1908: ifstrictne ->1918
+    1912: pushbyte 11
+    1914: jump ->1982
+    1918: pushbyte 33
+    1920: getlocal_3
+    1921: ifstrictne ->1931
+    1925: pushbyte 12
+    1927: jump ->1982
+    1931: pushbyte 34
+    1933: getlocal_3
+    1934: ifstrictne ->1944
+    1938: pushbyte 13
+    1940: jump ->1982
+    1944: pushbyte 43
+    1946: getlocal_3
+    1947: ifstrictne ->1957
+    1951: pushbyte 14
+    1953: jump ->1982
+    1957: pushbyte 44
+    1959: getlocal_3
+    1960: ifstrictne ->1970
+    1964: pushbyte 15
+    1966: jump ->1982
+    1970: jump ->1980
+    1974: pushbyte 16
+    1976: jump ->1982
+    1980: pushbyte 16
+    1982: kill 3
+    1984: lookupswitch ...
+    2040: returnvoid
+  fn updateMeters (method 375):

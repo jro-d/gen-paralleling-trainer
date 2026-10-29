@@ -1,0 +1,156 @@
+﻿  fn doGenRotor (method 352):
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty state
+    13: pushbyte 0
+    15: ifngt ->153
+    20: getproperty gen
+    23: getlocal_1
+    24: getproperty <rt>
+    28: getlocal_1
+    29: callproperty genCalcRotorSpeed 1
+    33: setproperty rotorspeed
+    37: getproperty genRotors
+    40: getlocal_1
+    41: getproperty <rt>
+    45: getproperty genRotors
+    48: getlocal_1
+    49: getproperty <rt>
+    52: getproperty rotation
+    56: getproperty gen
+    59: getlocal_1
+    60: getproperty <rt>
+    63: getproperty rotorspeed
+    66: pushbyte 10
+    68: divide
+    69: subtract
+    70: setproperty rotation
+    74: getproperty gen
+    77: getlocal_1
+    78: getproperty <rt>
+    82: getproperty gen
+    85: getlocal_1
+    86: getproperty <rt>
+    89: getproperty rotorangle
+    93: getproperty gen
+    96: getlocal_1
+    97: getproperty <rt>
+    100: getproperty rotorspeed
+    103: pushbyte 10
+    105: divide
+    106: subtract
+    107: setproperty rotorangle
+    111: getproperty gen
+    114: getlocal_1
+    115: getproperty <rt>
+    118: getproperty rotorangle
+    121: pushbyte 0
+    123: ifnle ->153
+    128: getproperty gen
+    131: getlocal_1
+    132: getproperty <rt>
+    136: getproperty gen
+    139: getlocal_1
+    140: getproperty <rt>
+    143: getproperty rotorangle
+    146: pushshort 360
+    149: add
+    150: setproperty rotorangle
+    153: returnvoid
+  fn doFuelFieldText (method 353):
+    3: getproperty field_Text
+    6: getlocal_1
+    7: getproperty <rt>
+    10: findpropstrict int
+    13: getproperty gen
+    16: getlocal_1
+    17: getproperty <rt>
+    20: getproperty field
+    23: callproperty int 1
+    26: pushstring " %"
+    29: add
+    30: setproperty text
+    34: getproperty fuel_Text
+    37: getlocal_1
+    38: getproperty <rt>
+    41: findpropstrict int
+    44: getproperty gen
+    47: getlocal_1
+    48: getproperty <rt>
+    51: getproperty fuel
+    54: callproperty int 1
+    57: pushstring " %"
+    60: add
+    61: setproperty text
+    64: returnvoid
+  fn calcMeterValues (method 354):
+    3: getproperty gen
+    6: getlocal_1
+    7: getproperty <rt>
+    10: getproperty state
+    13: pushbyte 0
+    15: ifngt ->115
+    20: getproperty gen
+    23: getlocal_1
+    24: getproperty <rt>
+    28: getlocal_1
+    29: callproperty genCalcVoltage 1
+    33: setproperty volts
+    37: getproperty gen
+    40: getlocal_1
+    41: getproperty <rt>
+    45: getproperty gen
+    48: getlocal_1
+    49: getproperty <rt>
+    52: getproperty rotorspeed
+    55: pushbyte 2
+    57: divide
+    58: setproperty Hz
+    62: getproperty gen
+    65: getlocal_1
+    66: getproperty <rt>
+    70: getproperty gen
+    73: getlocal_1
+    74: getproperty <rt>
+    77: getproperty outputKW
+    80: pushbyte 10
+    82: multiply
+    83: setproperty kW
+    87: getproperty gen
+    90: getlocal_1
+    91: getproperty <rt>
+    95: getproperty gen
+    98: getlocal_1
+    99: getproperty <rt>
+    102: getproperty outputKVAr
+    105: pushbyte 10
+    107: multiply
+    108: setproperty kVAr
+    111: jump ->180
+    116: getproperty gen
+    119: getlocal_1
+    120: getproperty <rt>
+    123: pushbyte 0
+    125: setproperty volts
+    129: getproperty gen
+    132: getlocal_1
+    133: getproperty <rt>
+    136: pushbyte 0
+    138: setproperty Hz
+    142: getproperty gen
+    145: getlocal_1
+    146: getproperty <rt>
+    149: pushbyte 0
+    151: setproperty kW
+    155: getproperty gen
+    158: getlocal_1
+    159: getproperty <rt>
+    162: pushbyte 0
+    164: setproperty kVAr
+    168: getproperty gen
+    171: getlocal_1
+    172: getproperty <rt>
+    175: pushbyte 1
+    177: setproperty pf
+    180: returnvoid

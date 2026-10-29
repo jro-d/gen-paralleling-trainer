@@ -1,0 +1,76 @@
+﻿  fn onAutoClick (method 361):
+    2: jump ->163
+    8: getproperty gen
+    11: pushbyte 1
+    13: getproperty <rt>
+    16: pushbyte 4
+    18: setproperty state
+    22: getproperty btn_Auto
+    25: pushbyte 1
+    27: getproperty <rt>
+    30: pushstring "normal"
+    32: setproperty blendMode
+    36: getproperty auto_Text
+    39: pushbyte 1
+    41: getproperty <rt>
+    44: pushstring "Auto"
+    47: setproperty text
+    51: getproperty auto_Text
+    54: pushbyte 1
+    56: getproperty <rt>
+    59: pushint 117760
+    61: setproperty textColor
+    64: jump ->230
+    70: getproperty gen
+    73: pushbyte 1
+    75: getproperty <rt>
+    78: pushbyte 3
+    80: setproperty state
+    84: getproperty btn_Auto
+    87: pushbyte 1
+    89: getproperty <rt>
+    92: pushstring "invert"
+    95: setproperty blendMode
+    99: getproperty auto_Text
+    102: pushbyte 1
+    104: getproperty <rt>
+    107: pushstring "Man"
+    110: setproperty text
+    114: getproperty auto_Text
+    117: pushbyte 1
+    119: getproperty <rt>
+    122: pushint 16711680
+    124: setproperty textColor
+    127: jump ->230
+    132: findpropstrict trace
+    135: pushstring " wrong gen[1].state in OnAutoClick "
+    139: getproperty gen
+    142: pushbyte 1
+    144: getproperty <rt>
+    147: getproperty state
+    150: add
+    151: callpropvoid trace 1
+    155: jump ->230
+    159: jump ->230
+    164: getproperty gen
+    167: pushbyte 1
+    169: getproperty <rt>
+    172: getproperty state
+    175: setlocal_2
+    176: pushbyte 3
+    178: getlocal_2
+    179: ifstrictne ->189
+    183: pushbyte 0
+    185: jump ->214
+    189: pushbyte 4
+    191: getlocal_2
+    192: ifstrictne ->202
+    196: pushbyte 1
+    198: jump ->214
+    202: jump ->212
+    206: pushbyte 2
+    208: jump ->214
+    212: pushbyte 2
+    214: kill 2
+    216: lookupswitch ...
+    230: returnvoid

@@ -1,0 +1,9 @@
+# OS generated
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs and scratch
+*.log
+scratch/
+node_modules/
