@@ -1,6 +1,6 @@
 # Generator Paralleling Trainer (4 × DG)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 [![Standard: IEC 60092 / 60617](https://img.shields.io/badge/Marine%20Standard-IEC%2060092%20%7C%2060617-orange.svg)]()
 [![STCW: Section A--III/1 & A--III/6](https://img.shields.io/badge/STCW-Competency%20Drills-blueviolet.svg)]()
 [![HMI: ISA--101](https://img.shields.io/badge/HMI-ISA--101%20High%20Performance-lightgrey.svg)]()
@@ -112,4 +112,4 @@ Switchable via the top bar:
 
 ## 📜 License
 
-Distributed under the MIT License. Developed as an open educational resource for maritime electrical engineering.
+Distributed under the GNU General Public License v3.0 (GPLv3). Developed as an open educational resource for maritime electrical engineering.
