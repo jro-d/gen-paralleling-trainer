@@ -544,6 +544,141 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
   .top-telemetry { display: none; } .topbar { flex-wrap: wrap; height: auto; padding: 8px 12px; }
   .switchboard-busbar { grid-template-columns: 1fr; }
 }
+
+/* ==========================================================================
+   NEW CAPABILITIES: SLD View, Heavy Inrush Motors, PMS, Audio, & Exam
+   ========================================================================== */
+/* ---- View Switching (Bays vs IEC 60617 SLD) ----------------------------- */
+.view-bays, .view-sld { width: 100%; display: flex; flex-direction: column; }
+.view-sld.hidden, .view-bays.hidden { display: none !important; }
+.sld-wrap {
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+  padding: 14px; display: flex; flex-direction: column; position: relative; margin-bottom: 12px;
+}
+.sld-header {
+  display: flex; justify-content: space-between; align-items: center;
+  padding-bottom: 10px; border-bottom: 1px solid var(--line); font-size: 12px; color: var(--text-2);
+}
+.sld-legend { display: flex; gap: 14px; align-items: center; font-size: 11px; }
+.sld-legend-item { display: flex; align-items: center; gap: 6px; }
+.sld-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.sld-svg-host { width: 100%; min-height: 440px; margin-top: 10px; }
+.sld-svg { width: 100%; height: 100%; }
+
+/* SLD Interactive Breakers */
+.sld-cb { cursor: pointer; transition: filter 0.15s ease; }
+.sld-cb:hover { filter: drop-shadow(0 0 4px var(--accent)); }
+.sld-flow-arrow { animation: flowPulse 1.2s infinite linear; }
+@keyframes flowPulse {
+  0% { stroke-dashoffset: 24; opacity: 0.4; }
+  50% { opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0.4; }
+}
+
+/* ---- Heavy Consumers Panel --------------------------------------------- */
+.heavy-grid { display: grid; grid-template-columns: 1fr; gap: 8px; }
+.heavy-card {
+  background: var(--surface-2); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  padding: 8px 10px; display: flex; justify-content: space-between; align-items: center;
+}
+.heavy-meta { display: flex; flex-direction: column; }
+.heavy-title { font-weight: 600; font-size: 12px; color: var(--text); display: flex; align-items: center; gap: 6px; }
+.heavy-desc { font-size: 10px; color: var(--text-3); font-family: var(--font-mono); margin-top: 2px; }
+.heavy-badge {
+  font-size: 9px; font-weight: 700; padding: 2px 6px; border-radius: 3px;
+  text-transform: uppercase; margin-top: 3px; display: inline-block; width: fit-content;
+}
+.heavy-badge.stopped { background: var(--line); color: var(--text-3); }
+.heavy-badge.inrush { background: #d97706; color: #fff; animation: pulse 0.5s infinite alternate; }
+.heavy-badge.running { background: var(--ok); color: #fff; }
+.heavy-note {
+  font-size: 10px; color: var(--text-3); margin-top: 8px; line-height: 1.4;
+  padding: 6px 8px; background: var(--surface); border-radius: var(--radius-sm); border: 1px dashed var(--line);
+}
+
+/* ---- Power Management System (PMS) ------------------------------------- */
+.pms-pill {
+  display: inline-flex; align-items: center; gap: 6px; padding: 2px 8px;
+  border-radius: 12px; font-size: 11px; font-weight: 600; font-family: var(--font-mono);
+}
+.pms-pill.off { background: var(--line); color: var(--text-3); }
+.pms-pill.active { background: #e0f2fe; color: #0369a1; border: 1px solid #7dd3fc; }
+.pms-pill.acting { background: #fef3c7; color: #b45309; border: 1px solid #fcd34d; animation: pulse 0.8s infinite alternate; }
+
+/* ---- Fault Injection Modal / Popover ------------------------------------ */
+.fault-popover {
+  position: absolute; top: 48px; right: 180px; width: 340px; background: var(--surface);
+  border: 1px solid var(--line-strong); border-radius: var(--radius);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.22); z-index: 1000; padding: 14px;
+}
+.fault-popover.hidden { display: none !important; }
+.fault-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.fault-head h3 { font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px; margin: 0; color: var(--text); }
+.fault-list { display: flex; flex-direction: column; gap: 6px; }
+.fault-btn {
+  text-align: left; padding: 8px 10px; border-radius: var(--radius-sm);
+  border: 1px solid var(--line); background: var(--surface-2); font-size: 11px;
+  cursor: pointer; display: flex; flex-direction: column; gap: 2px; transition: all 0.15s ease;
+}
+.fault-btn:hover { border-color: var(--accent); background: var(--accent-tint); }
+.fault-btn.active { border-color: #dc2626; background: #fee2e2; color: #991b1b; font-weight: 600; }
+.fault-btn strong { font-size: 11px; }
+.fault-btn small { font-size: 10px; color: var(--text-3); }
+
+/* ---- Examination & Challenges Tab --------------------------------------- */
+.chal-intro { margin-bottom: 12px; font-size: 12px; color: var(--text-2); line-height: 1.4; }
+.chal-grid { display: grid; grid-template-columns: 1fr; gap: 8px; margin-bottom: 14px; }
+.chal-card {
+  border: 1px solid var(--line); border-radius: var(--radius); padding: 10px;
+  background: var(--surface-2); cursor: pointer; transition: all 0.15s ease;
+}
+.chal-card:hover { border-color: var(--accent); }
+.chal-card.selected { border-color: var(--accent); background: var(--accent-tint); box-shadow: 0 0 0 2px var(--accent); }
+.chal-card-title { font-weight: 700; font-size: 12px; color: var(--text); display: flex; justify-content: space-between; }
+.chal-card-desc { font-size: 11px; color: var(--text-3); margin-top: 4px; line-height: 1.4; }
+
+.chal-board {
+  background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius);
+  padding: 12px; margin-top: 10px;
+}
+.chal-board-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+.chal-metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 8px 0; }
+.chal-metric-box { background: var(--surface-2); border: 1px solid var(--line); border-radius: 4px; padding: 6px; text-align: center; }
+.chal-metric-box small { display: block; font-size: 10px; color: var(--text-3); }
+.chal-metric-box strong { font-size: 13px; font-family: var(--font-mono); color: var(--text); }
+
+.grade-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 28px; height: 28px; border-radius: 50%; font-weight: 800; font-size: 14px; color: #fff;
+}
+.grade-S { background: #7c3aed; }
+.grade-A { background: #16a34a; }
+.grade-B { background: #2563eb; }
+.grade-C { background: #d97706; }
+.grade-F { background: #dc2626; }
+
+/* ---- Certificate Modal -------------------------------------------------- */
+.cert-modal-wrap {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.65); display: flex;
+  align-items: center; justify-content: center; z-index: 2000;
+}
+.cert-modal-wrap.hidden { display: none !important; }
+.cert-paper {
+  background: #ffffff; width: 680px; max-width: 95vw; border-radius: 8px;
+  border: 4px double #b45309; padding: 28px; box-shadow: 0 20px 50px rgba(0,0,0,0.4);
+  position: relative; text-align: center; color: #1e293b;
+}
+.cert-border { border: 2px solid #b45309; padding: 20px; border-radius: 4px; }
+.cert-logo { font-size: 28px; margin-bottom: 8px; }
+.cert-h1 { font-family: 'Times New Roman', serif; font-size: 20px; font-weight: 700; color: #78350f; text-transform: uppercase; letter-spacing: 1px; }
+.cert-sub { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: #92400e; margin-bottom: 14px; }
+.cert-name { font-size: 22px; font-family: 'Times New Roman', serif; font-style: italic; font-weight: bold; border-bottom: 1px solid #cbd5e1; display: inline-block; min-width: 280px; margin: 8px 0; padding-bottom: 4px; }
+.cert-body { font-size: 11px; line-height: 1.6; color: #334155; margin: 12px auto; max-width: 520px; }
+.cert-grid { display: flex; justify-content: space-around; margin: 16px 0 10px; font-size: 11px; }
+.cert-grid-item strong { display: block; font-size: 13px; color: #0f172a; font-family: var(--font-mono); }
+.cert-footer { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 20px; padding-top: 10px; border-top: 1px dashed #cbd5e1; font-size: 10px; color: #64748b; }
+.cert-actions { display: flex; justify-content: center; gap: 10px; margin-top: 16px; }
+
 </style>
 </head>
 <body>
@@ -576,6 +711,13 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
     <symbol id="i-minus" viewBox="0 0 24 24"><path d="M5 12h14"/></symbol>
     <symbol id="i-expand" viewBox="0 0 24 24"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></symbol>
     <symbol id="i-tie" viewBox="0 0 24 24"><rect x="3" y="8" width="6" height="8" rx="1"/><rect x="15" y="8" width="6" height="8" rx="1"/><path d="M9 12h6"/></symbol>
+  
+    <symbol id="i-volume" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></symbol>
+    <symbol id="i-volume-mute" viewBox="0 0 24 24"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></symbol>
+    <symbol id="i-sld" viewBox="0 0 24 24"><line x1="3" y1="12" x2="21" y2="12"/><line x1="7" y1="6" x2="7" y2="12"/><line x1="17" y1="12" x2="17" y2="18"/><circle cx="7" cy="4" r="2"/><rect x="15" y="18" width="4" height="4" rx="1"/></symbol>
+    <symbol id="i-motor" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><text x="12" y="16" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">M</text></symbol>
+    <symbol id="i-trophy" viewBox="0 0 24 24"><path d="M6 9H3a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3M18 9h3a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2h-3M4 3h16v6a8 8 0 0 1-16 0V3z"/><path d="M12 17v4M8 21h8"/></symbol>
+    <symbol id="i-cert" viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M12 13v5M9 16l3-1 3 1"/></symbol>
   </defs>
 </svg>
 
@@ -587,6 +729,15 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
     </div>
     <div class="top-telemetry" id="topTele"></div>
     <div class="top-actions">
+      
+      <span class="group-label">View</span>
+      <div class="tabs on-dark" id="viewTabs" role="group" aria-label="Switchboard view">
+        <button class="tab active" data-view="bays" type="button">Bay View</button>
+        <button class="tab" data-view="sld" type="button">IEC 60617 SLD</button>
+      </div>
+      <button class="button button-quiet" id="btnAudio" type="button" title="Toggle synthesized engine & breaker audio"><svg class="icon"><use href="#i-volume-mute" id="audioIcon"/></svg><span id="audioLabel">Sound OFF</span></button>
+      <button class="button button-quiet" id="btnPms" type="button" title="Toggle Power Management System automated load tracking"><svg class="icon"><use href="#i-auto"/></svg><span id="pmsLabel">PMS: OFF</span></button>
+      <button class="button button-quiet" id="btnFaults" type="button" title="Simulated fault injection for maritime drills"><svg class="icon"><use href="#i-alert"/></svg><span>Faults</span></button>
       <span class="group-label">Profile</span>
       <div class="tabs on-dark" id="profileTabs" role="group" aria-label="Plant profile"></div>
       <span class="group-label">Slip rate</span>
@@ -599,7 +750,8 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
 
   <main class="main">
     <section class="gens-area" aria-label="Generator sets">
-      <div class="gens-grid" id="gens"></div>
+      <div class="view-bays" id="viewBays">
+        <div class="gens-grid" id="gens"></div>
 
       <!-- Marine Switchboard Dual-Busbar & Bus Tie Section -->
       <div class="switchboard-busbar" id="busbarContainer">
@@ -646,7 +798,23 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
           <div><strong id="busLoadKW">0 kW</strong><small>Ship Total Demand</small></div>
         </div>
       </div>
-    </section>
+    </div><!-- /viewBays -->
+
+    <!-- IEC 60617 Single Line Diagram View -->
+    <div class="view-sld hidden" id="viewSLD">
+      <div class="sld-wrap">
+        <div class="sld-header">
+          <div><strong>IEC 60617 Marine Main Switchboard (MSB) Single-Line Diagram</strong> · Click breakers (52G, 52BT) to operate</div>
+          <div class="sld-legend">
+            <span class="sld-legend-item"><span class="sld-dot" style="background:#dc2626"></span> 52 Closed / Live</span>
+            <span class="sld-legend-item"><span class="sld-dot" style="background:#16a34a"></span> 52 Open / Dead</span>
+            <span class="sld-legend-item"><span class="sld-dot" style="background:#d97706"></span> 25 Check-Sync Armed</span>
+          </div>
+        </div>
+        <div class="sld-svg-host" id="sldSvgHost"></div>
+      </div>
+    </div><!-- /viewSLD -->
+  </section>
 
     <aside class="side" aria-label="Synchronising and load">
       <section class="panel" id="syncPanel">
@@ -674,6 +842,34 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
       <section class="panel" id="instrPanel">
         <div class="panel-head"><h2><svg class="icon"><use href="#i-gauge"/></svg>Instruments <span class="eyebrow" id="instrFor"></span></h2></div>
         <div class="panel-body"><div class="instr" id="instr"></div></div>
+      </section>
+
+            <section class="panel" id="heavyPanel">
+        <div class="panel-head">
+          <h2><svg class="icon"><use href="#i-motor"/></svg>Heavy Consumers (Motor Inrush)</h2>
+          <span class="eyebrow" id="heavyInrushTag">DOL Transient</span>
+        </div>
+        <div class="panel-body">
+          <div class="heavy-grid">
+            <div class="heavy-card">
+              <div class="heavy-meta">
+                <span class="heavy-title">Bow Thruster (DOL) <span class="heavy-badge stopped" id="bowBadge">STOPPED</span></span>
+                <span class="heavy-desc" id="bowRating">1,500 kW · 1,200 kVAr · 4.5× Inrush</span>
+              </div>
+              <button class="button button-sm button-primary" id="btnBow" type="button">Start</button>
+            </div>
+            <div class="heavy-card">
+              <div class="heavy-meta">
+                <span class="heavy-title">Ballast Pump (DOL) <span class="heavy-badge stopped" id="pumpBadge">STOPPED</span></span>
+                <span class="heavy-desc" id="pumpRating">800 kW · 600 kVAr · 4.0× Inrush</span>
+              </div>
+              <button class="button button-sm button-primary" id="btnPump" type="button">Start</button>
+            </div>
+          </div>
+          <div class="heavy-note">
+            ⚠️ <strong>Inrush Dynamics:</strong> Direct-On-Line induction motors draw 4–6× rated current during starting (2.5 s). If spinning reserve is insufficient, bus voltage &amp; frequency will collapse, triggering preferential shedding or blackout!
+          </div>
+        </div>
       </section>
 
       <section class="panel" id="loadPanel">
@@ -726,6 +922,7 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
   </div>
   <div class="help-float-tabs">
     <button class="help-tab active" data-htab="tutorial" type="button">Step-by-Step Training</button>
+    <button class="help-tab" data-htab="challenges" type="button">Exam &amp; Challenges</button>
     <button class="help-tab" data-htab="switchboard" type="button">Switchboard &amp; Bus Tie</button>
     <button class="help-tab" data-htab="model" type="button">REA Model &amp; Math</button>
   </div>
@@ -762,8 +959,48 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
         <li>Click <strong>Auto</strong> on all running generators for automatic isochronous equal load sharing.</li>
       </ol>
 
+      <h3>Phase 4: Marine Power Management System (PMS Automation)</h3>
+      <ol>
+        <li>Click <strong>[PMS: OFF]</strong> in the top toolbar to switch to <strong>PMS Auto Mode</strong>.</li>
+        <li>The automated PMS actively monitors bus percentage load:
+          <ul>
+            <li><strong>High-Load Trigger (&gt;80%):</strong> If total demand exceeds 80% for &gt; 3 seconds, PMS automatically starts the standby DG, trims speed/excitation, arms check-sync, closes the breaker, and balances active &amp; reactive power 50/50!</li>
+            <li><strong>Low-Load De-paralleling (&lt;35%):</strong> If demand drops below 35% with 2+ units online for &gt; 7 seconds, PMS gently unloads the lagging DG to &lt; 25 kW, opens the GCB (bumpless trip), runs a 3-second cool-down, and shuts down the engine to prevent engine carbon fouling.</li>
+            <li><strong>Blackout Recovery:</strong> If the bus collapses with demand active, PMS initiates automatic black-start on DG 1 onto the dead bus.</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3>Phase 5: Heavy Consumer Starting &amp; Inrush Dynamics</h3>
+      <ol>
+        <li>Direct-On-Line (DOL) 3-phase induction motors (like the <strong>1,500 kW Bow Thruster</strong> and <strong>800 kW Ballast Pump</strong>) draw <strong>4.5× to 6.0× rated current</strong> during the first 2.5 seconds of starting.</li>
+        <li><strong>The Maneuvering Rule:</strong> Never start a heavy motor with only one generator online! If you attempt to start the Bow Thruster on a single DG, the massive inrush will cause severe underfrequency (&lt; 45 Hz) and under-voltage, triggering instantaneous overload or blackout.</li>
+        <li>Always parallel a second DG first to provide adequate spinning reserve before clicking <strong>Start Bow Thruster</strong>.</li>
+      </ol>
+
+      <h3>Phase 6: Fault Injection Drills &amp; Preferential Tripping</h3>
+      <ol>
+        <li>Click <strong>[Faults]</strong> in the top toolbar to test emergency responses:
+          <ul>
+            <li><strong>Governor Hunting:</strong> Simulates a sticky governor actuator with sinusoidal ±1.4 Hz speed swings. Switch to Manual to stabilize.</li>
+            <li><strong>Loss of Excitation (ANSI 40):</strong> Simulates an AVR diode failure. The generator voltage drops to 50% and absorbs heavy reactive current from the remaining units.</li>
+            <li><strong>Cylinder Misfire:</strong> Engine is derated to 60% fuel and emits heavy black exhaust smoke.</li>
+            <li><strong>Breaker Jam:</strong> Tests operator response when a breaker fails to close at 12 o'clock.</li>
+            <li><strong>Preferential Tripping:</strong> When bus load exceeds 110%, 2-stage shedding automatically drops non-essential galley/HVAC loads after 4 s, then deck equipment after 8 s, sounding the ship's alarm horn!</li>
+          </ul>
+        </li>
+      </ol>
+
+      <h3>Phase 7: IEC 60617 Single-Line Diagram View</h3>
+      <ol>
+        <li>Click <strong>[IEC 60617 SLD]</strong> in the top toolbar to toggle from physical cubicles to an authentic marine electrical engineering single-line schematic.</li>
+        <li>Observe the generators (circles with ~), Neutral Earthing Resistors (NGR), Current Transformers (CT), and dynamic Circuit Breakers (ANSI 52G-1 to 52G-4).</li>
+        <li>You can click any circuit breaker symbol (52G, 52BT) directly on the schematic to operate it in real time!</li>
+        <li>Watch the animated red power flow chevrons (&gt;&gt;&gt;) dynamically travel across busbars to propulsion and ship services.</li>
+      </ol>
+
       <div class="help-callout">
-        <strong>💡 Pro-Tip:</strong> You can drag this guide window anywhere on your screen by its top header, or click <strong>—</strong> to minimize it while operating the knobs!
+        <strong>💡 Pro-Tip:</strong> You can drag this guide window anywhere on your screen by its top header, click <strong>—</strong> to minimize it into a floating pill, or switch to the <strong>Exam &amp; Challenges</strong> tab to test your competency and generate a certificate!
       </div>
     </div>
 
@@ -793,6 +1030,103 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
       <p>Each generator bay features an authentic medium-voltage vacuum circuit breaker (VCB) cradle with upper/lower isolating disconnect bushings, 3× Current Transformers, Earth Switch (ES), and multifunction protection relay (ANSI 25 Sync, 32R Reverse Power, 50/51 Overcurrent, 27/59 Voltage).</p>
     </div>
 
+        <div class="htab-pane hidden" id="pane-challenges">
+      <h3>Maritime Competency Examination &amp; Drills</h3>
+      <div class="chal-intro">
+        Select a structured practical assessment. The simulator tracks real-time electrical stability, sync precision, and breaker handling to calculate an official STCW-standard score and grade.
+      </div>
+
+      <div class="chal-grid" id="chalList">
+        <div class="chal-card selected" data-chid="cold_start">
+          <div class="chal-card-title">
+            <span>1. Cold Ship Black-Start &amp; Load Pickup</span>
+            <span class="eyebrow">60 s Limit</span>
+          </div>
+          <div class="chal-card-desc">
+            Dead-ship state. Black-start DG 1, energize switchboard dead bus, and pick up 1,500 kW demand while stabilizing frequency (59.8–60.2 Hz) and voltage.
+          </div>
+        </div>
+
+        <div class="chal-card" data-chid="precision_sync">
+          <div class="chal-card-title">
+            <span>2. Precision Manual Paralleling (DG 1 &amp; DG 2)</span>
+            <span class="eyebrow">90 s Limit</span>
+          </div>
+          <div class="chal-card-desc">
+            DG 1 carries 1,500 kW. Manually start DG 2, synchronize within |Δf| ≤ 0.15 Hz, |ΔV| ≤ 2%, and |Δθ| ≤ 2°. Zero reverse power trips permitted!
+          </div>
+        </div>
+
+        <div class="chal-card" data-chid="bumpless_unload">
+          <div class="chal-card-title">
+            <span>3. Bumpless Generator De-paralleling &amp; Isolation</span>
+            <span class="eyebrow">45 s Limit</span>
+          </div>
+          <div class="chal-card-desc">
+            DGs 1 &amp; 2 sharing 2,000 kW. Safely take DG 2 off the board for overhaul. Unload DG 2 to &lt; 30 kW before opening GCB to prevent severe bus voltage transients.
+          </div>
+        </div>
+
+        <div class="chal-card" data-chid="bow_thruster">
+          <div class="chal-card-title">
+            <span>4. Heavy Consumer Maneuvering Preparation</span>
+            <span class="eyebrow">75 s Limit</span>
+          </div>
+          <div class="chal-card-desc">
+            Prepare switchboard capacity and safely start the 1,500 kW Bow Thruster without causing bus blackout or underfrequency tripping.
+          </div>
+        </div>
+
+        <div class="chal-card" data-chid="split_bus_sync">
+          <div class="chal-card-title">
+            <span>5. Split-Bus Re-synchronization (Bus Tie BT-1)</span>
+            <span class="eyebrow">60 s Limit</span>
+          </div>
+          <div class="chal-card-desc">
+            Bus A (DG 1) and Bus B (DG 3) running independently. Synchronize Section A and Section B, then close Bus Tie BT-1 in perfect synchronism.
+          </div>
+        </div>
+      </div>
+
+      <div class="chal-board">
+        <div class="chal-board-head">
+          <div>
+            <strong id="evalTitle">Challenge 1: Cold Ship Black-Start</strong>
+            <small id="evalTarget" style="display:block; color:var(--text-3)">Energize dead bus and pick up 1,500 kW</small>
+          </div>
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span class="grade-badge grade-S" id="evalGrade">S</span>
+            <button class="button button-sm button-primary" id="btnStartChal" type="button">Start Exam</button>
+            <button class="button button-sm" id="btnResetChal" type="button">Reset</button>
+          </div>
+        </div>
+
+        <div class="chal-metrics">
+          <div class="chal-metric-box">
+            <small>Score</small>
+            <strong id="metricScore">100 / 100</strong>
+          </div>
+          <div class="chal-metric-box">
+            <small>Elapsed Time</small>
+            <strong id="metricTime">00:00</strong>
+          </div>
+          <div class="chal-metric-box">
+            <small>Peak |Δf|</small>
+            <strong id="metricDF">0.00 Hz</strong>
+          </div>
+          <div class="chal-metric-box">
+            <small>Violations</small>
+            <strong id="metricViolations">0</strong>
+          </div>
+        </div>
+
+        <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center;">
+          <span style="font-size:11px; color:var(--text-2);" id="evalStatusText">Click <strong>Start Exam</strong> to initialize test conditions.</span>
+          <button class="button button-sm" id="btnCert" type="button" style="display:none;"><svg class="icon"><use href="#i-cert"/></svg> View Certificate</button>
+        </div>
+      </div>
+    </div>
+
     <div class="htab-pane hidden" id="pane-model">
       <h3>Reverse-Engineered Mathematical Model (AS3 Bytecode)</h3>
       <table>
@@ -812,10 +1146,88 @@ input[type=range].slider::-moz-range-thumb { width: 12px; height: 12px; border-r
   </div>
 </div>
 
+<!-- Fault Injection Popover -->
+<div class="fault-popover hidden" id="faultPopover" aria-label="Simulated Faults">
+  <div class="fault-head">
+    <h3><svg class="icon"><use href="#i-alert"/></svg>Fault Injection Drills</h3>
+    <button class="button button-sm" id="btnCloseFaults" type="button">✕</button>
+  </div>
+  <div class="fault-list">
+    <button class="fault-btn" data-fault="none">
+      <strong>Normal Operation (Clear All Faults)</strong>
+      <small>Restore prime movers, AVRs, and breakers to 100% nominal.</small>
+    </button>
+    <button class="fault-btn" data-fault="hunting">
+      <strong>DG 2: Governor Hunting (Speed Oscillation)</strong>
+      <small>Simulates sticky fuel rack / PID instability (±1.4 Hz swings).</small>
+    </button>
+    <button class="fault-btn" data-fault="avr_loss">
+      <strong>DG 1: Loss of Excitation / AVR Diode Failure (ANSI 40)</strong>
+      <small>Field collapses, draws heavy reactive current from the bus.</small>
+    </button>
+    <button class="fault-btn" data-fault="misfire">
+      <strong>DG 3: Cylinder Misfire / Mechanical Derate</strong>
+      <small>Capped at 60% fuel, heavy black exhaust smoke under load.</small>
+    </button>
+    <button class="fault-btn" data-fault="jammed_cb">
+      <strong>DG 2: Breaker Mechanical Jam (Fail to Close)</strong>
+      <small>Relay arms and triggers at 12 o'clock, but mechanism locks out.</small>
+    </button>
+    <button class="fault-btn" data-fault="preferential">
+      <strong>Switchboard: 110% Overload Preferential Trip Test</strong>
+      <small>Tests 2-stage non-essential consumer shedding (Galley &amp; Deck).</small>
+    </button>
+  </div>
+</div>
+
+<!-- Maritime Technical Competency Certificate Modal -->
+<div class="cert-modal-wrap hidden" id="certModal">
+  <div class="cert-paper">
+    <div class="cert-border">
+      <div class="cert-logo">⚓ ⚡ 🚢</div>
+      <div class="cert-h1">Certificate of Maritime Technical Competency</div>
+      <div class="cert-sub">International STCW Code · Section A-III/1 &amp; A-III/6 (ETO) Standards</div>
+      <div>This is to certify that</div>
+      <div class="cert-name" id="certStudentName">Marine Engineering Officer</div>
+      <div class="cert-body">
+        has successfully completed practical simulator assessment on the <strong>4 × DG Marine High-Voltage Switchboard Simulator</strong>, demonstrating professional competency in prime mover synchronization, reactive voltage control, split-bus operations, and transient motor inrush management.
+      </div>
+      <div class="cert-grid">
+        <div class="cert-grid-item">
+          <span>Assessment Drill</span>
+          <strong id="certAssessment">Cold Ship Black-Start</strong>
+        </div>
+        <div class="cert-grid-item">
+          <span>Final Score</span>
+          <strong id="certScore">98 / 100</strong>
+        </div>
+        <div class="cert-grid-item">
+          <span>Competency Grade</span>
+          <strong id="certGrade">S (Distinction)</strong>
+        </div>
+        <div class="cert-grid-item">
+          <span>Verification Hash</span>
+          <strong id="certHash">#STCW-8492-X</strong>
+        </div>
+      </div>
+      <div class="cert-footer">
+        <div>Date: <span id="certDate">2026-10-31</span> · Marine Simulator Engine v7.2</div>
+        <div>Instructor Verification: <strong>APPROVED / SIGNED</strong></div>
+      </div>
+    </div>
+    <div class="cert-actions">
+      <button class="button button-primary" id="btnPrintCert" type="button">🖨️ Print / Save PDF</button>
+      <button class="button" id="btnCloseCert" type="button">Close</button>
+    </div>
+  </div>
+</div>
+
+
 <script id="sim-model">
 /* ==========================================================================
    Simulation model – recovered from Generator_Synchronisation v7.1 (AS3).
-   Extended with 4×DG, Dual-Section Busbars (Bus A & Bus B), and Bus Tie BT-1.
+   Extended with 4×DG, Dual-Section Busbars (Bus A & Bus B), Bus Tie BT-1,
+   Power Management System (PMS), Heavy Motor Inrush, Faults & Examination.
    Pure logic, no DOM dependencies.
    ========================================================================== */
 const Sim = (() => {
@@ -863,7 +1275,8 @@ const Sim = (() => {
       busId: i < 2 ? 'busA' : 'busB',
       state: 0, fuel: 0, field: 0, fuelKW: 0, fieldKVAr: 0,
       demKW: 0, demKVAr: 0, outKW: 0, outKVAr: 0, hz: 0, volts: 0, pf: 1, phase: 0,
-      rpActive: false, rpTimer: 0, rpTripped: false
+      rpActive: false, rpTimer: 0, rpTripped: false,
+      fault: null, misfire: false
     };
   }
 
@@ -879,6 +1292,28 @@ const Sim = (() => {
       busB: { live: false, hz: 0, volts: 0, phase: 0 },
       totalOut: 0, totalOutKVAr: 0, capKW: 0, reserveKW: 0, unservedKW: 0, overload: false,
       log: [], seq: 0, rand: opts.rand || Math.random,
+
+      // Marine Power Management System (PMS / IAS)
+      pms: { enabled: false, state: 'IDLE', timer: 0, targetDG: -1, status: 'PMS: OFF', actionTimer: 0 },
+
+      // Heavy Consumer Inrush Dynamics
+      heavy: {
+        bow: { running: false, inrush: false, timer: 0, kw: p.lv ? 200 : 1500, kvar: p.lv ? 150 : 1200 },
+        pump: { running: false, inrush: false, timer: 0, kw: p.lv ? 100 : 800, kvar: p.lv ? 80 : 600 }
+      },
+
+      // Preferential Tripping (2-stage non-essential shedding)
+      prefTrip: { timer: 0, stage1: false, stage2: false },
+
+      // Fault Injection
+      faults: { active: 'none' },
+
+      // Assessment & Challenges
+      challenge: {
+        id: null, active: false, timer: 0, maxTime: 60, status: 'IDLE',
+        score: 100, grade: 'S', violations: 0, peakDF: 0, targetReached: false,
+        name: 'None', desc: ''
+      }
     };
     log(sim, 'info', 'Trainer ready – ' + PROFILES[profileId].long + '. Start a generator to begin.');
     return sim;
@@ -891,11 +1326,43 @@ const Sim = (() => {
 
   /* ---- Per-Frame Power & Busbar Solution --------------------------------- */
   function solve(sim) {
-    const p = sim.p, G = sim.gens, D = sim.demandKW, Q = D * p.loadTan;
+    const p = sim.p, G = sim.gens;
+
+    // Calculate heavy motor load contribution
+    let heavyKW = 0, heavyKVAr = 0;
+    if (sim.heavy.bow.running) {
+      if (sim.heavy.bow.inrush) {
+        heavyKW += sim.heavy.bow.kw * 4.5;
+        heavyKVAr += sim.heavy.bow.kvar * 6.0;
+      } else {
+        heavyKW += sim.heavy.bow.kw;
+        heavyKVAr += sim.heavy.bow.kvar;
+      }
+    }
+    if (sim.heavy.pump.running) {
+      if (sim.heavy.pump.inrush) {
+        heavyKW += sim.heavy.pump.kw * 4.0;
+        heavyKVAr += sim.heavy.pump.kvar * 5.0;
+      } else {
+        heavyKW += sim.heavy.pump.kw;
+        heavyKVAr += sim.heavy.pump.kvar;
+      }
+    }
+
+    const D = sim.demandKW + heavyKW;
+    const Q = D * p.loadTan + heavyKVAr;
+
     const reqFuel = (x) => clamp((x + p.useKW) * 100 / p.ratedKW, 0, 100);
     const reqField = (x) => clamp((x + p.useKVAr) * 200 / p.ratedKVAr, 0, 200);
     const calc = (g) => {
-      g.fuelKW = Math.min(g.fuel * p.ratedKW / 100, p.ratedKW);
+      let maxCapKW = p.ratedKW;
+      if (g.fault === 'misfire') {
+        maxCapKW = p.ratedKW * 0.60; // 40% mechanical derating
+        g.misfire = true;
+      } else {
+        g.misfire = false;
+      }
+      g.fuelKW = Math.min(g.fuel * p.ratedKW / 100, maxCapKW);
       g.fieldKVAr = Math.min(g.field * p.ratedKVAr / 200, p.ratedKVAr);
     };
 
@@ -958,9 +1425,24 @@ const Sim = (() => {
     for (const g of G) {
       if (g.state === STATE.STOPPED) continue;
       const exK = g.fuelKW - p.useKW - g.demKW;
-      g.hz = clamp(p.fNom * (1 + p.droopF * exK / p.ratedKW), 0, 1.3 * p.fNom);
+      let targetHz = clamp(p.fNom * (1 + p.droopF * exK / p.ratedKW), 0, 1.3 * p.fNom);
+
+      // Fault injection: Governor Hunting
+      if (g.fault === 'hunting') {
+        targetHz += 1.4 * Math.sin(sim.t * 3.8);
+      }
+      g.hz = targetHz;
+
       const exQ = g.fieldKVAr - p.useKVAr - g.demKVAr;
-      g.volts = clamp(p.vNom * (1 + p.vSens * exQ / p.ratedKVAr), 0, p.vMaxPu * p.vNom);
+      let targetVolts = clamp(p.vNom * (1 + p.vSens * exQ / p.ratedKVAr), 0, p.vMaxPu * p.vNom);
+
+      // Fault injection: Loss of Excitation (ANSI 40)
+      if (g.fault === 'avr_loss') {
+        targetVolts = targetVolts * 0.45;
+        g.outKVAr = -0.35 * p.ratedKVAr; // absorbing heavy reactive power
+      }
+      g.volts = targetVolts;
+
       const mag = Math.hypot(g.outKW, g.outKVAr);
       g.pf = mag < 1e-9 ? 1 : (g.outKW < 0 ? -1 : 1) * Math.abs(g.outKW) / mag;
     }
@@ -1054,6 +1536,14 @@ const Sim = (() => {
     const g = sim.gens[i];
     if (g.state === STATE.STOPPED) return { ok: false, reason: g.name + ' is stopped. Start engine first.' };
     if (g.state >= STATE.ARMED) return { ok: false, reason: g.name + ' GCB is already ' + (g.state === STATE.ARMED ? 'armed to close.' : 'closed.') };
+
+    // Fault: Breaker Mechanism Jammed
+    if (g.fault === 'jammed_cb') {
+      const msg = g.name + ' GCB TRIP / MECHANICAL LOCKOUT: Operating spring charged but mechanism jammed (ANSI 52 fault)!';
+      log(sim, 'alarm', msg);
+      return { ok: false, reason: msg };
+    }
+
     const pm = permissive(sim, g);
     if (!pm.ok) {
       const why = !pm.fOK && !pm.vOK ? 'frequency & voltage' : !pm.fOK ? 'frequency' : 'voltage';
@@ -1067,7 +1557,7 @@ const Sim = (() => {
       return { ok: true, closed: true };
     }
     g.state = STATE.ARMED; solve(sim);
-    log(sim, 'info', g.name + ' check-sync relay armed – GCB will auto-close at 12 o\'clock (±2°).');
+    log(sim, 'info', g.name + " check-sync relay armed – GCB will auto-close at 12 o'clock (±2°).");
     return { ok: true, closed: false };
   }
 
@@ -1075,9 +1565,19 @@ const Sim = (() => {
     const g = sim.gens[i];
     if (g.state < STATE.ARMED) return false;
     const was = g.state;
+    const carryingKW = g.outKW;
     g.state = STATE.RUNNING; g.rpActive = false; g.rpTimer = 0;
     solve(sim);
-    log(sim, 'info', g.name + (was === STATE.ARMED ? ' sync relay disarmed.' : ' GCB opened – unloaded.'));
+    if (was >= STATE.MANUAL && carryingKW > 50) {
+      log(sim, 'warn', g.name + ' GCB opened under high load (' + Math.round(carryingKW) + ' kW) – transient arcing & voltage kick!');
+      if (sim.challenge.active && sim.challenge.id === 'bumpless_unload') {
+        sim.challenge.score = Math.max(0, sim.challenge.score - 40);
+        sim.challenge.violations++;
+        log(sim, 'alarm', 'EXAM PENALTY (-40 pts): Breaker opened under load! DG was not unloaded to < 30 kW.');
+      }
+    } else {
+      log(sim, 'info', g.name + (was === STATE.ARMED ? ' sync relay disarmed.' : ' GCB opened cleanly – unloaded.'));
+    }
     cancelOrphanSync(sim);
     return true;
   }
@@ -1103,6 +1603,7 @@ const Sim = (() => {
         if (dF > 0.25 || dV > 0.05 * sim.p.vNom) {
           const msg = `Bus Tie Close Inhibited: Bus A & Bus B not synchronized (Δf=${dF.toFixed(2)} Hz, ΔV=${Math.round(dV)} V)!`;
           log(sim, 'alarm', msg);
+          if (sim.challenge.active) { sim.challenge.score = Math.max(0, sim.challenge.score - 20); sim.challenge.violations++; }
           return { ok: false, reason: msg };
         }
       }
@@ -1129,12 +1630,386 @@ const Sim = (() => {
     }
   }
 
+  /* ---- Fault Injection Controller ---------------------------------------- */
+  function setFault(sim, faultType) {
+    sim.faults.active = faultType;
+    for (const g of sim.gens) g.fault = null;
+
+    if (faultType === 'none') {
+      log(sim, 'ok', 'Faults cleared – all generator sets and breakers operating at 100% nominal.');
+    } else if (faultType === 'hunting') {
+      sim.gens[1].fault = 'hunting';
+      log(sim, 'alarm', 'FAULT INJECTED: DG 2 governor hunting (fuel rack PID oscillation ±1.4 Hz)!');
+    } else if (faultType === 'avr_loss') {
+      sim.gens[0].fault = 'avr_loss';
+      log(sim, 'alarm', 'FAULT INJECTED: DG 1 loss of excitation (ANSI 40) – terminal voltage collapsed, absorbing reactive kVAr!');
+    } else if (faultType === 'misfire') {
+      sim.gens[2].fault = 'misfire';
+      log(sim, 'alarm', 'FAULT INJECTED: DG 3 cylinder misfire (40% mechanical derating & black smoke)!');
+    } else if (faultType === 'jammed_cb') {
+      sim.gens[1].fault = 'jammed_cb';
+      log(sim, 'alarm', 'FAULT INJECTED: DG 2 GCB mechanism jammed (breaker fail-to-close drill)!');
+    } else if (faultType === 'preferential') {
+      log(sim, 'alarm', 'DRILL INITIALIZED: 110% Overload Preferential Tripping test initiated.');
+      const allLoaded = sim.gens.filter((g) => g.state >= STATE.MANUAL);
+      const cap = allLoaded.length * (sim.p.ratedKW - sim.p.useKW);
+      sim.demandKW = Math.max(sim.demandKW, Math.round(cap * 1.15));
+    }
+    solve(sim);
+  }
+
+  /* ---- Heavy Consumers Controller --------------------------------------- */
+  function toggleHeavy(sim, type) {
+    const item = sim.heavy[type];
+    if (!item) return;
+    if (item.running) {
+      item.running = false; item.inrush = false; item.timer = 0;
+      log(sim, 'info', (type === 'bow' ? 'Bow Thruster' : 'Ballast Pump') + ' stopped.');
+    } else {
+      item.running = true; item.inrush = true; item.timer = 2.5; // 2.5s starting inrush
+      log(sim, 'warn', (type === 'bow' ? 'Bow Thruster' : 'Ballast Pump') + ' DIRECT-ON-LINE START: High inrush current (4.5–6× rated)!');
+    }
+    solve(sim);
+  }
+
+  /* ---- Power Management System (PMS) State Machine ----------------------- */
+  function togglePMS(sim) {
+    sim.pms.enabled = !sim.pms.enabled;
+    sim.pms.status = sim.pms.enabled ? 'PMS: MONITORING' : 'PMS: OFF';
+    sim.pms.state = 'IDLE'; sim.pms.timer = 0; sim.pms.actionTimer = 0;
+    log(sim, sim.pms.enabled ? 'ok' : 'info', 'Power Management System (PMS) ' + (sim.pms.enabled ? 'ACTIVATED – automated load-dependent start/stop & sync enabled.' : 'DEACTIVATED – manual control restored.'));
+    return sim.pms.enabled;
+  }
+
+  function processPMS(sim, dt) {
+    if (!sim.pms.enabled) return;
+    const p = sim.p, G = sim.gens;
+    const allLoaded = G.filter((g) => g.state >= STATE.MANUAL);
+    const stopped = G.filter((g) => g.state === STATE.STOPPED);
+
+    // 1. Blackout auto-recovery
+    if (allLoaded.length === 0 && sim.demandKW > 0) {
+      sim.pms.status = 'PMS: BLACKOUT RECOVERY';
+      sim.pms.timer += dt;
+      if (sim.pms.timer > 1.5) {
+        if (G[0].state === STATE.STOPPED) {
+          start(sim, 0);
+        } else if (G[0].state === STATE.RUNNING) {
+          closeCB(sim, 0);
+          toggleAuto(sim, 0);
+          sim.pms.timer = 0;
+          log(sim, 'ok', 'PMS AUTOMATION: Emergency black-start DG 1 completed onto dead bus.');
+        }
+      }
+      return;
+    }
+
+    if (allLoaded.length === 0) {
+      sim.pms.status = 'PMS: STANDBY (BUS DEAD)';
+      return;
+    }
+
+    const totalCap = allLoaded.length * (p.ratedKW - p.useKW);
+    const loadRatio = totalCap > 0 ? (sim.totalOut / totalCap) : 0;
+
+    // State: IDLE / MONITORING
+    if (sim.pms.state === 'IDLE') {
+      sim.pms.status = `PMS: MONITORING (${Math.round(loadRatio * 100)}% LOAD)`;
+
+      // High Load Trigger (>80% for > 3.0 s)
+      if (loadRatio > 0.80 && stopped.length > 0) {
+        sim.pms.timer += dt;
+        if (sim.pms.timer >= 3.0) {
+          const nextDG = stopped[0].i;
+          sim.pms.state = 'STARTING';
+          sim.pms.targetDG = nextDG;
+          sim.pms.timer = 0;
+          start(sim, nextDG);
+          sim.pms.status = `PMS: AUTO-STARTING ${G[nextDG].name} (LOAD > 80%)`;
+          log(sim, 'warn', `PMS LOAD-DEPENDENT START: Initiating auto-start on ${G[nextDG].name} (bus at ${Math.round(loadRatio * 100)}% load).`);
+        }
+      }
+      // Low Load Trigger (<35% for > 7.0 s with 2+ units loaded)
+      else if (loadRatio < 0.35 && allLoaded.length > 1) {
+        sim.pms.timer += dt;
+        if (sim.pms.timer >= 7.0) {
+          const cand = allLoaded[allLoaded.length - 1];
+          sim.pms.state = 'UNLOADING';
+          sim.pms.targetDG = cand.i;
+          sim.pms.timer = 0;
+          sim.pms.status = `PMS: AUTO-UNLOADING ${cand.name} (LOAD < 35%)`;
+          log(sim, 'info', `PMS LOAD-DEPENDENT STOP: De-paralleling ${cand.name} to optimize engine efficiency.`);
+        }
+      } else {
+        sim.pms.timer = 0;
+      }
+    }
+
+    // State: STARTING
+    else if (sim.pms.state === 'STARTING') {
+      const g = G[sim.pms.targetDG];
+      sim.pms.status = `PMS: RUNNING UP ${g.name}`;
+      if (g.state === STATE.RUNNING) {
+        // Trim governor slightly above bus frequency for positive clockwise rotation
+        const tb = targetBus(sim, g);
+        g.fuel = 12; // ~+0.10 Hz slip
+        g.field = 20;
+        solve(sim);
+        sim.pms.state = 'SYNCING';
+        sim.pms.timer = 0;
+        closeCB(sim, g.i); // Arms check-sync
+        sim.pms.status = `PMS: SYNCING ${g.name} (ANSI 25 ARMED)`;
+      }
+    }
+
+    // State: SYNCING
+    else if (sim.pms.state === 'SYNCING') {
+      const g = G[sim.pms.targetDG];
+      if (g.state >= STATE.MANUAL) {
+        // Synchronized and closed! Set all to AUTO sharing
+        for (const unit of G) {
+          if (unit.state === STATE.MANUAL) unit.state = STATE.AUTO;
+        }
+        solve(sim);
+        sim.pms.state = 'IDLE';
+        sim.pms.timer = 0;
+        sim.pms.status = 'PMS: OPTIMAL BALANCED';
+        log(sim, 'ok', `PMS AUTOMATION: ${g.name} paralleled successfully. Symmetrical active & reactive load sharing active.`);
+      }
+    }
+
+    // State: UNLOADING
+    else if (sim.pms.state === 'UNLOADING') {
+      const g = G[sim.pms.targetDG];
+      sim.pms.status = `PMS: UNLOADING ${g.name}`;
+      g.state = STATE.MANUAL;
+      g.fuel = Math.max(0, g.fuel - 1.5 * dt * 24); // gently ramp fuel down
+      solve(sim);
+      if (g.outKW <= 25) {
+        openCB(sim, g.i); // Bumpless disconnect at ~0 kW!
+        sim.pms.state = 'COOLDOWN';
+        sim.pms.timer = 0;
+        sim.pms.status = `PMS: COOLING DOWN ${g.name}`;
+        log(sim, 'ok', `PMS BUMPLESS TRIP: ${g.name} disconnected cleanly at zero load. Running 3 s idle cooldown.`);
+      }
+    }
+
+    // State: COOLDOWN
+    else if (sim.pms.state === 'COOLDOWN') {
+      const g = G[sim.pms.targetDG];
+      sim.pms.timer += dt;
+      if (sim.pms.timer >= 3.0) {
+        stop(sim, g.i);
+        sim.pms.state = 'IDLE';
+        sim.pms.timer = 0;
+        sim.pms.status = 'PMS: MONITORING';
+        log(sim, 'info', `PMS AUTOMATION: ${g.name} stopped.`);
+      }
+    }
+  }
+
+  /* ---- Examination & Challenges Controller ------------------------------- */
+  function startChallenge(sim, chalId) {
+    sim.challenge.id = chalId;
+    sim.challenge.active = true;
+    sim.challenge.timer = 0;
+    sim.challenge.score = 100;
+    sim.challenge.violations = 0;
+    sim.challenge.peakDF = 0;
+    sim.challenge.targetReached = false;
+    sim.challenge.status = 'IN PROGRESS';
+
+    // Clear any active faults
+    setFault(sim, 'none');
+
+    if (chalId === 'cold_start') {
+      sim.challenge.name = '1. Cold Ship Black-Start & Load Pickup';
+      sim.challenge.desc = 'Energize dead bus and pick up 1,500 kW';
+      sim.challenge.maxTime = 60;
+      // Reset switchboard to dead ship
+      for (let i = 0; i < N; i++) stop(sim, i);
+      sim.demandKW = 1500;
+      sim.busTie = true;
+      solve(sim);
+      log(sim, 'info', 'EXAM STARTED – Cold Ship Black-Start: Start DG 1, close GCB to dead bus, and pick up 1,500 kW.');
+    }
+    else if (chalId === 'precision_sync') {
+      sim.challenge.name = '2. Precision Manual Paralleling (DG 1 & DG 2)';
+      sim.challenge.desc = 'Synchronize DG 2 to live bus carrying 1,500 kW';
+      sim.challenge.maxTime = 90;
+      for (let i = 0; i < N; i++) stop(sim, i);
+      start(sim, 0); closeCB(sim, 0);
+      sim.demandKW = 1500;
+      sim.gens[0].state = STATE.AUTO;
+      sim.busTie = true;
+      solve(sim);
+      log(sim, 'info', 'EXAM STARTED – Precision Paralleling: DG 1 is online. Manually start & synchronize DG 2 with zero reverse power!');
+    }
+    else if (chalId === 'bumpless_unload') {
+      sim.challenge.name = '3. Bumpless Generator De-paralleling';
+      sim.challenge.desc = 'Safely isolate DG 2: unload to < 30 kW before opening GCB';
+      sim.challenge.maxTime = 45;
+      for (let i = 0; i < N; i++) stop(sim, i);
+      start(sim, 0); closeCB(sim, 0);
+      start(sim, 1); closeCB(sim, 1);
+      sim.demandKW = 2000;
+      sim.gens[0].state = STATE.AUTO;
+      sim.gens[1].state = STATE.MANUAL;
+      sim.gens[1].fuel = 35;
+      sim.busTie = true;
+      solve(sim);
+      log(sim, 'info', 'EXAM STARTED – Bumpless De-paralleling: Transfer load off DG 2. Open GCB only when kW < 30 kW!');
+    }
+    else if (chalId === 'bow_thruster') {
+      sim.challenge.name = '4. Heavy Consumer Maneuvering Preparation';
+      sim.challenge.desc = 'Parallel adequate generators and start 1,500 kW Bow Thruster';
+      sim.challenge.maxTime = 75;
+      for (let i = 0; i < N; i++) stop(sim, i);
+      start(sim, 0); closeCB(sim, 0);
+      sim.demandKW = 1000;
+      sim.gens[0].state = STATE.AUTO;
+      sim.heavy.bow.running = false;
+      sim.busTie = true;
+      solve(sim);
+      log(sim, 'info', 'EXAM STARTED – Heavy Consumer Start: Single DG running at 1,000 kW. Parallel DG 2 BEFORE starting Bow Thruster!');
+    }
+    else if (chalId === 'split_bus_sync') {
+      sim.challenge.name = '5. Split-Bus Re-synchronization (Bus Tie BT-1)';
+      sim.challenge.desc = 'Synchronize Bus A and Bus B, then close Bus Tie BT-1';
+      sim.challenge.maxTime = 60;
+      for (let i = 0; i < N; i++) stop(sim, i);
+      sim.busTie = false; // Split bus!
+      start(sim, 0); closeCB(sim, 0); // DG 1 on Bus A
+      start(sim, 2); closeCB(sim, 2); // DG 3 on Bus B
+      sim.demandKW = 2000;
+      sim.gens[0].state = STATE.AUTO;
+      sim.gens[2].state = STATE.AUTO;
+      solve(sim);
+      log(sim, 'info', 'EXAM STARTED – Split-Bus Synchronization: Bus A & Bus B running isolated. Trim speed & voltage, then close BT-1.');
+    }
+  }
+
+  function processChallenge(sim, dt) {
+    if (!sim.challenge.active) return;
+    const ch = sim.challenge, p = sim.p, G = sim.gens;
+    ch.timer += dt;
+
+    // Track peak frequency deviation
+    if (sim.bus.live) {
+      const df = Math.abs(sim.bus.hz - p.fNom);
+      if (df > ch.peakDF) ch.peakDF = df;
+    }
+
+    // Time deduction
+    if (ch.timer > ch.maxTime) {
+      const over = ch.timer - ch.maxTime;
+      ch.score = Math.max(0, 100 - Math.round(over * 1.5) - ch.violations * 20);
+    }
+
+    // Evaluate specific challenge criteria
+    if (ch.id === 'cold_start') {
+      if (sim.bus.live && Math.abs(sim.totalOut - 1500) < 50 && Math.abs(sim.bus.hz - p.fNom) <= 0.25) {
+        ch.targetReached = true;
+        ch.status = 'PASSED';
+        ch.active = false;
+        log(sim, 'ok', '🎉 EXAM PASSED! Cold ship black-start completed in ' + ch.timer.toFixed(1) + ' s. Score: ' + ch.score + '/100.');
+      }
+    }
+    else if (ch.id === 'precision_sync') {
+      const g2 = G[1];
+      if (g2.state >= STATE.MANUAL && g2.outKW > 50) {
+        ch.targetReached = true;
+        ch.status = 'PASSED';
+        ch.active = false;
+        log(sim, 'ok', '🎉 EXAM PASSED! Precision synchronization completed with zero reverse power trips. Score: ' + ch.score + '/100.');
+      }
+    }
+    else if (ch.id === 'bumpless_unload') {
+      const g2 = G[1];
+      if (g2.state === STATE.RUNNING && G[0].state >= STATE.MANUAL && sim.bus.live) {
+        ch.targetReached = true;
+        ch.status = 'PASSED';
+        ch.active = false;
+        log(sim, 'ok', '🎉 EXAM PASSED! DG 2 de-paralleled smoothly. Bus remained stable without blackout. Score: ' + ch.score + '/100.');
+      }
+    }
+    else if (ch.id === 'bow_thruster') {
+      if (sim.heavy.bow.running && !sim.heavy.bow.inrush && sim.bus.live && sim.bus.hz >= 58.5) {
+        ch.targetReached = true;
+        ch.status = 'PASSED';
+        ch.active = false;
+        log(sim, 'ok', '🎉 EXAM PASSED! Bow Thruster started safely with adequate spinning reserve. Score: ' + ch.score + '/100.');
+      }
+    }
+    else if (ch.id === 'split_bus_sync') {
+      if (sim.busTie && sim.bus.live) {
+        ch.targetReached = true;
+        ch.status = 'PASSED';
+        ch.active = false;
+        log(sim, 'ok', '🎉 EXAM PASSED! Bus Tie closed in synchronism. Split buses unified. Score: ' + ch.score + '/100.');
+      }
+    }
+
+    // Grade calculation
+    if (ch.score >= 95) ch.grade = 'S';
+    else if (ch.score >= 85) ch.grade = 'A';
+    else if (ch.score >= 70) ch.grade = 'B';
+    else if (ch.score >= 60) ch.grade = 'C';
+    else ch.grade = 'F';
+
+    // Blackout fail condition
+    if (ch.timer > 10 && ch.id !== 'cold_start' && !sim.bus.live) {
+      ch.status = 'FAILED (BLACKOUT)';
+      ch.score = 0;
+      ch.grade = 'F';
+      ch.active = false;
+      log(sim, 'alarm', '❌ EXAM FAILED: Total ship blackout occurred during maneuvering!');
+    }
+  }
+
   /* ---- Time Step (24 Hz) ------------------------------------------------ */
   function tick(sim, dt = TICK) {
     if (sim.paused) return;
     sim.t += dt;
     solve(sim);
     const p = sim.p, perHz = 4.8 * sim.mult;
+
+    // Heavy motor inrush timer countdown
+    if (sim.heavy.bow.timer > 0) {
+      sim.heavy.bow.timer -= dt;
+      if (sim.heavy.bow.timer <= 0) {
+        sim.heavy.bow.inrush = false;
+        log(sim, 'ok', 'Bow Thruster motor inrush transient subsided – settled to 1,500 kW steady-state.');
+      }
+    }
+    if (sim.heavy.pump.timer > 0) {
+      sim.heavy.pump.timer -= dt;
+      if (sim.heavy.pump.timer <= 0) {
+        sim.heavy.pump.inrush = false;
+        log(sim, 'ok', 'Ballast Pump motor inrush transient subsided – settled to 800 kW steady-state.');
+      }
+    }
+
+    // Preferential Tripping (2-stage overload shedding)
+    if (sim.overload && sim.capKW > 0) {
+      sim.prefTrip.timer += dt;
+      if (sim.prefTrip.timer >= 4.0 && !sim.prefTrip.stage1) {
+        sim.prefTrip.stage1 = true;
+        sim.demandKW = Math.max(0, Math.round(sim.demandKW * 0.80));
+        log(sim, 'alarm', '⚡ PREFERENTIAL TRIP STAGE 1 (4 s): Non-essential Galley & HVAC loads shed (-20% demand)!');
+        solve(sim);
+      }
+      if (sim.prefTrip.timer >= 8.0 && !sim.prefTrip.stage2) {
+        sim.prefTrip.stage2 = true;
+        sim.demandKW = Math.max(0, Math.round(sim.demandKW * 0.70));
+        log(sim, 'alarm', '⚡ PREFERENTIAL TRIP STAGE 2 (8 s): Deck machinery & reefer loads shed (-30% demand)!');
+        solve(sim);
+      }
+    } else {
+      sim.prefTrip.timer = 0;
+      sim.prefTrip.stage1 = false;
+      sim.prefTrip.stage2 = false;
+    }
 
     if (sim.busA.live) sim.busA.phase = (sim.busA.phase + (sim.busA.hz - p.fNom) * perHz * dt) % 360;
     if (sim.busB.live) sim.busB.phase = (sim.busB.phase + (sim.busB.hz - p.fNom) * perHz * dt) % 360;
@@ -1169,6 +2044,10 @@ const Sim = (() => {
         if (!g.rpActive) {
           g.rpActive = true;
           log(sim, 'alarm', g.name + ' REVERSE POWER DETECTED (ANSI 32R) – Tripping in ' + p.rpDelay + ' s!');
+          if (sim.challenge.active) {
+            sim.challenge.score = Math.max(0, sim.challenge.score - 25);
+            sim.challenge.violations++;
+          }
         }
         g.rpTimer += dt;
         if (g.rpTimer >= p.rpDelay) {
@@ -1182,10 +2061,15 @@ const Sim = (() => {
         g.rpActive = false; g.rpTimer = 0;
       }
     }
+
+    // Process PMS Automation & Challenge Evaluator
+    processPMS(sim, dt);
+    processChallenge(sim, dt);
   }
 
   return { TICK, N, STATE, PROFILES, SLIPS, create, tick, solve, log, start, stop, closeCB, openCB, toggleAuto,
-    toggleBusTie, setFuel, setField, setDemand, setSlip, permissive, dPhi, targetBus, fold, clamp };
+    toggleBusTie, setFuel, setField, setDemand, setSlip, permissive, dPhi, targetBus, fold, clamp,
+    setFault, toggleHeavy, togglePMS, startChallenge };
 })();
 </script>
 
@@ -2032,14 +2916,376 @@ function renderLog() {
   $$('#log li span').forEach((s, k) => { s.textContent = sim.log.slice(-60).reverse()[k].msg; });
 }
 
+
+/* ========================================================================
+   Procedural Web Audio Engine (Pure Web Audio API - Zero External Files)
+   ======================================================================== */
+const AudioEngine = (() => {
+  let ctx = null;
+  let enabled = false;
+  let masterGain = null;
+  const engines = [];
+  let alarmInterval = null;
+  let alarmActive = false;
+
+  function init() {
+    if (ctx) return;
+    try {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      if (!AudioCtx) return;
+      ctx = new AudioCtx();
+      masterGain = ctx.createGain();
+      masterGain.gain.value = 0.001;
+      masterGain.connect(ctx.destination);
+
+      for (let i = 0; i < 4; i++) {
+        const osc1 = ctx.createOscillator();
+        const osc2 = ctx.createOscillator();
+        const sub = ctx.createOscillator();
+        const filter = ctx.createBiquadFilter();
+        const gain = ctx.createGain();
+
+        osc1.type = 'sawtooth';
+        osc2.type = 'triangle';
+        sub.type = 'sine';
+
+        filter.type = 'lowpass';
+        filter.frequency.value = 160;
+        filter.Q.value = 2.0;
+
+        gain.gain.value = 0.0001;
+
+        osc1.connect(filter);
+        osc2.connect(filter);
+        sub.connect(filter);
+        filter.connect(gain);
+        gain.connect(masterGain);
+
+        osc1.start(); osc2.start(); sub.start();
+        engines.push({ osc1, osc2, sub, filter, gain });
+      }
+    } catch (e) {
+      console.warn('AudioContext init error:', e);
+    }
+  }
+
+  function toggle() {
+    init();
+    if (!ctx) return false;
+    if (ctx.state === 'suspended') ctx.resume();
+    enabled = !enabled;
+    if (masterGain) masterGain.gain.setTargetAtTime(enabled ? 0.35 : 0.0001, ctx.currentTime, 0.05);
+    return enabled;
+  }
+
+  function updateEngine(i, running, hz, loadPu, misfire) {
+    if (!ctx || !enabled || !engines[i]) return;
+    const now = ctx.currentTime;
+    const eng = engines[i];
+    if (!running) {
+      eng.gain.gain.setTargetAtTime(0.0001, now, 0.1);
+      return;
+    }
+    const baseFreq = Math.max(18, (hz || 60) * 0.95);
+    eng.osc1.frequency.setTargetAtTime(baseFreq, now, 0.08);
+    eng.osc2.frequency.setTargetAtTime(baseFreq * 2.0, now, 0.08);
+    eng.sub.frequency.setTargetAtTime(baseFreq * 0.5, now, 0.08);
+
+    const cutoff = 130 + loadPu * 280 + (misfire ? 90 : 0);
+    eng.filter.frequency.setTargetAtTime(cutoff, now, 0.1);
+
+    const targetGain = (0.04 + loadPu * 0.08) * (misfire ? 0.7 : 1.0);
+    eng.gain.gain.setTargetAtTime(targetGain, now, 0.1);
+  }
+
+  function playBreaker(isClose, isTrip) {
+    if (!ctx || !enabled) return;
+    const now = ctx.currentTime;
+    const thud = ctx.createOscillator();
+    const thudGain = ctx.createGain();
+    thud.type = 'sine';
+    thud.frequency.setValueAtTime(isTrip ? 150 : 115, now);
+    thud.frequency.exponentialRampToValueAtTime(32, now + 0.08);
+    thudGain.gain.setValueAtTime(isTrip ? 0.6 : 0.45, now);
+    thudGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08);
+    thud.connect(thudGain);
+    thudGain.connect(masterGain);
+    thud.start(now);
+    thud.stop(now + 0.09);
+
+    const snap = ctx.createOscillator();
+    const snapGain = ctx.createGain();
+    snap.type = isTrip ? 'sawtooth' : 'square';
+    snap.frequency.setValueAtTime(isTrip ? 2400 : 1800, now);
+    snap.frequency.exponentialRampToValueAtTime(350, now + 0.04);
+    snapGain.gain.setValueAtTime(0.28, now);
+    snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+    snap.connect(snapGain);
+    snapGain.connect(masterGain);
+    snap.start(now);
+    snap.stop(now + 0.05);
+  }
+
+  function playChime() {
+    if (!ctx || !enabled) return;
+    const now = ctx.currentTime;
+    [880, 1320].forEach((freq, idx) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(freq, now + idx * 0.1);
+      gain.gain.setValueAtTime(0.2, now + idx * 0.1);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + idx * 0.1 + 0.35);
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start(now + idx * 0.1);
+      osc.stop(now + idx * 0.1 + 0.4);
+    });
+  }
+
+  function playHorn() {
+    if (!ctx || !enabled) return;
+    const now = ctx.currentTime;
+    [220, 277].forEach((f) => {
+      const osc = ctx.createOscillator();
+      const gain = ctx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(f, now);
+      gain.gain.setValueAtTime(0.35, now);
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.65);
+      osc.connect(gain);
+      gain.connect(masterGain);
+      osc.start(now);
+      osc.stop(now + 0.7);
+    });
+  }
+
+  function setAlarm(active) {
+    if (!ctx || !enabled) return;
+    if (active && !alarmActive) {
+      alarmActive = true;
+      alarmInterval = setInterval(() => {
+        if (!enabled || !alarmActive || !ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const g = ctx.createGain();
+        osc.type = 'square';
+        osc.frequency.setValueAtTime(950, now);
+        g.gain.setValueAtTime(0.18, now);
+        g.gain.exponentialRampToValueAtTime(0.001, now + 0.12);
+        osc.connect(g);
+        g.connect(masterGain);
+        osc.start(now);
+        osc.stop(now + 0.13);
+      }, 250);
+    } else if (!active && alarmActive) {
+      alarmActive = false;
+      if (alarmInterval) clearInterval(alarmInterval);
+    }
+  }
+
+  return { init, toggle, isEnabled: () => enabled, updateEngine, playBreaker, playChime, playHorn, setAlarm };
+})();
+
+/* ========================================================================
+   IEC 60617 Single Line Diagram (SLD) Renderer
+   ======================================================================== */
+let activeView = 'bays';
+
+function renderSLD() {
+  const host = $('#sldSvgHost');
+  if (!host) return;
+
+  const p = sim.p, G = sim.gens;
+  const isBusLive = sim.bus.live;
+  const busACol = sim.busA.live ? '#dc2626' : '#727a83';
+  const busBCol = sim.busB.live ? '#dc2626' : '#727a83';
+
+  // Build SVG string
+  host.innerHTML = `
+  <svg class="sld-svg" viewBox="0 0 920 460" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <!-- Arrow Marker for Active Power Flow -->
+      <marker id="sldArrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+        <path d="M 0 1 L 10 5 L 0 9 z" fill="#dc2626"/>
+      </marker>
+    </defs>
+
+    <!-- Background Grid -->
+    <rect width="100%" height="100%" fill="#ffffff"/>
+    <pattern id="sldGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M 20 0 L 0 0 0 20" fill="none" stroke="#f1f5f9" stroke-width="1"/>
+    </pattern>
+    <rect width="100%" height="100%" fill="url(#sldGrid)"/>
+
+    <!-- 4 Generator Incomer Bays -->
+    ${G.map((g, idx) => {
+      const cx = 110 + idx * 220 + (idx >= 2 ? 60 : 0);
+      const isLive = g.state >= 3;
+      const isArmed = g.state === 2;
+      const isRunning = g.state > 0;
+      const col = isLive ? '#dc2626' : (isRunning ? '#2563eb' : '#94a3b8');
+
+      return `
+      <!-- Bay ${idx + 1} -->
+      <g class="sld-incomer">
+        <!-- Generator Source Circle -->
+        <circle cx="${cx}" cy="50" r="26" fill="#f8fafc" stroke="${col}" stroke-width="2.5"/>
+        <text x="${cx}" y="47" font-size="11" font-weight="700" text-anchor="middle" fill="#0f172a">${g.name}</text>
+        <path d="M ${cx - 10} 56 Q ${cx - 5} 51 ${cx} 56 T ${cx + 10} 56" fill="none" stroke="${col}" stroke-width="2"/>
+        <text x="${cx}" y="20" font-size="9" font-family="monospace" text-anchor="middle" fill="#64748b">${p.ratedKW} kW · ${(p.vNom/1000).toFixed(1)} kV</text>
+
+        <!-- Neutral Earthing Resistor (NER) -->
+        <line x1="${cx}" y1="76" x2="${cx}" y2="92" stroke="#64748b" stroke-width="1.5"/>
+        <rect x="${cx - 6}" y="92" width="12" height="18" fill="#e2e8f0" stroke="#475569" stroke-width="1"/>
+        <text x="${cx + 12}" y="104" font-size="8" fill="#64748b">NGR</text>
+        <line x1="${cx}" y1="110" x2="${cx}" y2="120" stroke="#64748b" stroke-width="1.5"/>
+        <path d="M ${cx - 8} 120 h 16 M ${cx - 5} 123 h 10 M ${cx - 2} 126 h 4" stroke="#64748b" stroke-width="1.5"/>
+
+        <!-- Incomer Feeder Line -->
+        <line x1="${cx}" y1="76" x2="${cx}" y2="150" stroke="${col}" stroke-width="2"/>
+
+        <!-- Current Transformer (CT) -->
+        <circle cx="${cx}" cy="142" r="5" fill="none" stroke="#475569" stroke-width="1.5"/>
+        <circle cx="${cx}" cy="148" r="5" fill="none" stroke="#475569" stroke-width="1.5"/>
+        <text x="${cx + 10}" y="148" font-size="8" font-family="monospace" fill="#64748b">3x CT</text>
+
+        <!-- Circuit Breaker (ANSI 52G) -->
+        <g class="sld-cb" data-g="${idx}" transform="translate(${cx - 14}, 165)">
+          <rect width="28" height="28" rx="3" fill="${isLive ? '#fee2e2' : (isArmed ? '#fef3c7' : '#f0fdf4')}" stroke="${isLive ? '#dc2626' : (isArmed ? '#d97706' : '#16a34a')}" stroke-width="2"/>
+          ${isLive ? `
+            <line x1="6" y1="6" x2="22" y2="22" stroke="#dc2626" stroke-width="2.5"/>
+            <line x1="22" y1="6" x2="6" y2="22" stroke="#dc2626" stroke-width="2.5"/>
+          ` : (isArmed ? `
+            <circle cx="14" cy="14" r="7" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="3 2"/>
+            <text x="14" y="17" font-size="9" font-weight="bold" fill="#d97706" text-anchor="middle">25</text>
+          ` : `
+            <line x1="14" y1="2" x2="14" y2="10" stroke="#16a34a" stroke-width="2"/>
+            <line x1="14" y1="18" x2="14" y2="26" stroke="#16a34a" stroke-width="2"/>
+            <line x1="14" y1="18" x2="22" y2="6" stroke="#16a34a" stroke-width="2"/>
+          `)}
+        </g>
+        <text x="${cx + 20}" y="182" font-size="9" font-weight="700" fill="#334155">52G-${idx + 1}</text>
+
+        <!-- Line to Busbar -->
+        <line x1="${cx}" y1="193" x2="${cx}" y2="240" stroke="${isLive ? (idx < 2 ? busACol : busBCol) : '#94a3b8'}" stroke-width="2.5"/>
+        ${isLive ? `
+          <!-- Active Power Flow Arrow -->
+          <line x1="${cx}" y1="200" x2="${cx}" y2="230" stroke="#dc2626" stroke-width="2" stroke-dasharray="4 4" class="sld-flow-arrow" marker-end="url(#sldArrow)"/>
+          <text x="${cx + 8}" y="222" font-size="9" font-family="monospace" font-weight="bold" fill="#dc2626">${Math.round(g.outKW)} kW</text>
+        ` : ''}
+      </g>
+      `;
+    }).join('')}
+
+    <!-- ====================================================================
+         MAIN BUSBAR (BUS A & BUS B WITH BUS TIE BT-1)
+         ==================================================================== -->
+    <!-- Bus Section A (Port Switchboard) -->
+    <line x1="60" y1="240" x2="440" y2="240" stroke="${busACol}" stroke-width="7" stroke-linecap="round"/>
+    <text x="70" y="230" font-size="11" font-weight="bold" fill="${busACol}">BUS SECTION A (PORT MSB)</text>
+    <text x="70" y="260" font-size="10" font-family="monospace" fill="#334155">${sim.busA.live ? (sim.busA.volts/1000).toFixed(2) + ' kV · ' + sim.busA.hz.toFixed(2) + ' Hz' : 'DEAD BUS (0.00 kV)'}</text>
+
+    <!-- Center Bus Tie Breaker BT-1 (ANSI 52BT) -->
+    <g class="sld-cb" id="sldTieBreaker" transform="translate(445, 226)">
+      <line x1="0" y1="14" x2="15" y2="14" stroke="${busACol}" stroke-width="4"/>
+      <rect x="15" y="0" width="28" height="28" rx="3" fill="${sim.busTie ? '#fee2e2' : '#f0fdf4'}" stroke="${sim.busTie ? '#dc2626' : '#16a34a'}" stroke-width="2"/>
+      ${sim.busTie ? `
+        <line x1="21" y1="6" x2="37" y2="22" stroke="#dc2626" stroke-width="2.5"/>
+        <line x1="37" y1="6" x2="21" y2="22" stroke="#dc2626" stroke-width="2.5"/>
+      ` : `
+        <line x1="21" y1="22" x2="35" y2="8" stroke="#16a34a" stroke-width="2"/>
+      `}
+      <line x1="43" y1="14" x2="58" y2="14" stroke="${busBCol}" stroke-width="4"/>
+    </g>
+    <text x="474" y="215" font-size="10" font-weight="bold" fill="#0f172a" text-anchor="middle">BT-1 (52BT)</text>
+    <text x="474" y="270" font-size="9" font-family="monospace" fill="#64748b" text-anchor="middle">${sim.busTie ? 'TIED BUS' : 'SPLIT BUS'}</text>
+
+    <!-- Bus Section B (Starboard Switchboard) -->
+    <line x1="505" y1="240" x2="880" y2="240" stroke="${busBCol}" stroke-width="7" stroke-linecap="round"/>
+    <text x="870" y="230" font-size="11" font-weight="bold" text-anchor="end" fill="${busBCol}">BUS SECTION B (STBD MSB)</text>
+    <text x="870" y="260" font-size="10" font-family="monospace" text-anchor="end" fill="#334155">${sim.busB.live ? (sim.busB.volts/1000).toFixed(2) + ' kV · ' + sim.busB.hz.toFixed(2) + ' Hz' : 'DEAD BUS (0.00 kV)'}</text>
+
+    <!-- ====================================================================
+         FEEDERS (PROPULSION, HEAVY MOTORS, & SHIP SERVICE)
+         ==================================================================== -->
+    <!-- Feeder 1: Heavy Consumers / Bow Thruster -->
+    <g transform="translate(250, 240)">
+      <line x1="0" y1="0" x2="0" y2="50" stroke="${sim.heavy.bow.running && sim.busA.live ? '#dc2626' : '#94a3b8'}" stroke-width="2.5"/>
+      <rect x="-10" y="50" width="20" height="20" rx="2" fill="${sim.heavy.bow.running ? '#fee2e2' : '#f1f5f9'}" stroke="${sim.heavy.bow.running ? '#dc2626' : '#475569'}" stroke-width="1.5"/>
+      ${sim.heavy.bow.running ? '<line x1="-5" y1="55" x2="5" y2="65" stroke="#dc2626" stroke-width="2"/><line x1="5" y1="55" x2="-5" y2="65" stroke="#dc2626" stroke-width="2"/>' : '<line x1="0" y1="52" x2="0" y2="58" stroke="#475569"/><line x1="0" y1="62" x2="0" y2="68" stroke="#475569"/>'}
+      <line x1="0" y1="70" x2="0" y2="110" stroke="${sim.heavy.bow.running && sim.busA.live ? '#dc2626' : '#94a3b8'}" stroke-width="2"/>
+      <circle cx="0" cy="125" r="16" fill="#f8fafc" stroke="${sim.heavy.bow.running && sim.busA.live ? '#dc2626' : '#475569'}" stroke-width="2"/>
+      <text x="0" y="130" font-size="13" font-weight="bold" text-anchor="middle" fill="#0f172a">M</text>
+      <text x="0" y="155" font-size="10" font-weight="600" text-anchor="middle" fill="#1e293b">Bow Thruster (1,500 kW)</text>
+      <text x="0" y="167" font-size="9" font-family="monospace" text-anchor="middle" fill="${sim.heavy.bow.inrush ? '#d97706' : '#64748b'}">${sim.heavy.bow.inrush ? '⚡ STARTING INRUSH' : (sim.heavy.bow.running ? 'RUNNING' : 'STOPPED')}</text>
+    </g>
+
+    <!-- Feeder 2: Ship Total Demand / Main Consumers -->
+    <g transform="translate(680, 240)">
+      <line x1="0" y1="0" x2="0" y2="50" stroke="${isBusLive && sim.demandKW > 0 ? '#dc2626' : '#94a3b8'}" stroke-width="2.5"/>
+      <rect x="-10" y="50" width="20" height="20" rx="2" fill="${isBusLive ? '#fee2e2' : '#f1f5f9'}" stroke="${isBusLive ? '#dc2626' : '#475569'}" stroke-width="1.5"/>
+      <line x1="-5" y1="55" x2="5" y2="65" stroke="#dc2626" stroke-width="2"/>
+      <line x1="5" y1="55" x2="-5" y2="65" stroke="#dc2626" stroke-width="2"/>
+      <line x1="0" y1="70" x2="0" y2="105" stroke="${isBusLive && sim.demandKW > 0 ? '#dc2626' : '#94a3b8'}" stroke-width="2"/>
+      
+      <!-- Load Step-down Transformer -->
+      <circle cx="0" cy="118" r="12" fill="none" stroke="#475569" stroke-width="2"/>
+      <circle cx="0" cy="132" r="12" fill="none" stroke="#475569" stroke-width="2"/>
+      <line x1="0" y1="144" x2="0" y2="160" stroke="#475569" stroke-width="2"/>
+      <polygon points="0,172 -10,160 10,160" fill="#475569"/>
+      <text x="25" y="128" font-size="9" fill="#64748b">6.6kV / 440V</text>
+      <text x="0" y="186" font-size="11" font-weight="700" text-anchor="middle" fill="#0f172a">Ship Service &amp; Hotel Load</text>
+      <text x="0" y="198" font-size="10" font-family="monospace" font-weight="bold" text-anchor="middle" fill="#dc2626">${nf0.format(sim.demandKW)} kW · ${nf0.format(sim.demandKW * p.loadTan)} kVAr</text>
+    </g>
+  </svg>
+  `;
+
+  // Attach click listener to breakers on SLD
+  $$('.sld-cb', host).forEach((el) => {
+    el.addEventListener('click', (ev) => {
+      ev.stopPropagation();
+      if (el.id === 'sldTieBreaker') {
+        Sim.toggleBusTie(sim);
+        AudioEngine.playBreaker(sim.busTie, !sim.busTie);
+      } else {
+        const gIdx = parseInt(el.getAttribute('data-g'), 10);
+        if (!isNaN(gIdx)) {
+          const g = sim.gens[gIdx];
+          if (g.state < 2) {
+            const res = Sim.closeCB(sim, gIdx);
+            if (res.ok) AudioEngine.playChime();
+          } else {
+            Sim.openCB(sim, gIdx);
+            AudioEngine.playBreaker(false, true);
+          }
+        }
+      }
+    });
+  });
+}
+
 function render(dt) {
-  for (let i = 0; i < N; i++) renderCard(i);
+  for (let i = 0; i < N; i++) {
+    renderCard(i);
+    // Audio engine synthesis update
+    const g = sim.gens[i];
+    AudioEngine.updateEngine(i, g.state > 0, g.hz, g.outKW / sim.p.ratedKW, g.misfire);
+  }
   renderSync(dt);
   renderInstruments(dt);
   renderLoad();
   renderSwitchboard();
+  renderHeavyConsumers();
+  renderPMS();
+  renderExam();
+  if (activeView === 'sld') renderSLD();
   renderTop();
   renderLog();
+
+  // Audio alarms update
+  const hasReversePower = sim.gens.some((g) => g.rpActive);
+  AudioEngine.setAlarm(hasReversePower || sim.overload);
 }
 
 /* ========================================================================
@@ -2073,8 +3319,208 @@ setInterval(() => {
 }, 250);
 
 requestAnimationFrame(frame);
+
+/* ========================================================================
+   Heavy Consumers, PMS, Faults & Exam UI Handlers
+   ======================================================================== */
+function renderHeavyConsumers() {
+  const p = sim.p;
+  // Bow Thruster
+  const bow = sim.heavy.bow;
+  const bowBadge = $('#bowBadge');
+  const btnBow = $('#btnBow');
+  if (bowBadge && btnBow) {
+    if (bow.running) {
+      if (bow.inrush) {
+        bowBadge.className = 'heavy-badge inrush';
+        bowBadge.textContent = 'INRUSH (4.5x)';
+      } else {
+        bowBadge.className = 'heavy-badge running';
+        bowBadge.textContent = 'RUNNING';
+      }
+      btnBow.textContent = 'Stop';
+      btnBow.className = 'button button-sm button-danger';
+    } else {
+      bowBadge.className = 'heavy-badge stopped';
+      bowBadge.textContent = 'STOPPED';
+      btnBow.textContent = 'Start';
+      btnBow.className = 'button button-sm button-primary';
+    }
+  }
+
+  // Ballast Pump
+  const pump = sim.heavy.pump;
+  const pumpBadge = $('#pumpBadge');
+  const btnPump = $('#btnPump');
+  if (pumpBadge && btnPump) {
+    if (pump.running) {
+      if (pump.inrush) {
+        pumpBadge.className = 'heavy-badge inrush';
+        pumpBadge.textContent = 'INRUSH (4.0x)';
+      } else {
+        pumpBadge.className = 'heavy-badge running';
+        pumpBadge.textContent = 'RUNNING';
+      }
+      btnPump.textContent = 'Stop';
+      btnPump.className = 'button button-sm button-danger';
+    } else {
+      pumpBadge.className = 'heavy-badge stopped';
+      pumpBadge.textContent = 'STOPPED';
+      btnPump.textContent = 'Start';
+      btnPump.className = 'button button-sm button-primary';
+    }
+  }
+}
+
+function renderPMS() {
+  const pmsLabel = $('#pmsLabel');
+  if (pmsLabel) {
+    pmsLabel.textContent = sim.pms.enabled ? sim.pms.status : 'PMS: OFF';
+    $('#btnPms').classList.toggle('button-primary', sim.pms.enabled);
+  }
+}
+
+let selChallengeId = 'cold_start';
+function renderExam() {
+  const ch = sim.challenge;
+  const mm = Math.floor(ch.timer / 60), ss = Math.floor(ch.timer % 60);
+  const timeStr = String(mm).padStart(2, '0') + ':' + String(ss).padStart(2, '0');
+  
+  setT($('#metricScore'), ch.score + ' / 100');
+  setT($('#metricTime'), timeStr);
+  setT($('#metricDF'), ch.peakDF.toFixed(2) + ' Hz');
+  setT($('#metricViolations'), ch.violations);
+
+  const gradeEl = $('#evalGrade');
+  if (gradeEl) {
+    gradeEl.className = 'grade-badge grade-' + ch.grade;
+    gradeEl.textContent = ch.grade;
+  }
+
+  const btnCert = $('#btnCert');
+  if (btnCert) {
+    btnCert.style.display = (ch.status === 'PASSED' || ch.score >= 70) ? 'inline-flex' : 'none';
+  }
+
+  const statusText = $('#evalStatusText');
+  if (statusText) {
+    if (ch.status === 'PASSED') {
+      statusText.innerHTML = `<span style="color:var(--ok); font-weight:bold">✓ ASSESSMENT PASSED! (Score: ${ch.score}/100, Grade ${ch.grade})</span>`;
+    } else if (ch.status.startsWith('FAILED')) {
+      statusText.innerHTML = `<span style="color:#dc2626; font-weight:bold">✗ ${ch.status}</span>`;
+    } else if (ch.active) {
+      statusText.innerHTML = `<span style="color:var(--accent); font-weight:600">Exam In Progress... (${Math.max(0, Math.round(ch.maxTime - ch.timer))} s remaining)</span>`;
+    }
+  }
+}
+
+// Bind Extra Controls
+$('#btnAudio')?.addEventListener('click', () => {
+  const isNowOn = AudioEngine.toggle();
+  $('#audioLabel').textContent = isNowOn ? 'Sound ON' : 'Sound OFF';
+  $('#audioIcon').setAttribute('href', isNowOn ? '#i-volume' : '#i-volume-mute');
+  $('#btnAudio').classList.toggle('button-primary', isNowOn);
+});
+
+$('#btnPms')?.addEventListener('click', () => {
+  Sim.togglePMS(sim);
+  renderPMS();
+});
+
+$('#btnBow')?.addEventListener('click', () => {
+  Sim.toggleHeavy(sim, 'bow');
+  if (sim.heavy.bow.running) AudioEngine.playChime();
+});
+
+$('#btnPump')?.addEventListener('click', () => {
+  Sim.toggleHeavy(sim, 'pump');
+  if (sim.heavy.pump.running) AudioEngine.playChime();
+});
+
+// View Switching
+$$('#viewTabs .tab').forEach((tab) => {
+  tab.addEventListener('click', () => {
+    $$('#viewTabs .tab').forEach((t) => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeView = tab.getAttribute('data-view');
+    $('#viewBays').classList.toggle('hidden', activeView !== 'bays');
+    $('#viewSLD').classList.toggle('hidden', activeView !== 'sld');
+    if (activeView === 'sld') renderSLD();
+  });
+});
+
+// Faults Popover
+const faultPopover = $('#faultPopover');
+$('#btnFaults')?.addEventListener('click', (ev) => {
+  ev.stopPropagation();
+  faultPopover.classList.toggle('hidden');
+});
+$('#btnCloseFaults')?.addEventListener('click', () => {
+  faultPopover.classList.add('hidden');
+});
+document.addEventListener('click', (ev) => {
+  if (!faultPopover.contains(ev.target) && ev.target !== $('#btnFaults')) {
+    faultPopover.classList.add('hidden');
+  }
+});
+$$('.fault-btn', faultPopover).forEach((btn) => {
+  btn.addEventListener('click', () => {
+    const fault = btn.getAttribute('data-fault');
+    Sim.setFault(sim, fault);
+    $$('.fault-btn', faultPopover).forEach((b) => b.classList.remove('active'));
+    if (fault !== 'none') btn.classList.add('active');
+    faultPopover.classList.add('hidden');
+    if (fault === 'preferential') AudioEngine.playHorn();
+  });
+});
+
+// Challenges & Examination
+$$('#chalList .chal-card').forEach((card) => {
+  card.addEventListener('click', () => {
+    $$('#chalList .chal-card').forEach((c) => c.classList.remove('selected'));
+    card.classList.add('selected');
+    selChallengeId = card.getAttribute('data-chid');
+    const title = $('span', card).textContent;
+    setT($('#evalTitle'), title);
+    setT($('#evalTarget'), $('.chal-card-desc', card).textContent);
+  });
+});
+
+$('#btnStartChal')?.addEventListener('click', () => {
+  Sim.startChallenge(sim, selChallengeId);
+  renderExam();
+});
+
+$('#btnResetChal')?.addEventListener('click', () => {
+  sim.challenge.active = false;
+  sim.challenge.timer = 0;
+  sim.challenge.score = 100;
+  sim.challenge.violations = 0;
+  sim.challenge.status = 'IDLE';
+  renderExam();
+});
+
+// Certificate Generation
+const certModal = $('#certModal');
+$('#btnCert')?.addEventListener('click', () => {
+  const ch = sim.challenge;
+  setT($('#certAssessment'), ch.name);
+  setT($('#certScore'), ch.score + ' / 100');
+  setT($('#certGrade'), ch.grade + (ch.grade === 'S' ? ' (Distinction)' : ch.grade === 'A' ? ' (First Class)' : ' (Proficient)'));
+  setT($('#certDate'), new Date().toISOString().split('T')[0]);
+  setT($('#certHash'), '#STCW-' + Math.floor(1000 + Math.random() * 9000) + '-' + ch.grade);
+  certModal.classList.remove('hidden');
+});
+$('#btnCloseCert')?.addEventListener('click', () => {
+  certModal.classList.add('hidden');
+});
+$('#btnPrintCert')?.addEventListener('click', () => {
+  window.print();
+});
+
 window.__trainer = { get sim() { return sim; }, Sim, act, reset };
 })();
 </script>
+
 </body>
 </html>
